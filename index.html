@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8 />
+<meta name=viewport content="width=device-width,initial-scale=1" />
+<title>NotEnoughMatter - Texture HEX Viewer</title>
+<link rel=stylesheet href=style.css />
+</head>
+<body>
+<div class=container>
+<h1>NotEnoughTinkering</h1>
+<h2>16×16 Texture HEX Converter</h2>
+<div class=upload-box>
+<label for=imageInput class=upload-label>Import 16x16 Texture</label>
+<input id=imageInput type=file accept="image/png, image/jpeg" />
+</div>
+<p id=errorMsg class=error role=status aria-live=polite></p>
+<div id=preview aria-hidden=true></div>
+<h3>HEX Lines</h3>
+<div id=hexContainer aria-live=polite></div>
+<p id=generatedLinkBox class=info-text></p>
+<div id=yamlSection class=yaml-block style=display:none>
+<h3>YAML Generator</h3>
+<div class=yaml-row>
+<label>ID:</label>
+<input id=yamlID type=text placeholder="ex: custom_pickaxe" required>
+</div>
+<div class=yaml-row>
+<label>Name:</label>
+<input id=yamlName type=text placeholder="ex: Custom Pickaxe" required>
+</div>
+<div class=yaml-row>
+<label>Material:</label>
+<input id=yamlMaterial type=text placeholder="ex: DIAMOND" required>
+</div>
+<div class=yaml-row>
+<label>Category:</label>
+<select id=yamlCategory>
+<option value=material>material</option>
+<option value=ferramenta>ferramenta</option>
+<option value=handle>handle</option>
+<option value=pickaxe_head>pickaxe_head</option>
+<option value=axe_head>axe_head</option>
+<option value=sword_head>sword_head</option>
+<option value=shovel_head>shovel_head</option>
+<option value=conector>conector</option>
+<option value=plate>plate</option>
+<option value=upgrade>upgrade</option>
+</select>
+</div>
+<button id=generateYAML class="copy-btn btn-disabled" style=width:100%;margin-top:10px disabled>
+Generate & Download YAML
+</button>
+</div>
+<hr class=divider />
+<h3>How to Use</h3>
+<p class=info-text>Watch this quick tutorial to understand how to import textures and extract HEX lines.</p>
+<div class=video-wrapper aria-hidden=false>
+<iframe src=https://www.youtube.com/embed/dQw4w9WgXcQ frameborder=0 allowfullscreen>
+</iframe>
+</div>
+</div>
+<aside class=sidebar>
+<div class=disclaimer-box>
+<h3 class=disclaimer-title>Disclaimer</h3>
+<p class=disclaimer-text>
+This website is specifically created to be used with the
+<a href=https://polymart.org target=_blank rel="noopener noreferrer" class=plugin-link>NotEnoughMatter</a>
+plugin. You can generate the item directly in-game without dealing with files.
+</p>
+<div class=steps-section>
+<h4 class=steps-title>Step-by-Step Guide:</h4>
+<ol class=steps-list>
+<li>Select a 16x16 texture on the website</li>
+<li>Use <code>/nem create &lt;id&gt; &lt;category&gt;</code> and press Enter</li>
+<li>Choose the item name: <code>"&ftest item 123"</code></li>
+<li>Fill the 16x16 grid line by line by copying the corresponding line from the website and sending it in chat to fill the line. Repeat this until you complete the item</li>
+<li>Use <code>/nem give &lt;item id&gt; &lt;player&gt; &lt;amount&gt;</code> to get the item</li>
+</ol>
+</div>
+</div>
+<div class=creator-box>
+<img src=img/profile.jpg alt="k0dev profile" class=creator-avatar>
+<div class=creator-info>
+<p class=creator-title>Made by</p>
+<p class=creator-name>@k0dev._.0</p>
+<a href=https://github.com/k0dev target=_blank rel="noopener noreferrer" class=github-link>
+<svg width=20 height=20 viewBox="0 0 24 24" fill=currentColor>
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+</svg>
+GitHub
+</a>
+</div>
+</div>
+</aside>
+<script src=script.js></script>
+</body>
+</html>
