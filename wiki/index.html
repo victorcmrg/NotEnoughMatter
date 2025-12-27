@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NotEnoughTinkering - Wiki</title>
+  <style>
+    @font-face{font-family:'CustomFont';src:url('../fonts/font.otf') format('opentype');font-weight:normal;font-style:normal}
+    @font-face{font-family:'CustomFont';src:url('../fonts/bold.otf') format('opentype');font-weight:700;font-style:normal}
+    
+    :root{
+      --bg:#0a0a0a;
+      --card:#0f0f0f;
+      --card-hover:#141414;
+      --muted:#9ca3af;
+      --text:#e5e7eb;
+      --accent:#3b82f6;
+      --accent-hover:#2563eb;
+      --border:#1f1f1f;
+      --code-bg:#1a1a1a;
+      --success:#10b981;
+      --warning:#f59e0b;
+    }
+    
+    *{box-sizing:border-box;margin:0;padding:0}
+    
+    body{
+      font-family:'CustomFont',Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+    }
+    
+    /* Header */
+    header{
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      padding:16px 0;
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(12px);
+    }
+    
+    .header-content{
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 32px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    
+    .logo{
+      font-size:18px;
+      font-weight:700;
+      color:var(--text);
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    
+    .logo-icon{
+      width:32px;
+      height:32px;
+      background:var(--accent);
+      border-radius:6px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:14px;
+    }
+    
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:500;
+      transition:color .2s;
+      font-size:14px;
+      margin-left:24px;
+    }
+    
+    nav a:hover{color:var(--text)}
+    
+    /* Wiki Layout */
+    .wiki-container{
+      max-width:1400px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:32px;
+      padding:32px;
+      min-height:calc(100vh - 64px);
+    }
+    
+    /* Sidebar */
+    .sidebar{
+      position:sticky;
+      top:96px;
+      height:fit-content;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:20px;
+    }
+    
+    .sidebar h3{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:0.05em;
+      color:var(--muted);
+      margin-bottom:16px;
+      font-weight:600;
+    }
+    
+    .sidebar-section{
+      margin-bottom:24px;
+    }
+    
+    .sidebar-section:last-child{margin-bottom:0}
+    
+    .sidebar-item{
+      display:flex;
+      align-items:center;
+      padding:8px 12px;
+      color:var(--text);
+      text-decoration:none;
+      border-radius:6px;
+      transition:all .2s;
+      font-size:14px;
+      margin-bottom:4px;
+      cursor:pointer;
+    }
+    
+    .sidebar-item:hover{
+      background:var(--card-hover);
+      color:var(--accent);
+    }
+    
+    .sidebar-item:hover .icon{
+      color:var(--accent);
+    }
+    
+    .sidebar-item.active{
+      background:var(--accent);
+      color:#fff;
+      font-weight:600;
+    }
+    
+    .sidebar-item.active .icon{
+      color:#fff;
+    }
+    
+    .sidebar-item.sub{
+      padding-left:40px;
+      font-size:13px;
+    }
+    
+    .icon{
+      width:18px;
+      height:18px;
+      min-width:18px;
+      margin-right:10px;
+      transition:all .2s;
+    }
+    
+    /* Icon colors by category */
+    .sidebar-section:nth-child(1) .sidebar-item .icon{color:#3b82f6} /* Blue - Getting Started */
+    .sidebar-section:nth-child(2) .sidebar-item .icon{color:#10b981} /* Green - NotEnoughMatter */
+    .sidebar-section:nth-child(3) .sidebar-item .icon{color:#f59e0b} /* Orange - NotEnoughRelics */
+    .sidebar-section:nth-child(4) .sidebar-item .icon{color:#8b5cf6} /* Purple - API */
+    
+    .sidebar-item.active .icon{
+      color:#fff !important;
+    }
+    
+    /* Main Content */
+    .wiki-content{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:48px;
+      min-height:600px;
+    }
+    
+    .wiki-content h1{
+      font-size:36px;
+      margin-bottom:12px;
+      font-weight:700;
+      letter-spacing:-0.02em;
+    }
+    
+    .wiki-content h2{
+      font-size:28px;
+      margin-top:48px;
+      margin-bottom:16px;
+      font-weight:700;
+      padding-bottom:8px;
+      border-bottom:1px solid var(--border);
+    }
+    
+    .wiki-content h3{
+      font-size:22px;
+      margin-top:32px;
+      margin-bottom:12px;
+      font-weight:600;
+    }
+    
+    .wiki-content h4{
+      font-size:18px;
+      margin-top:24px;
+      margin-bottom:10px;
+      font-weight:600;
+    }
+    
+    .wiki-content p{
+      line-height:1.7;
+      margin-bottom:16px;
+      color:var(--text);
+      font-size:15px;
+    }
+    
+    .wiki-content ul, .wiki-content ol{
+      margin:16px 0 16px 24px;
+      line-height:1.8;
+    }
+    
+    .wiki-content li{
+      margin-bottom:8px;
+      color:var(--text);
+    }
+    
+    .wiki-content a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:500;
+    }
+    
+    .wiki-content a:hover{
+      text-decoration:underline;
+    }
+    
+    /* Code Blocks */
+    .wiki-content code{
+      background:var(--code-bg);
+      padding:3px 8px;
+      border-radius:4px;
+      font-family:ui-monospace,monospace;
+      font-size:13px;
+      color:#e879f9;
+      border:1px solid var(--border);
+    }
+    
+    .wiki-content pre{
+      background:var(--code-bg);
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:20px;
+      overflow-x:auto;
+      margin:20px 0;
+    }
+    
+    .wiki-content pre code{
+      background:none;
+      padding:0;
+      border:none;
+      color:var(--text);
+      font-size:14px;
+      line-height:1.6;
+    }
+    
+    /* Info Boxes */
+    .info-box{
+      padding:16px 20px;
+      border-radius:8px;
+      margin:20px 0;
+      border-left:4px solid var(--accent);
+      background:rgba(59,130,246,0.1);
+    }
+    
+    .info-box.warning{
+      border-left-color:var(--warning);
+      background:rgba(245,158,11,0.1);
+    }
+    
+    .info-box.success{
+      border-left-color:var(--success);
+      background:rgba(16,185,129,0.1);
+    }
+    
+    .info-box p{margin-bottom:0}
+    
+    .info-box strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:0.05em;
+    }
+    
+    /* Images */
+    .wiki-content img{
+      max-width:100%;
+      height:auto;
+      border-radius:8px;
+      border:1px solid var(--border);
+      margin:20px 0;
+    }
+    
+    /* Tables */
+    .wiki-content table{
+      width:100%;
+      border-collapse:collapse;
+      margin:20px 0;
+      background:var(--code-bg);
+      border-radius:8px;
+      overflow:hidden;
+    }
+    
+    .wiki-content th{
+      background:var(--border);
+      padding:12px 16px;
+      text-align:left;
+      font-weight:600;
+      font-size:14px;
+    }
+    
+    .wiki-content td{
+      padding:12px 16px;
+      border-top:1px solid var(--border);
+      font-size:14px;
+    }
+    
+    .wiki-content tr:hover{
+      background:rgba(59,130,246,0.05);
+    }
+    
+    /* Tabs */
+    .tabs{
+      display:flex;
+      gap:8px;
+      margin-bottom:24px;
+      border-bottom:1px solid var(--border);
+      padding-bottom:0;
+    }
+    
+    .tab-btn{
+      padding:10px 20px;
+      background:none;
+      border:none;
+      color:var(--muted);
+      font-weight:500;
+      font-size:14px;
+      cursor:pointer;
+      transition:all .2s;
+      border-bottom:2px solid transparent;
+      font-family:inherit;
+    }
+    
+    .tab-btn:hover{
+      color:var(--text);
+    }
+    
+    .tab-btn.active{
+      color:var(--accent);
+      border-bottom-color:var(--accent);
+    }
+    
+    .tab-content{
+      display:none;
+    }
+    
+    .tab-content.active{
+      display:block;
+      animation:fadeIn 0.3s;
+    }
+    
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    
+    /* Search */
+    .wiki-search{
+      margin-bottom:20px;
+    }
+    
+    .wiki-search input{
+      width:100%;
+      padding:10px 16px;
+      background:var(--code-bg);
+      border:1px solid var(--border);
+      border-radius:8px;
+      color:var(--text);
+      font-size:14px;
+      font-family:inherit;
+    }
+    
+    .wiki-search input:focus{
+      outline:none;
+      border-color:var(--accent);
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      margin-bottom:24px;
+      font-size:14px;
+      color:var(--muted);
+    }
+    
+    .breadcrumb a{
+      color:var(--muted);
+      text-decoration:none;
+    }
+    
+    .breadcrumb a:hover{
+      color:var(--text);
+    }
+    
+    .breadcrumb span{
+      color:var(--border);
+    }
+    
+    /* Responsive */
+    @media(max-width:1024px){
+      .wiki-container{
+        grid-template-columns:1fr;
+      }
+      
+      .sidebar{
+        position:static;
+      }
+      
+      .wiki-content{
+        padding:32px 24px;
+      }
+    }
+    
+    @media(max-width:640px){
+      .wiki-container{
+        padding:16px;
+      }
+      
+      .wiki-content{
+        padding:24px 16px;
+      }
+      
+      .wiki-content h1{
+        font-size:28px;
+      }
+      
+      .wiki-content h2{
+        font-size:22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <div class="logo-icon">NT</div>
+        NotEnoughTinkering Wiki
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="#tools">Plugins</a>
+        <a href="https://github.com/k0dev" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wiki-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="wiki-search">
+        <input type="text" placeholder="Search documentation..." id="searchInput">
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Getting Started</h3>
+        <div class="sidebar-item active" data-page="home">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+          </svg>
+          <span>Introduction</span>
+        </div>
+        <div class="sidebar-item" data-page="installation">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+          <span>Installation</span>
+        </div>
+        <div class="sidebar-item" data-page="quickstart">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+          </svg>
+          <span>Quick Start</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>NotEnoughMatter</h3>
+        <div class="sidebar-item" data-page="nem-overview">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+          <span>Overview</span>
+        </div>
+        <div class="sidebar-item" data-page="nem-commands">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zM7 15h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+          </svg>
+          <span>Commands</span>
+        </div>
+        <div class="sidebar-item" data-page="nem-config">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+          <span>Configuration</span>
+        </div>
+        <div class="sidebar-item sub" data-page="nem-categories">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+          </svg>
+          <span>Categories</span>
+        </div>
+        <div class="sidebar-item sub" data-page="nem-textures">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm4 8H8v-.57c0-.81.48-1.53 1.22-1.85C10.07 13.21 11 13 12 13s1.93.21 2.78.58c.74.32 1.22 1.04 1.22 1.85V16z"/>
+          </svg>
+          <span>Textures</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>NotEnoughRelics</h3>
+        <div class="sidebar-item" data-page="ner-overview">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <span>Overview</span>
+        </div>
+        <div class="sidebar-item" data-page="ner-commands">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+          </svg>
+          <span>Commands</span>
+        </div>
+        <div class="sidebar-item" data-page="ner-abilities">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 21q-.825 0-1.413-.588T5 19V5q0-.825.588-1.413T7 3h7l-2 2H7v14h10v-5l2-2v7q0 .825-.588 1.413T17 21H7Zm9.175-11.8L15 7.825l4.2-4.2q.575-.575 1.413-.575t1.413.575q.575.575.575 1.412t-.575 1.413l-4.2 4.2l-1.175-1.175l4.225-4.25q.15-.15.15-.35t-.15-.35q-.15-.15-.35-.15t-.35.15l-4.25 4.225Z"/>
+          </svg>
+          <span>Abilities</span>
+        </div>
+        <div class="sidebar-item sub" data-page="ner-triggers">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6-2c0-1.1-.9-2-2-2h-.18C14.4 4.84 13.3 4 12 4c-1.3 0-2.4.84-2.82 2H9c-1.1 0-2 .9-2 2v.18C5.84 9.6 5 10.7 5 12c0 1.3.84 2.4 2 2.82V16c0 1.1.9 2 2 2h.18c.42 1.16 1.52 2 2.82 2 1.3 0 2.4-.84 2.82-2H16c1.1 0 2-.9 2-2v-1.18c1.16-.42 2-1.52 2-2.82 0-1.3-.84-2.4-2-2.82V8z"/>
+          </svg>
+          <span>Triggers</span>
+        </div>
+        <div class="sidebar-item sub" data-page="ner-effects">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>Effects</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>API & Development</h3>
+        <div class="sidebar-item" data-page="api">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/>
+          </svg>
+          <span>API Reference</span>
+        </div>
+        <div class="sidebar-item" data-page="examples">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+          <span>Examples</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="wiki-content" id="wikiContent">
+      <!-- Home Page -->
+      <div class="tab-content active" id="page-home">
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <span>Documentation</span>
+        </div>
+        
+        <h1>Welcome to NotEnoughTinkering Wiki</h1>
+        <p>Complete documentation for all NotEnoughTinkering plugins. Learn how to install, configure, and use our tools to enhance your Minecraft server.</p>
+        
+        <div class="info-box">
+          <strong>🚀 Quick Start</strong>
+          <p>New to our plugins? Check out the <a href="#" data-page="installation">Installation Guide</a> and <a href="#" data-page="quickstart">Quick Start</a> to get up and running in minutes.</p>
+        </div>
+        
+        <h2>Our Plugins</h2>
+        
+        <h3>NotEnoughMatter</h3>
+        <p>A powerful texture-to-HEX converter for creating custom 16×16 textures in-game. Generate YAML files and import them directly into your Minecraft server.</p>
+        <ul>
+          <li>Convert PNG/JPG textures to HEX format</li>
+          <li>Generate YAML configuration files</li>
+          <li>Create items directly in-game with commands</li>
+          <li>Support for multiple item categories</li>
+        </ul>
+        
+        <h3>NotEnoughRelics</h3>
+        <p>Create and manage legendary relics with unique abilities, custom textures, and special effects.</p>
+        <ul>
+          <li>Custom rarity tiers (Common to Mythic)</li>
+          <li>Special abilities with triggers</li>
+          <li>Stat modifications and bonuses</li>
+          <li>16×16 custom textures</li>
+        </ul>
+        
+        <h2>Getting Help</h2>
+        <p>If you need assistance:</p>
+        <ul>
+          <li>Check the documentation for your specific plugin</li>
+          <li>Join our <a href="#">Discord server</a></li>
+          <li>Report issues on <a href="https://github.com/k0dev" target="_blank">GitHub</a></li>
+          <li>Contact us on <a href="https://polymart.org" target="_blank">Polymart</a></li>
+        </ul>
+      </div>
+
+      <!-- Installation Page -->
+      <div class="tab-content" id="page-installation">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Installation</span>
+        </div>
+        
+        <h1>Installation Guide</h1>
+        <p>Learn how to install NotEnoughTinkering plugins on your Minecraft server.</p>
+        
+        <h2>Requirements</h2>
+        <ul>
+          <li>Minecraft Server (Spigot/Paper) 1.16 - 1.21</li>
+          <li>Java 17 or higher</li>
+          <li>At least 2GB RAM allocated</li>
+        </ul>
+        
+        <div class="info-box warning">
+          <strong>⚠️ Important</strong>
+          <p>Make sure to backup your server before installing any plugins!</p>
+        </div>
+        
+        <h2>Step-by-Step Installation</h2>
+        
+        <h3>1. Download the Plugin</h3>
+        <p>Download the latest version from <a href="https://polymart.org" target="_blank">Polymart</a>.</p>
+        
+        <h3>2. Install on Server</h3>
+        <pre><code>1. Stop your Minecraft server
+2. Place the .jar file in the /plugins/ folder
+3. Start your server
+4. Check console for successful load</code></pre>
+        
+        <h3>3. Configure</h3>
+        <p>Edit the configuration file in <code>/plugins/PluginName/config.yml</code></p>
+        
+        <div class="info-box success">
+          <strong>✅ Success!</strong>
+          <p>Your plugin is now installed. Use <code>/pluginname help</code> to see available commands.</p>
+        </div>
+        
+        <h2>Next Steps</h2>
+        <p>Now that you've installed the plugin, check out the <a href="#" data-page="quickstart">Quick Start Guide</a> to learn the basics.</p>
+      </div>
+
+      <!-- Quick Start Page -->
+      <div class="tab-content" id="page-quickstart">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Quick Start</span>
+        </div>
+        
+        <h1>Quick Start Guide</h1>
+        <p>Get started with NotEnoughTinkering plugins in just a few minutes.</p>
+        
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('nem-quick')">NotEnoughMatter</button>
+          <button class="tab-btn" onclick="switchTab('ner-quick')">NotEnoughRelics</button>
+        </div>
+        
+        <div class="tab-content active" id="nem-quick">
+          <h2>NotEnoughMatter Quick Start</h2>
+          
+          <h3>Creating Your First Item</h3>
+          <p>Follow these steps to create your first custom textured item:</p>
+          
+          <ol>
+            <li>Go to the <a href="/notenoughmatter">NotEnoughMatter Generator</a></li>
+            <li>Upload a 16×16 PNG texture</li>
+            <li>Fill in the item details (ID, Name, Material)</li>
+            <li>Copy the HEX lines or download the YAML file</li>
+          </ol>
+          
+          <h3>Using In-Game Commands</h3>
+          <pre><code>/nem create &lt;id&gt; &lt;category&gt;
+/nem give &lt;item_id&gt; &lt;player&gt; &lt;amount&gt;
+/nem list
+/nem reload</code></pre>
+          
+          <h3>Example</h3>
+          <pre><code>/nem create custom_pickaxe pickaxe_head
+# Follow chat prompts to input texture lines
+/nem give custom_pickaxe k0dev 1</code></pre>
+        </div>
+        
+        <div class="tab-content" id="ner-quick">
+          <h2>NotEnoughRelics Quick Start</h2>
+          
+          <h3>Creating Your First Relic</h3>
+          <ol>
+            <li>Go to the <a href="/notenoughrelics">NotEnoughRelics Generator</a></li>
+            <li>Set the relic name, material, and rarity</li>
+            <li>Add custom abilities and stats</li>
+            <li>Upload a 16×16 texture (optional)</li>
+            <li>Download the YAML configuration</li>
+          </ol>
+          
+          <h3>Using In-Game Commands</h3>
+          <pre><code>/ner give &lt;relic_id&gt; &lt;player&gt; [amount]
+/ner list
+/ner info &lt;relic_id&gt;
+/ner reload</code></pre>
+          
+          <h3>Example YAML</h3>
+          <pre><code>id: ancient_sword
+name: "Ancient Sword of Power"
+material: DIAMOND_SWORD
+rarity: LEGENDARY
+lore:
+  - "&7An ancient weapon forged in..."
+  - "&7the fires of the Nether itself."
+abilities:
+  ability_1:
+    trigger: RIGHT_CLICK
+    effect: LIGHTNING
+    cooldown: 10
+    power: 5.0</code></pre>
+        </div>
+      </div>
+
+      <!-- Add more pages as needed -->
+    </main>
+  </div>
+
+  <script>
+    // Page Navigation
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const wikiContent = document.getElementById('wikiContent');
+    
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const pageId = item.dataset.page;
+        showPage(pageId);
+        
+        // Update active state
+        sidebarItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+    
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.tab-content');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      const targetPage = document.getElementById(`page-${pageId}`);
+      if (targetPage) {
+        targetPage.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+    
+    // Tabs within pages
+    function switchTab(tabId) {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('#nem-quick, #ner-quick');
+      
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+    
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      
+      sidebarItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+    
+    // Link navigation within content
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' && e.target.dataset.page) {
+        e.preventDefault();
+        const pageId = e.target.dataset.page;
+        showPage(pageId);
+        
+        // Update sidebar
+        sidebarItems.forEach(item => {
+          if (item.dataset.page === pageId) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
