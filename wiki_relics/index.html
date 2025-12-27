@@ -1,0 +1,3542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NotEnoughRelics - Wiki</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <div class="logo-icon">NER</div>
+        NotEnoughRelics Wiki
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="https://polymart.org" target="_blank">Polymart</a>
+        <a href="https://github.com/k0dev" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wiki-container">
+    <aside class="sidebar">
+      <div class="wiki-search">
+        <input type="text" placeholder="Buscar documentação..." id="searchInput">
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Começando</h3>
+        <div class="sidebar-item active" data-page="home">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+          </svg>
+          <span>Introdução</span>
+        </div>
+        <div class="sidebar-item" data-page="installation">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+          <span>Instalação</span>
+        </div>
+        <div class="sidebar-item" data-page="commands">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1z"/>
+          </svg>
+          <span>Comandos</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Criando Relíquias</h3>
+        <div class="sidebar-item" data-page="relic-basics">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <span>Básico de Relíquias</span>
+        </div>
+        <div class="sidebar-item" data-page="relic-tiers">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>Tiers/Raridades</span>
+        </div>
+        <div class="sidebar-item" data-page="relic-slots">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+          </svg>
+          <span>Slots e Tipos</span>
+        </div>
+        <div class="sidebar-item sub" data-page="attributes">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+          <span>Atributos</span>
+        </div>
+        <div class="sidebar-item sub" data-page="potion-effects">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.16 7.8l-2.88-2.88c-.39-.39-1.03-.39-1.42 0L3 17.78V21h3.22L19.08 8.14c.39-.39.39-1.03 0-1.42zM6.92 19H5v-1.92l9.06-9.06 1.92 1.92L6.92 19z"/>
+          </svg>
+          <span>Efeitos de Poção</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Integração: Dash</h3>
+        <div class="sidebar-item" data-page="dash-overview">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/>
+          </svg>
+          <span>Visão Geral</span>
+        </div>
+        <div class="sidebar-item" data-page="dash-effects">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+          </svg>
+          <span>Efeitos de Dash</span>
+        </div>
+        <div class="sidebar-item sub" data-page="dash-modifiers">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94L15.4 3.5c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+          <span>Modificadores</span>
+        </div>
+        <div class="sidebar-item sub" data-page="dash-special">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>Efeitos Especiais</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Integração: Críticos</h3>
+        <div class="sidebar-item" data-page="critics-overview">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/>
+          </svg>
+          <span>Visão Geral</span>
+        </div>
+        <div class="sidebar-item" data-page="critics-effects">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <span>Efeitos de Crítico</span>
+        </div>
+        <div class="sidebar-item sub" data-page="critics-modifiers">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94L15.4 3.5c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+          <span>Modificadores</span>
+        </div>
+        <div class="sidebar-item sub" data-page="critics-particles">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <span>Partículas & Sons</span>
+        </div>
+        <div class="sidebar-item sub" data-page="critics-overrides">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>Overrides & Combo</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Avançado</h3>
+        <div class="sidebar-item" data-page="menu-config">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+          <span>Configurar Menu</span>
+        </div>
+        <div class="sidebar-item" data-page="stats-display">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+          </svg>
+          <span>Display de Stats</span>
+        </div>
+        <div class="sidebar-item" data-page="examples">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+          </svg>
+          <span>Exemplos</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="wiki-content" id="wikiContent">
+      <!-- Home Page -->
+      <div class="tab-content active" id="page-home">
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <span>Documentação</span>
+        </div>
+        
+        <h1>NotEnoughRelics</h1>
+        <p>Sistema avançado de relíquias equipáveis com integração completa de Dash e Críticos para Minecraft.</p>
+        
+        <div class="info-box legendary">
+          <strong>✨ Plugin Premium</strong>
+          <p>Sistema completo de RPG com slots equipáveis, atributos personalizados, efeitos de poção permanentes e integração profunda com NotEnoughDashes e NotEnoughCritics.</p>
+        </div>
+        
+        <h2>O que são Relíquias?</h2>
+        <p>Relíquias são itens poderosos e únicos que podem ser equipados em slots especiais do jogador. Cada relíquia oferece:</p>
+        <ul>
+          <li><strong>Atributos únicos</strong> - Vida máxima, força, velocidade</li>
+          <li><strong>Efeitos permanentes</strong> - Velocidade, resistência, regeneração</li>
+          <li><strong>Modificadores de Dash</strong> - Cooldown, poder, cargas, efeitos especiais</li>
+          <li><strong>Modificadores de Crítico</strong> - Chance, dano, partículas, sons customizados</li>
+          <li><strong>Sistema de Tiers</strong> - Common, Uncommon, Rare, Epic, Legendary</li>
+        </ul>
+        
+        <h2>Sistema de Slots</h2>
+        <p>Os jogadores possuem 7 slots equipáveis:</p>
+        
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>⛑️ Capacete</strong>
+            <p>Slot: Helmet<br>Items defensivos e especiais</p>
+          </div>
+          <div class="attribute-item">
+            <strong>📿 Colar</strong>
+            <p>Slot: Necklace<br>Amuletos poderosos</p>
+          </div>
+          <div class="attribute-item">
+            <strong>🎗️ Cinto</strong>
+            <p>Slot: Belt<br>Equipamento principal</p>
+          </div>
+          <div class="attribute-item">
+            <strong>💍 Anel Esquerdo</strong>
+            <p>Slot: Ring<br>Primeiro anel</p>
+          </div>
+          <div class="attribute-item">
+            <strong>💍 Anel Direito</strong>
+            <p>Slot: Ring<br>Segundo anel</p>
+          </div>
+          <div class="attribute-item">
+            <strong>👢 Bota Esquerda</strong>
+            <p>Slot: Boots<br>Primeira bota</p>
+          </div>
+          <div class="attribute-item">
+            <strong>👢 Bota Direita</strong>
+            <p>Slot: Boots<br>Segunda bota</p>
+          </div>
+        </div>
+
+        <h2>Recursos Principais</h2>
+        <ul>
+          <li><strong>Sistema de Atributos</strong> - Soma automática de stats de todas relíquias equipadas</li>
+          <li><strong>Efeitos Permanentes</strong> - Poções ativas enquanto a relíquia estiver equipada</li>
+          <li><strong>Integração com Dash</strong> - Modifique poder, cooldown, cargas e adicione efeitos especiais</li>
+          <li><strong>Integração com Críticos</strong> - Controle chance, dano, partículas, sons e sistema de combo</li>
+          <li><strong>Menu Interativo</strong> - Interface visual para equipar/desequipar relíquias</li>
+          <li><strong>Display de Stats</strong> - Item no menu mostrando todas suas estatísticas em tempo real</li>
+          <li><strong>Sistema de Tiers</strong> - 5 níveis de raridade com cores únicas</li>
+          <li><strong>Custom Model Data</strong> - Suporte para texturas customizadas</li>
+        </ul>
+
+        <h2>Integrações</h2>
+        
+        <h3>🏃 NotEnoughDashes</h3>
+        <p>Controle completo sobre o sistema de dash:</p>
+        <ul>
+          <li>Modificadores de poder, cooldown e recarga</li>
+          <li>Adição de cargas extras</li>
+          <li>12+ efeitos especiais (phantom_blade, frost_heart, thunder_core, etc.)</li>
+          <li>Acumulação de modificadores de múltiplas relíquias</li>
+        </ul>
+
+        <h3>💥 NotEnoughCritics</h3>
+        <p>Sistema avançado de críticos:</p>
+        <ul>
+          <li>Modificadores de chance e dano (multiplicadores e adições)</li>
+          <li>Overrides para valores fixos</li>
+          <li>Partículas customizadas por variante de crítico</li>
+          <li>Sons customizados + sons extras múltiplos</li>
+          <li>Sistema de combo com controle de tempo de reset</li>
+          <li>10+ efeitos especiais</li>
+        </ul>
+
+        <h2>Começando</h2>
+        <p>Para começar a usar o NotEnoughRelics:</p>
+        <ol>
+          <li>Leia o guia de <a href="#" data-page="installation">Instalação</a></li>
+          <li>Configure os slots no <a href="#" data-page="menu-config">Menu</a></li>
+          <li>Crie suas primeiras relíquias seguindo o <a href="#" data-page="relic-basics">Básico de Relíquias</a></li>
+          <li>Explore os <a href="#" data-page="examples">Exemplos</a> para inspiração</li>
+        </ol>
+
+        <div class="info-box success">
+          <strong>💡 Dica</strong>
+          <p>Use o comando <code>/relics</code> para abrir o menu de relíquias e <code>/ner list</code> para ver todas as relíquias disponíveis.</p>
+        </div>
+      </div>
+
+      <!-- Installation Page -->
+      <div class="tab-content" id="page-installation">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Instalação</span>
+        </div>
+        
+        <h1>Instalação</h1>
+        <p>Guia completo para instalar e configurar o NotEnoughRelics.</p>
+
+        <h2>Requisitos</h2>
+        <ul>
+          <li>Minecraft Server (Spigot/Paper) 1.19+</li>
+          <li>Java 17 ou superior</li>
+          <li>2GB+ de RAM alocada</li>
+        </ul>
+
+        <div class="info-box">
+          <strong>📦 Dependências Opcionais</strong>
+          <p>NotEnoughDashes e NotEnoughCritics são opcionais mas recomendados para funcionalidade completa.</p>
+        </div>
+
+        <h2>Passo 1: Instalação Básica</h2>
+        <ol>
+          <li>Baixe o plugin do Polymart</li>
+          <li>Pare o servidor</li>
+          <li>Coloque o .jar na pasta <code>/plugins/</code></li>
+          <li>Inicie o servidor</li>
+        </ol>
+
+        <pre><code>plugins/
+  └── NotEnoughRelics-1.0.0.jar</code></pre>
+
+        <h2>Passo 2: Configuração Inicial</h2>
+        <p>Ao iniciar pela primeira vez, os seguintes arquivos serão criados:</p>
+
+        <pre><code>plugins/NotEnoughRelics/
+  ├── relics.yml        # Configuração de relíquias
+  ├── relics_menu.yml   # Configuração do menu
+  └── playerdata/       # Dados dos jogadores</code></pre>
+
+        <h2>Passo 3: Instalação de Integrações (Opcional)</h2>
+        <p>Para usar as integrações, instale os plugins na seguinte ordem:</p>
+        <ol>
+          <li>Instale NotEnoughDashes (se desejar)</li>
+          <li>Instale NotEnoughCritics (se desejar)</li>
+          <li>Instale NotEnoughRelics por último</li>
+          <li>Reinicie o servidor</li>
+        </ol>
+
+        <div class="info-box warning">
+          <strong>⚠️ Ordem de Carregamento</strong>
+          <p>NotEnoughRelics DEVE ser instalado APÓS os outros plugins para detectá-los corretamente. Verifique o <code>plugin.yml</code> para ver o softdepend.</p>
+        </div>
+
+        <h2>Verificando a Instalação</h2>
+        <p>No console, você deve ver:</p>
+        <pre><code>[NotEnoughRelics] === INICIANDO NOT ENOUGH RELICS ===
+[NotEnoughRelics] ✓ IntegraçãoS com NotEnoughDashes ativa!
+[NotEnoughRelics] ✓ Integração com NotEnoughCritics ativa!
+[NotEnoughRelics] === NOT ENOUGH RELICS ATIVADO COM SUCESSO ===</code></pre>
+
+        <h2>Primeiros Passos</h2>
+        <ol>
+          <li>Use <code>/ner list</code> para ver as relíquias de exemplo</li>
+          <li>Use <code>/ner give [jogador] phoenix_crown</code> para testar</li>
+          <li>Use <code>/relics</code> para abrir o menu</li>
+          <li>Configure suas próprias relíquias em <code>relics.yml</code></li>
+        </ol>
+
+        <div class="info-box success">
+          <strong>✅ Pronto!</strong>
+          <p>Seu servidor agora está com NotEnoughRelics instalado. Continue para <a href="#" data-page="commands">Comandos</a> ou <a href="#" data-page="relic-basics">Criando Relíquias</a>.</p>
+        </div>
+      </div>
+
+      <!-- Commands Page -->
+      <div class="tab-content" id="page-commands">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Comandos</span>
+        </div>
+        
+        <h1>Comandos</h1>
+        <p>Lista completa de todos os comandos disponíveis no plugin.</p>
+
+        <h2>Comandos de Jogador</h2>
+        <table>
+          <tr>
+            <th>Comando</th>
+            <th>Descrição</th>
+            <th>Permissão</th>
+          </tr>
+          <tr>
+            <td><code>/relics</code></td>
+            <td>Abre o menu de relíquias</td>
+            <td>notenoughrelics.use</td>
+          </tr>
+        </table>
+
+        <h2>Comandos Administrativos</h2>
+        <table>
+          <tr>
+            <th>Comando</th>
+            <th>Descrição</th>
+            <th>Permissão</th>
+          </tr>
+          <tr>
+            <td><code>/ner reload</code></td>
+            <td>Recarrega todas as configurações</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+          <tr>
+            <td><code>/ner give &lt;jogador&gt; &lt;relíquia&gt; [qtd]</code></td>
+            <td>Dá uma relíquia para um jogador</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+          <tr>
+            <td><code>/ner giveall &lt;jogador&gt;</code></td>
+            <td>Dá todas as relíquias para um jogador</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+          <tr>
+            <td><code>/ner list</code></td>
+            <td>Lista todas as relíquias disponíveis</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+          <tr>
+            <td><code>/ner menu</code></td>
+            <td>Abre o menu (alternativa ao /relics)</td>
+            <td>notenoughrelics.use</td>
+          </tr>
+          <tr>
+            <td><code>/ner debug</code></td>
+            <td>Força atualização e mostra debug</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+        </table>
+
+        <h2>Comandos de Reset de Atributos</h2>
+        <p>Comandos para corrigir problemas com atributos acumulados:</p>
+        
+        <table>
+          <tr>
+            <th>Comando</th>
+            <th>Descrição</th>
+            <th>Permissão</th>
+          </tr>
+          <tr>
+            <td><code>/ner reset &lt;jogador&gt;</code></td>
+            <td>Reseta atributos de um jogador específico</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+          <tr>
+            <td><code>/ner resetall</code></td>
+            <td>Reseta atributos de TODOS os jogadores online</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+          <tr>
+            <td><code>/ner checkattributes &lt;jogador&gt;</code></td>
+            <td>Mostra os atributos atuais e bônus</td>
+            <td>notenoughrelics.admin</td>
+          </tr>
+        </table>
+
+        <div class="info-box warning">
+          <strong>⚠️ Comando de Reset</strong>
+          <p>Use <code>/ner reset</code> se um jogador estiver com atributos incorretos. Este comando força um reset completo para os valores padrão do Minecraft e reaplicaS os bônus.</p>
+        </div>
+
+        <h2>Exemplos de Uso</h2>
+        
+        <h3>Dar uma Relíquia</h3>
+        <pre><code>/ner give k0dev phoenix_crown 1</code></pre>
+        
+        <h3>Ver todas Relíquias</h3>
+        <pre><code>/ner list</code></pre>
+        <p>Retorna:</p>
+        <pre><code>=== Relíquias Disponíveis ===
+- phoenix_crown (&6&lCoroa da Fênix)
+- shadow_ring (&5&lAnel das Sombras)
+- titan_belt (&c&lCinto do Titã)
+...</code></pre>
+
+        <h3>Verificar Atributos</h3>
+        <pre><code>/ner checkattributes k0dev</code></pre>
+        <p>Retorna:</p>
+        <pre><code>=== Atributos de k0dev ===
+Vida: 30.0
+Dano: 11.0
+Velocidade: 0.113
+
+Bônus de Relíquias:
+  +Vida: 10.0
+  +Força: 10.0
+  +Velocidade: 3.0</code></pre>
+
+        <h2>Permissões</h2>
+        <table>
+          <tr>
+            <th>Permissão</th>
+            <th>Descrição</th>
+            <th>Padrão</th>
+          </tr>
+          <tr>
+            <td><code>notenoughrelics.use</code></td>
+            <td>Permite usar o menu de relíquias</td>
+            <td>Todos</td>
+          </tr>
+          <tr>
+            <td><code>notenoughrelics.admin</code></td>
+            <td>Acesso a todos comandos administrativos</td>
+            <td>OP</td>
+          </tr>
+          <tr>
+            <td><code>notenoughrelics.reload</code></td>
+            <td>Permite recarregar o plugin</td>
+            <td>OP</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Relic Basics Page -->
+      <div class="tab-content" id="page-relic-basics">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Básico de Relíquias</span>
+        </div>
+        
+        <h1>Básico de Relíquias</h1>
+        <p>Aprenda a criar suas primeiras relíquias customizadas.</p>
+
+        <h2>Estrutura de uma Relíquia</h2>
+        <p>Todas as relíquias são configuradas em <code>relics.yml</code>. Estrutura básica:</p>
+
+        <pre><code>relics:
+  id_da_reliquia:
+    name: "&6&lNome da Relíquia"
+    material: MATERIAL_DO_MINECRAFT
+    tier: LEGENDARY
+    lore:
+      - "&7Primeira linha da descrição"
+      - "&7Segunda linha"
+    slots:
+      - TIPO_DO_SLOT
+    attributes:
+      nome_atributo: valor
+    potion_effects:
+      EFEITO: level
+    custom_model_data: 0</code></pre>
+
+        <h2>Campos Obrigatórios</h2>
+
+        <h3>name (Nome)</h3>
+        <p>Nome exibido do item. Suporta códigos de cor (&amp;).</p>
+        <pre><code>name: "&6&lCoroa da Fênix"
+name: "&5&lAnel Mágico"
+name: "&c&lEspada Flamejante"</code></pre>
+
+        <h3>material (Material)</h3>
+        <p>Material do Minecraft que representa a relíquia.</p>
+        <pre><code>material: GOLDEN_HELMET
+material: DIAMOND_SWORD
+material: NETHERITE_INGOT</code></pre>
+
+        <div class="info-box">
+          <strong>📝 Lista de Materiais</strong>
+          <p>Veja todos os materiais em: <a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" target="_blank">Spigot Material Enum</a></p>
+        </div>
+
+        <h3>tier (Raridade)</h3>
+        <p>Define a raridade da relíquia. Afeta a cor no lore.</p>
+        <pre><code>tier: COMMON     # Branco
+tier: UNCOMMON   # Verde
+tier: RARE       # Azul
+tier: EPIC       # Roxo
+tier: LEGENDARY  # Dourado</code></pre>
+
+        <h3>slots (Slots Permitidos)</h3>
+        <p>Lista de slots onde a relíquia pode ser equipada.</p>
+        <pre><code>slots:
+  - HELMET     # Capacete
+  - NECKLACE   # Colar
+  - BELT       # Cinto
+  - RING       # Anel (ambos)
+  - BOOTS      # Botas (ambas)</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Slots Múltiplos</strong>
+          <p>Uma relíquia pode ser equipada em vários tipos de slots. Por exemplo, um anel pode funcionar tanto no slot esquerdo quanto direito.</p>
+        </div>
+
+        <h2>Campos Opcionais</h2>
+
+        <h3>lore (Descrição)</h3>
+        <p>Linhas de texto exibidas abaixo do nome.</p>
+        <pre><code>lore:
+  - "&7Uma relíquia poderosa"
+  - "&7forjada nos vulcões."
+  - ""
+  - "&eAtributos:"
+  - "&c+10 Força"</code></pre>
+
+        <h3>custom_model_data</h3>
+        <p>ID para textura customizada via resourcepack.</p>
+        <pre><code>custom_model_data: 100001</code></pre>
+
+        <h2>Exemplo Completo</h2>
+        <p>Uma relíquia simples mas funcional:</p>
+
+        <pre><code>relics:
+  starter_ring:
+    name: "&aAnel Iniciante"
+    material: IRON_INGOT
+    tier: COMMON
+    lore:
+      - "&7Um simples anel de ferro"
+      - "&7para começar sua jornada."
+      - ""
+      - "&eAtributos:"
+      - "&a+5 Vida Máxima"
+      - "&d+1 Velocidade"
+    slots:
+      - RING
+    attributes:
+      max_health: 5.0
+      speed: 1.0
+    custom_model_data: 0</code></pre>
+
+        <h2>Testando sua Relíquia</h2>
+        <ol>
+          <li>Salve o arquivo <code>relics.yml</code></li>
+          <li>Use <code>/ner reload</code> no servidor</li>
+          <li>Use <code>/ner give [seu_nome] starter_ring</code></li>
+          <li>Use <code>/relics</code> para equipar</li>
+        </ol>
+
+        <div class="info-box success">
+          <strong>✅ Próximos Passos</strong>
+          <p>Agora que você criou sua primeira relíquia, explore:</p>
+          <ul>
+            <li><a href="#" data-page="attributes">Atributos</a> - Vida, força, velocidade</li>
+            <li><a href="#" data-page="potion-effects">Efeitos de Poção</a> - Velocidade, resistência, etc.</li>
+            <li><a href="#" data-page="dash-effects">Efeitos de Dash</a> - Para NotEnoughDashes</li>
+            <li><a href="#" data-page="critics-effects">Efeitos de Crítico</a> - Para NotEnoughCritics</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Relic Tiers Page -->
+      <div class="tab-content" id="page-relic-tiers">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Tiers/Raridades</span>
+        </div>
+        
+        <h1>Tiers e Raridades</h1>
+        <p>Sistema de classificação de relíquias por raridade.</p>
+
+        <h2>Tiers Disponíveis</h2>
+        <p>NotEnoughRelics possui 5 níveis de raridade:</p>
+
+        <div class="attribute-list">
+          <div class="attribute-item" style="border-left-color:var(--common)">
+            <strong style="color:var(--common)">COMMON (Comum)</strong>
+            <p>Relíquias básicas<br>Cor: <span class="tier-badge tier-common">Branco</span></p>
+          </div>
+          <div class="attribute-item" style="border-left-color:var(--uncommon)">
+            <strong style="color:var(--uncommon)">UNCOMMON (Incomum)</strong>
+            <p>Relíquias melhoradas<br>Cor: <span class="tier-badge tier-uncommon">Verde</span></p>
+          </div>
+          <div class="attribute-item" style="border-left-color:var(--rare)">
+            <strong style="color:var(--rare)">RARE (Raro)</strong>
+            <p>Relíquias poderosas<br>Cor: <span class="tier-badge tier-rare">Azul</span></p>
+          </div>
+          <div class="attribute-item" style="border-left-color:var(--epic)">
+            <strong style="color:var(--epic)">EPIC (Épico)</strong>
+            <p>Relíquias muito raras<br>Cor: <span class="tier-badge tier-epic">Roxo</span></p>
+          </div>
+          <div class="attribute-item" style="border-left-color:var(--legendary)">
+            <strong style="color:var(--legendary)">LEGENDARY (Lendário)</strong>
+            <p>Relíquias únicas<br>Cor: <span class="tier-badge tier-legendary">Dourado</span></p>
+          </div>
+        </div>
+
+        <h2>Como Usar</h2>
+        <p>Defina o tier no campo <code>tier</code> da relíquia:</p>
+
+        <pre><code>relics:
+  common_ring:
+    name: "Anel Simples"
+    tier: COMMON
+    # ...
+
+  legendary_sword:
+    name: "&6Espada do Destino"
+    tier: LEGENDARY
+    # ...</code></pre>
+
+        <h2>Display no Jogo</h2>
+        <p>O tier é automaticamente adicionado ao lore da relíquia:</p>
+
+        <pre><code>&f━━━━━━━━━━━━━━━━━━
+&6&lCoroa da Fênix
+&7Uma coroa lendária...
+
+&7Raridade: &6Lendário
+&7Slot: &fHelmet
+&f━━━━━━━━━━━━━━━━━━</code></pre>
+
+        <h2>Sugestões de Uso por Tier</h2>
+
+        <h3><span class="tier-badge tier-common">COMMON</span></h3>
+        <ul>
+          <li>1-5 pontos de atributos</li>
+          <li>Sem efeitos de poção</li>
+          <li>Bons para iniciantes</li>
+        </ul>
+
+        <h3><span class="tier-badge tier-uncommon">UNCOMMON</span></h3>
+        <ul>
+          <li>5-10 pontos de atributos</li>
+          <li>1 efeito de poção simples</li>
+          <li>Ligeiramente melhores</li>
+        </ul>
+
+        <h3><span class="tier-badge tier-rare">RARE</span></h3>
+        <ul>
+          <li>10-15 pontos de atributos</li>
+          <li>1-2 efeitos de poção</li>
+          <li>Início de efeitos especiais</li>
+        </ul>
+
+        <h3><span class="tier-badge tier-epic">EPIC</span></h3>
+        <ul>
+          <li>15-25 pontos de atributos</li>
+          <li>2-3 efeitos de poção</li>
+          <li>Modificadores de Dash/Critic</li>
+        </ul>
+
+        <h3><span class="tier-badge tier-legendary">LEGENDARY</span></h3>
+        <ul>
+          <li>25+ pontos de atributos</li>
+          <li>Múltiplos efeitos poderosos</li>
+          <li>Modificadores significativos</li>
+          <li>Efeitos especiais únicos</li>
+        </ul>
+
+        <div class="info-box">
+          <strong>💡 Balanceamento</strong>
+          <p>Estas são apenas sugestões. Você tem total liberdade para criar relíquias do seu jeito. Uma relíquia COMMON pode ser mais forte que uma LEGENDARY se você quiser!</p>
+        </div>
+
+        <h2>Contagem no Menu</h2>
+        <p>O display de stats mostra quantas relíquias de cada tier você tem equipadas:</p>
+
+        <pre><code>📊 Suas Estatísticas
+  
+▸ Relíquias Equipadas
+  5 / 7 slots
+  
+  &6• Lendário: 2
+  &5• Épico: 1
+  &9• Raro: 2</code></pre>
+      </div>
+
+      <!-- Relic Slots Page -->
+      <div class="tab-content" id="page-relic-slots">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Slots e Tipos</span>
+        </div>
+        
+        <h1>Slots e Tipos</h1>
+        <p>Entenda o sistema de slots e como configurá-los.</p>
+
+        <h2>Tipos de Slots Padrão</h2>
+        <p>O plugin vem com 5 tipos de slots configuráveis:</p>
+
+        <table>
+          <tr>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Uso Recomendado</th>
+          </tr>
+          <tr>
+            <td><code>HELMET</code></td>
+            <td>Slot de capacete</td>
+            <td>Capacetes, coroas, elmos</td>
+          </tr>
+          <tr>
+            <td><code>NECKLACE</code></td>
+            <td>Slot de colar</td>
+            <td>Colares, amuletos, medalhões</td>
+          </tr>
+          <tr>
+            <td><code>BELT</code></td>
+            <td>Slot de cinto</td>
+            <td>Cintos, faixas</td>
+          </tr>
+          <tr>
+            <td><code>RING</code></td>
+            <td>Slot de anel</td>
+            <td>Anéis (2 slots no menu)</td>
+          </tr>
+          <tr>
+            <td><code>BOOTS</code></td>
+            <td>Slot de botas</td>
+            <td>Botas, sapatos (2 slots no menu)</td>
+          </tr>
+        </table>
+
+        <h2>Configurando Slots Permitidos</h2>
+        <p>Use a seção <code>slots</code> para definir onde uma relíquia pode ser equipada:</p>
+
+        <pre><code># Apenas no capacete
+slots:
+  - HELMET
+
+# Apenas em anéis
+slots:
+  - RING
+
+# Em múltiplos slots
+slots:
+  - HELMET
+  - NECKLACE</code></pre>
+
+        <div class="info-box">
+          <strong>🔄 Slots Múltiplos</strong>
+          <p>Uma relíquia pode ser equipada em vários tipos de slots diferentes. Isso é útil para itens versáteis!</p>
+        </div>
+
+        <h2>Validação de Slots</h2>
+        <p>Quando um jogador tenta equipar uma relíquia, o plugin verifica:</p>
+        <ol>
+          <li>Se o item é uma relíquia válida</li>
+          <li>Se a relíquia permite aquele tipo de slot</li>
+          <li>Se o slot do menu aceita aquele tipo</li>
+        </ol>
+
+        <div class="info-box warning">
+          <strong>⚠️ Validação</strong>
+          <p>Se uma relíquia não puder ser equipada em um slot, o jogador receberá: <code>&cEste item não pode ser colocado neste slot!</code></p>
+        </div>
+
+        <h2>Configuração no relics_menu.yml</h2>
+        <p>Os slots do menu são configurados separadamente:</p>
+
+        <pre><code>relic_slots:
+  helmet:
+    slot: 13              # Posição no inventário
+    display_name: "&e&lCapacete"
+    allowed_types: [HELMET]
+  
+  ring_left:
+    slot: 29
+    display_name: "&d&lAnel Esquerdo"
+    allowed_types: [RING]
+  
+  ring_right:
+    slot: 33
+    display_name: "&d&lAnel Direito"
+    allowed_types: [RING]</code></pre>
+
+        <h2>Exemplo: Relíquia Versátil</h2>
+        <p>Uma relíquia que pode ser equipada em qualquer slot de joia:</p>
+
+        <pre><code>relics:
+  mystic_gem:
+    name: "&d&lGema Mística"
+    material: AMETHYST_SHARD
+    tier: EPIC
+    lore:
+      - "&7Uma gema adaptável que pode"
+      - "&7ser usada em qualquer lugar."
+    slots:
+      - NECKLACE
+      - RING
+      - BELT
+    attributes:
+      max_health: 10.0
+      speed: 2.0</code></pre>
+
+        <div class="info-box success">
+          <strong>✅ Flexibilidade</strong>
+          <p>Esta relíquia pode ser equipada no colar, em qualquer um dos anéis, ou no cinto - dando ao jogador liberdade de escolha!</p>
+        </div>
+
+        <h2>Personalizando Slots</h2>
+        <p>Você pode criar seus próprios tipos de slots editando <code>relics_menu.yml</code>:</p>
+
+        <pre><code>relic_slots:
+  custom_slot:
+    slot: 40
+    display_name: "&c&lSlot Especial"
+    allowed_types: [CUSTOM_TYPE]</code></pre>
+
+        <p>E então usar em suas relíquias:</p>
+
+        <pre><code>slots:
+  - CUSTOM_TYPE</code></pre>
+      </div>
+
+      <!-- Attributes Page -->
+      <div class="tab-content" id="page-attributes">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Criando Relíquias</span>
+          <span>/</span>
+          <span>Atributos</span>
+        </div>
+        
+        <h1>Atributos</h1>
+        <p>Sistema de atributos que modificam as estatísticas base do jogador.</p>
+
+        <h2>Atributos Disponíveis</h2>
+        <p>NotEnoughRelics oferece 3 atributos principais:</p>
+
+        <table>
+          <tr>
+            <th>Atributo</th>
+            <th>Efeito</th>
+            <th>Valor Padrão</th>
+          </tr>
+          <tr>
+            <td><code>max_health</code></td>
+            <td>Vida máxima do jogador</td>
+            <td>20.0 (10 corações)</td>
+          </tr>
+          <tr>
+            <td><code>strength</code></td>
+            <td>Dano de ataque base</td>
+            <td>1.0</td>
+          </tr>
+          <tr>
+            <td><code>speed</code></td>
+            <td>Velocidade de movimento</td>
+            <td>0.1 (escala: 0.001 por ponto)</td>
+          </tr>
+        </table>
+
+        <h2>Como Usar</h2>
+        <p>Adicione atributos na seção <code>attributes</code>:</p>
+
+        <pre><code>relics:
+  warrior_ring:
+    name: "&cAnel do Guerreiro"
+    # ...
+    attributes:
+      max_health: 10.0    # +10 vida (5 corações)
+      strength: 5.0       # +5 de dano
+      speed: 3.0          # +0.003 velocidade</code></pre>
+
+        <h2>Detalhamento dos Atributos</h2>
+
+        <h3>❤️ max_health (Vida Máxima)</h3>
+        <p>Aumenta ou diminui a vida máxima do jogador.</p>
+        <ul>
+          <li><strong>Valor padrão:</strong> 20.0 (10 corações)</li>
+          <li><strong>Cálculo:</strong> Adição direta</li>
+          <li><strong>Exemplo:</strong> +10 = 30 HP (15 corações)</li>
+        </ul>
+
+        <pre><code>attributes:
+  max_health: 10.0    # Jogador terá 30 HP total
+  max_health: 20.0    # Jogador terá 40 HP total
+  max_health: -5.0    # Jogador terá 15 HP total</code></pre>
+
+        <h3>⚔️ strength (Força/Dano)</h3>
+        <p>Aumenta o dano base de ataque do jogador.</p>
+        <ul>
+          <li><strong>Valor padrão:</strong> 1.0</li>
+          <li><strong>Cálculo:</strong> Adição ao dano base</li>
+          <li><strong>Exemplo:</strong> +5 strength = 6.0 de dano base</li>
+        </ul>
+
+        <pre><code>attributes:
+  strength: 5.0     # +5 de dano
+  strength: 10.0    # +10 de dano
+  strength: 2.5     # +2.5 de dano (aceita decimais)</code></pre>
+
+        <div class="info-box">
+          <strong>⚔️ Dano com Armas</strong>
+          <p>O dano final = dano da arma + strength. Uma espada de diamante (7 de dano) com +10 strength causa 17 de dano!</p>
+        </div>
+
+        <h3>💨 speed (Velocidade)</h3>
+        <p>Aumenta a velocidade de movimento do jogador.</p>
+        <ul>
+          <li><strong>Valor padrão:</strong> 0.1</li>
+          <li><strong>Cálculo:</strong> speed × 0.001 adicionado ao base</li>
+          <li><strong>Exemplo:</strong> +5 speed = 0.105 velocidade</li>
+        </ul>
+
+        <pre><code>attributes:
+  speed: 5.0      # +0.005 velocidade (5%)
+  speed: 10.0     # +0.010 velocidade (10%)
+  speed: 20.0     # +0.020 velocidade (20%)</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Escala de Velocidade</strong>
+          <p>Velocidade usa uma escala menor (×0.001) para evitar que jogadores fiquem muito rápidos. Um valor de 10 já é notável!</p>
+        </div>
+
+        <h2>Acumulação de Atributos</h2>
+        <p>Quando múltiplas relíquias estão equipadas, os atributos se SOMAM:</p>
+
+        <pre><code>Anel 1: max_health: 10, strength: 5
+Anel 2: max_health: 8, strength: 3
+Colar:  max_health: 15, speed: 5
+
+TOTAL:
+  max_health: +33 (53 HP total)
+  strength: +8 (9 dano total)
+  speed: +5 (0.105 velocidade)</code></pre>
+
+        <h2>Sistema de Segurança</h2>
+        <p>O plugin possui proteções contra bugs de atributos:</p>
+        <ul>
+          <li><strong>Reset automático:</strong> Atributos são resetados antes de aplicar novos</li>
+          <li><strong>Valores base salvos:</strong> Primeira vez salva seus stats originais</li>
+          <li><strong>Fallback seguro:</strong> Se algo falhar, usa valores padrão do Minecraft</li>
+          <li><strong>Comando de emergência:</strong> <code>/ner reset [jogador]</code> força reset total</li>
+        </ul>
+
+        <div class="info-box success">
+          <strong>✅ Auto-Correção</strong>
+          <p>Se um jogador ficar com atributos bugados, o plugin automaticamente corrige ao equipar/desequipar relíquias ou use <code>/ner reset</code>.</p>
+        </div>
+
+        <h2>Exemplos Práticos</h2>
+
+        <h3>Relíquia Tanque</h3>
+        <pre><code>relics:
+  titan_armor:
+    name: "&6Armadura do Titã"
+    material: NETHERITE_CHESTPLATE
+    tier: LEGENDARY
+    attributes:
+      max_health: 30.0    # Muita vida
+      speed: -5.0         # Mais lento
+    # ...</code></pre>
+
+        <h3>Relíquia Assassino</h3>
+        <pre><code>relics:
+  shadow_blade:
+    name: "&8Lâmina das Sombras"
+    material: NETHERITE_SWORD
+    tier: EPIC
+    attributes:
+      strength: 15.0      # Alto dano
+      speed: 10.0         # Muito rápido
+      max_health: -5.0    # Menos vida
+    # ...</code></pre>
+
+        <h3>Relíquia Equilibrada</h3>
+        <pre><code>relics:
+  balanced_gem:
+    name: "&dGema do Equilíbrio"
+    material: AMETHYST_SHARD
+    tier: RARE
+    attributes:
+      max_health: 10.0
+      strength: 5.0
+      speed: 5.0
+    # ...</code></pre>
+
+        <h2>Verificando Atributos</h2>
+        <p>Use comandos para verificar os atributos de um jogador:</p>
+
+        <pre><code>/ner checkattributes [jogador]</code></pre>
+
+        <p>Retorna:</p>
+        <pre><code>=== Atributos de k0dev ===
+Vida: 35.0
+Dano: 11.0
+Velocidade: 0.115
+
+Bônus de Relíquias:
+  +Vida: 15.0
+  +Força: 10.0
+  +Velocidade: 5.0</code></pre>
+      </div>
+
+      <!-- Potion Effects Page -->
+      <div class="tab-content" id="page-potion-effects">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Criando Relíquias</span>
+          <span>/</span>
+          <span>Efeitos de Poção</span>
+        </div>
+        
+        <h1>Efeitos de Poção</h1>
+        <p>Adicione efeitos permanentes enquanto a relíquia estiver equipada.</p>
+
+        <h2>Como Funcionam</h2>
+        <p>Efeitos de poção são aplicados automaticamente e renovados a cada 0.5 segundos enquanto a relíquia estiver equipada.</p>
+
+        <ul>
+          <li>✅ Aplicados automaticamente ao equipar</li>
+          <li>✅ Removidos automaticamente ao desequipar</li>
+          <li>✅ Renovados constantemente (sem piscar)</li>
+          <li>✅ Múltiplas relíquias = nível MÁXIMO de cada efeito</li>
+        </ul>
+
+        <h2>Sintaxe Básica</h2>
+        <pre><code>potion_effects:
+  NOME_DO_EFEITO: nivel</code></pre>
+
+        <div class="info-box">
+          <strong>📝 Nota sobre Níveis</strong>
+          <p>Os níveis começam em 1, não em 0. <code>speed: 2</code> significa Velocidade II no jogo.</p>
+        </div>
+
+        <h2>Lista Completa de Efeitos</h2>
+
+        <h3>⚔️ Efeitos de Combate</h3>
+        <table>
+          <tr>
+            <th>Efeito</th>
+            <th>Código</th>
+            <th>Descrição</th>
+          </tr>
+          <tr>
+            <td>Força</td>
+            <td><code>strength</code></td>
+            <td>+3 de dano por nível</td>
+          </tr>
+          <tr>
+            <td>Velocidade</td>
+            <td><code>speed</code></td>
+            <td>+20% velocidade por nível</td>
+          </tr>
+          <tr>
+            <td>Pressa</td>
+            <td><code>haste</code></td>
+            <td>Minera e ataca mais rápido</td>
+          </tr>
+          <tr>
+            <td>Super Pulo</td>
+            <td><code>jump_boost</code></td>
+            <td>Pula mais alto</td>
+          </tr>
+          <tr>
+            <td>Regeneração</td>
+            <td><code>regeneration</code></td>
+            <td>Regenera vida constantemente</td>
+          </tr>
+          <tr>
+            <td>Resistência</td>
+            <td><code>resistance</code></td>
+            <td>Reduz dano recebido</td>
+          </tr>
+          <tr>
+            <td>Absorção</td>
+            <td><code>absorption</code></td>
+            <td>Corações amarelos extras</td>
+          </tr>
+        </table>
+
+        <h3>🔮 Efeitos Especiais</h3>
+        <table>
+          <tr>
+            <th>Efeito</th>
+            <th>Código</th>
+            <th>Descrição</th>
+          </tr>
+          <tr>
+            <td>Visão Noturna</td>
+            <td><code>night_vision</code></td>
+            <td>Enxerga no escuro</td>
+          </tr>
+          <tr>
+            <td>Invisibilidade</td>
+            <td><code>invisibility</code></td>
+            <td>Fica invisível</td>
+          </tr>
+          <tr>
+            <td>Respiração Aquática</td>
+            <td><code>water_breathing</code></td>
+            <td>Respira debaixo d'água</td>
+          </tr>
+          <tr>
+            <td>Afinidade Aquática</td>
+            <td><code>conduit_power</code></td>
+            <td>Minera normal debaixo d'água</td>
+          </tr>
+          <tr>
+            <td>Resistência ao Fogo</td>
+            <td><code>fire_resistance</code></td>
+            <td>Imune a fogo e lava</td>
+          </tr>
+          <tr>
+            <td>Sorte</td>
+            <td><code>luck</code></td>
+            <td>Aumenta chances de loot</td>
+          </tr>
+          <tr>
+            <td>Saturação</td>
+            <td><code>saturation</code></td>
+            <td>Recupera fome rapidamente</td>
+          </tr>
+          <tr>
+            <td>Brilho</td>
+            <td><code>glowing</code></td>
+            <td>Entidades brilham</td>
+          </tr>
+          <tr>
+            <td>Levitação</td>
+            <td><code>levitation</code></td>
+            <td>Flutua para cima</td>
+          </tr>
+          <tr>
+            <td>Queda Lenta</td>
+            <td><code>slow_falling</code></td>
+            <td>Cai devagar</td>
+          </tr>
+        </table>
+
+        <h3>💀 Efeitos Negativos</h3>
+        <table>
+          <tr>
+            <th>Efeito</th>
+            <th>Código</th>
+            <th>Descrição</th>
+          </tr>
+          <tr>
+            <td>Lentidão</td>
+            <td><code>slowness</code></td>
+            <td>Move mais devagar</td>
+          </tr>
+          <tr>
+            <td>Fadiga</td>
+            <td><code>mining_fatigue</code></td>
+            <td>Minera mais devagar</td>
+          </tr>
+          <tr>
+            <td>Fraqueza</td>
+            <td><code>weakness</code></td>
+            <td>Causa menos dano</td>
+          </tr>
+          <tr>
+            <td>Veneno</td>
+            <td><code>poison</code></td>
+            <td>Perde vida constantemente</td>
+          </tr>
+          <tr>
+            <td>Wither</td>
+            <td><code>wither</code></td>
+            <td>Corações ficam pretos</td>
+          </tr>
+        </table>
+
+        <h2>Exemplos de Uso</h2>
+
+        <h3>Relíquia de Velocidade</h3>
+        <pre><code>relics:
+  speed_boots:
+    name: "&bBotas do Vento"
+    material: LEATHER_BOOTS
+    tier: RARE
+    potion_effects:
+      speed: 2              # Velocidade II
+      jump_boost: 1         # Super Pulo I
+    # ...</code></pre>
+
+        <h3>Relíquia Tanque</h3>
+        <pre><code>relics:
+  tank_armor:
+    name: "&6Armadura Impenetrável"
+    material: NETHERITE_CHESTPLATE
+    tier: LEGENDARY
+    potion_effects:
+      resistance: 2         # Resistência II
+      absorption: 2         # Absorção II
+      regeneration: 1       # Regeneração I
+    # ...</code></pre>
+
+        <h3>Relíquia de Exploração</h3>
+        <pre><code>relics:
+  explorer_helmet:
+    name: "&eElmo do Explorador"
+    material: GOLDEN_HELMET
+    tier: UNCOMMON
+    potion_effects:
+      night_vision: 1       # Visão Noturna
+      water_breathing: 1    # Respiração Aquática
+      haste: 1              # Pressa
+    # ...</code></pre>
+
+        <h3>Relíquia Maldita (com negativos)</h3>
+        <pre><code>relics:
+  cursed_ring:
+    name: "&4Anel Amaldiçoado"
+    material: NETHERITE_SCRAP
+    tier: EPIC
+    attributes:
+      strength: 20.0        # MUITO FORTE
+    potion_effects:
+      strength: 3           # Força III
+      weakness: 1           # Mas com fraqueza
+      slowness: 1           # E lentidão
+    # ...</code></pre>
+
+        <h2>Sistema de Máximo</h2>
+        <p>Se você equipar múltiplas relíquias com o mesmo efeito, apenas o NÍVEL MÁXIMO é aplicado:</p>
+
+        <pre><code>Relíquia 1: speed: 1
+Relíquia 2: speed: 2
+Relíquia 3: speed: 1
+
+Resultado: Velocidade II (não III!)</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Não Acumula</strong>
+          <p>Diferente de atributos, efeitos de poção NÃO se somam. O jogo sempre usa o maior nível disponível.</p>
+        </div>
+
+        <h2>Efeitos Permanentes vs Temporários</h2>
+        <p>Efeitos de relíquias são reconhecidos por:</p>
+        <ul>
+          <li>✅ Duração curta (2 segundos, renovado constantemente)</li>
+          <li>✅ Sem partículas visíveis</li>
+          <li>✅ Ícone pequeno no canto da tela</li>
+        </ul>
+
+        <h2>Verificando Efeitos</h2>
+        <p>O display de stats no menu mostra todos efeitos permanentes:</p>
+
+        <pre><code>📊 Suas Estatísticas
+
+▸ Efeitos Permanentes
+  ✦ Speed II
+  ✦ Night Vision
+  ✦ Resistance I</code></pre>
+      </div>
+
+<!-- Dash Overview Page -->
+      <div class="tab-content" id="page-dash-overview">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Dash</span>
+          <span>/</span>
+          <span>Visão Geral</span>
+        </div>
+        
+        <h1>Integração com NotEnoughDashes</h1>
+        <p>Sistema completo de modificação de dash através de relíquias.</p>
+
+        <div class="info-box">
+          <strong>🔌 Plugin Opcional</strong>
+          <p>NotEnoughDashes é um plugin opcional. Se não estiver instalado, as relíquias funcionarão normalmente sem os efeitos de dash.</p>
+        </div>
+
+        <h2>O que são Modificadores de Dash?</h2>
+        <p>Modificadores de dash permitem que relíquias alterem o comportamento do sistema de dash do NotEnoughDashes:</p>
+
+        <ul>
+          <li><strong>Poder do Dash</strong> - Distância/velocidade do dash</li>
+          <li><strong>Cooldown</strong> - Tempo de recarga entre dashes</li>
+          <li><strong>Recarga</strong> - Velocidade de recuperação de cargas</li>
+          <li><strong>Cargas Extras</strong> - Número adicional de dashes disponíveis</li>
+          <li><strong>Efeitos Especiais</strong> - Comportamentos únicos (phantom_blade, frost_heart, etc.)</li>
+        </ul>
+
+        <h2>Como Funciona a Acumulação</h2>
+        <p>Quando múltiplas relíquias possuem modificadores de dash:</p>
+
+        <h3>Multiplicadores</h3>
+        <p>Se <strong>multiplicam</strong> entre si:</p>
+        <pre><code>Relíquia 1: power_multiplier: 1.2 (+20%)
+Relíquia 2: power_multiplier: 1.3 (+30%)
+
+Resultado: 1.2 × 1.3 = 1.56 (+56% total)</code></pre>
+
+        <h3>Adições</h3>
+        <p>Se <strong>somam</strong>:</p>
+        <pre><code>Relíquia 1: charges_addition: 1
+Relíquia 2: charges_addition: 2
+
+Resultado: 1 + 2 = 3 cargas extras</code></pre>
+
+        <h3>Efeitos Especiais</h3>
+        <p><strong>Todos</strong> os efeitos especiais são aplicados:</p>
+        <pre><code>Relíquia 1: phantom_blade
+Relíquia 2: frost_heart
+Relíquia 3: thunder_core
+
+Resultado: Todos os 3 efeitos ativos!</code></pre>
+
+        <h2>Exemplo Prático</h2>
+        <pre><code>relics:
+  speed_boots:
+    name: "&bBotas do Vento"
+    material: LEATHER_BOOTS
+    tier: RARE
+    slots:
+      - BOOTS
+    dash_effects:
+      power_multiplier: 1.2      # +20% distância
+      cooldown_multiplier: 0.8   # -20% cooldown
+      recharge_multiplier: 0.7   # -30% tempo de recarga</code></pre>
+
+        <div class="info-box success">
+          <strong>✅ Verificação de Integração</strong>
+          <p>Use <code>/ner debug</code> para verificar se a integração está funcionando corretamente!</p>
+        </div>
+
+        <h2>Próximos Passos</h2>
+        <ul>
+          <li><a href="#" data-page="dash-effects">Efeitos de Dash</a> - Lista completa de modificadores</li>
+          <li><a href="#" data-page="dash-modifiers">Modificadores</a> - Detalhes de cada tipo</li>
+          <li><a href="#" data-page="dash-special">Efeitos Especiais</a> - Lista de efeitos únicos</li>
+        </ul>
+      </div>
+
+      <!-- Dash Effects Page -->
+      <div class="tab-content" id="page-dash-effects">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Dash</span>
+          <span>/</span>
+          <span>Efeitos de Dash</span>
+        </div>
+        
+        <h1>Efeitos de Dash</h1>
+        <p>Lista completa de todos os modificadores de dash disponíveis.</p>
+
+        <h2>Sintaxe Básica</h2>
+        <pre><code>dash_effects:
+  power_multiplier: 1.5       # Multiplicador
+  power_addition: 2.0         # Adição
+  cooldown_multiplier: 0.8    # Multiplicador
+  cooldown_addition: -1.0     # Adição (segundos)
+  recharge_multiplier: 0.7    # Multiplicador
+  recharge_addition: -0.5     # Adição (segundos)
+  charges_addition: 2         # Cargas extras
+  special_effects:            # Lista de efeitos
+    - phantom_blade
+    - frost_heart</code></pre>
+
+        <h2>Modificadores de Poder</h2>
+        
+        <h3>power_multiplier</h3>
+        <p>Multiplica a distância/velocidade do dash.</p>
+        <pre><code>power_multiplier: 1.5  # +50% de poder
+power_multiplier: 2.0  # +100% de poder (dobro)
+power_multiplier: 0.5  # -50% de poder (metade)</code></pre>
+
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Valor Base</strong>
+            <p>1.0 (100%)</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Multiplicativo</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Acumulação</strong>
+            <p>Multiplica entre relíquias</p>
+          </div>
+        </div>
+
+        <h3>power_addition</h3>
+        <p>Adiciona poder direto ao dash.</p>
+        <pre><code>power_addition: 2.0   # +2.0 de poder
+power_addition: 5.0   # +5.0 de poder
+power_addition: -1.0  # -1.0 de poder</code></pre>
+
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Valor Base</strong>
+            <p>0.0</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Aditivo</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Acumulação</strong>
+            <p>Soma entre relíquias</p>
+          </div>
+        </div>
+
+        <h2>Modificadores de Cooldown</h2>
+
+        <h3>cooldown_multiplier</h3>
+        <p>Multiplica o tempo de cooldown entre dashes.</p>
+        <pre><code>cooldown_multiplier: 0.7   # -30% cooldown (mais rápido)
+cooldown_multiplier: 0.5   # -50% cooldown
+cooldown_multiplier: 1.5   # +50% cooldown (mais lento)</code></pre>
+
+        <div class="info-box">
+          <strong>💡 Valores Menores = Melhor</strong>
+          <p>Para cooldown, valores ABAIXO de 1.0 são buff (menos tempo). Valores ACIMA de 1.0 são nerf.</p>
+        </div>
+
+        <h3>cooldown_addition</h3>
+        <p>Adiciona/remove segundos do cooldown.</p>
+        <pre><code>cooldown_addition: -1.0  # Remove 1 segundo
+cooldown_addition: -2.5  # Remove 2.5 segundos
+cooldown_addition: 1.0   # Adiciona 1 segundo</code></pre>
+
+        <h2>Modificadores de Recarga</h2>
+
+        <h3>recharge_multiplier</h3>
+        <p>Multiplica o tempo para recarregar uma carga.</p>
+        <pre><code>recharge_multiplier: 0.6   # -40% tempo de recarga
+recharge_multiplier: 0.5   # -50% tempo de recarga
+recharge_multiplier: 1.3   # +30% tempo de recarga</code></pre>
+
+        <h3>recharge_addition</h3>
+        <p>Adiciona/remove segundos do tempo de recarga.</p>
+        <pre><code>recharge_addition: -1.5  # Remove 1.5 segundos
+recharge_addition: -3.0  # Remove 3 segundos
+recharge_addition: 2.0   # Adiciona 2 segundos</code></pre>
+
+        <h2>Cargas Extras</h2>
+
+        <h3>charges_addition</h3>
+        <p>Adiciona cargas extras de dash.</p>
+        <pre><code>charges_addition: 1  # +1 carga extra
+charges_addition: 2  # +2 cargas extras
+charges_addition: 3  # +3 cargas extras</code></pre>
+
+        <div class="info-box success">
+          <strong>✅ Cargas Padrão</strong>
+          <p>A maioria dos servidores usa 2 cargas base. Com +2 de adição, você terá 4 cargas totais!</p>
+        </div>
+
+        <h2>Efeitos Especiais</h2>
+        <p>Lista de efeitos especiais disponíveis (veja página dedicada para detalhes):</p>
+
+        <table>
+          <tr>
+            <th>Efeito</th>
+            <th>Descrição</th>
+          </tr>
+          <tr>
+            <td><code>phantom_blade</code></td>
+            <td>Lâmina fantasma no dash</td>
+          </tr>
+          <tr>
+            <td><code>frost_heart</code></td>
+            <td>Congela inimigos</td>
+          </tr>
+          <tr>
+            <td><code>thunder_core</code></td>
+            <td>Raios no trajeto</td>
+          </tr>
+          <tr>
+            <td><code>void_compass</code></td>
+            <td>Atravessa blocos</td>
+          </tr>
+          <tr>
+            <td><code>shadow_veil</code></td>
+            <td>Invisibilidade temporária</td>
+          </tr>
+          <tr>
+            <td><code>aether_wing</code></td>
+            <td>Levitação após dash</td>
+          </tr>
+          <tr>
+            <td colspan="2">... e mais! (veja <a href="#" data-page="dash-special">Efeitos Especiais</a>)</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Dash Modifiers Page -->
+      <div class="tab-content" id="page-dash-modifiers">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Dash</span>
+          <span>/</span>
+          <span>Modificadores</span>
+        </div>
+        
+        <h1>Modificadores de Dash</h1>
+        <p>Guia detalhado sobre como cada modificador funciona.</p>
+
+        <h2>Entendendo Multiplicadores vs Adições</h2>
+
+        <h3>Multiplicadores (Multiplier)</h3>
+        <p>Multiplicam o valor base. São aplicados EM CIMA do valor atual.</p>
+
+        <pre><code># Exemplo: Dash com 10 blocos de distância
+power_multiplier: 1.5
+
+Cálculo: 10 × 1.5 = 15 blocos
+Resultado: +50% de distância</code></pre>
+
+        <h3>Adições (Addition)</h3>
+        <p>Adicionam um valor fixo. São somados/subtraídos diretamente.</p>
+
+        <pre><code># Exemplo: Cooldown de 5 segundos
+cooldown_addition: -2.0
+
+Cálculo: 5 - 2 = 3 segundos
+Resultado: 2 segundos a menos</code></pre>
+
+        <h2>Como Combinar Modificadores</h2>
+        <p>Você pode usar AMBOS multiplicador E adição no mesmo efeito:</p>
+
+        <pre><code>dash_effects:
+  power_multiplier: 1.3    # Primeiro: multiplica por 1.3
+  power_addition: 2.0      # Depois: adiciona 2.0</code></pre>
+
+        <div class="info-box">
+          <strong>📐 Ordem de Aplicação</strong>
+          <p>1. Multiplier é aplicado primeiro<br>2. Addition é aplicado depois<br>3. Resultado final é usado no jogo</p>
+        </div>
+
+        <h2>Exemplos Práticos por Tipo</h2>
+
+        <h3>Relíquia de Velocidade</h3>
+        <pre><code>speedster_ring:
+  name: "&bAnel do Velocista"
+  material: FEATHER
+  tier: RARE
+  slots: [RING]
+  dash_effects:
+    cooldown_multiplier: 0.7    # -30% cooldown
+    recharge_multiplier: 0.6    # -40% recarga
+  attributes:
+    speed: 5.0</code></pre>
+
+        <p><strong>Efeito:</strong> Dashes mais frequentes com recarga mais rápida.</p>
+
+        <h3>Relíquia de Poder</h3>
+        <pre><code>titan_belt:
+  name: "&cCinto do Titã"
+  material: NETHERITE_CHESTPLATE
+  tier: LEGENDARY
+  slots: [BELT]
+  dash_effects:
+    power_multiplier: 1.5       # +50% poder
+    power_addition: 3.0         # +3.0 extra
+  attributes:
+    strength: 10.0
+    max_health: 15.0</code></pre>
+
+        <p><strong>Efeito:</strong> Dash muito mais forte, mas sem redução de cooldown.</p>
+
+        <h3>Relíquia Equilibrada</h3>
+        <pre><code>balanced_necklace:
+  name: "&dColar Equilibrado"
+  material: AMETHYST_SHARD
+  tier: EPIC
+  slots: [NECKLACE]
+  dash_effects:
+    power_multiplier: 1.2       # +20% poder
+    cooldown_multiplier: 0.85   # -15% cooldown
+    recharge_multiplier: 0.85   # -15% recarga
+    charges_addition: 1         # +1 carga</code></pre>
+
+        <p><strong>Efeito:</strong> Melhora em todos os aspectos moderadamente.</p>
+
+        <h3>Relíquia de Cargas</h3>
+        <pre><code>infinity_belt:
+  name: "&5Cinto Infinito"
+  material: END_CRYSTAL
+  tier: LEGENDARY
+  slots: [BELT]
+  dash_effects:
+    charges_addition: 2         # +2 cargas (total 4)
+    recharge_multiplier: 0.6    # -40% recarga
+  attributes:
+    max_health: 15.0</code></pre>
+
+        <p><strong>Efeito:</strong> Mais cargas disponíveis com recarga rápida.</p>
+
+        <h2>Cenários de Acumulação</h2>
+
+        <h3>Cenário 1: Duas Relíquias de Velocidade</h3>
+        <pre><code>Relíquia A: cooldown_multiplier: 0.8  (-20%)
+Relíquia B: cooldown_multiplier: 0.7  (-30%)
+
+Resultado: 0.8 × 0.7 = 0.56
+Cooldown final: -44% (MUITO rápido!)</code></pre>
+
+        <h3>Cenário 2: Multiplicador + Adição</h3>
+        <pre><code>Relíquia A: power_multiplier: 1.5
+Relíquia B: power_addition: 3.0
+
+Se base = 10:
+  1. Multiplier: 10 × 1.5 = 15
+  2. Addition: 15 + 3 = 18
+Resultado: 18 de poder total</code></pre>
+
+        <h3>Cenário 3: Múltiplas Cargas</h3>
+        <pre><code>Relíquia A: charges_addition: 1
+Relíquia B: charges_addition: 2
+Relíquia C: charges_addition: 1
+
+Resultado: 1 + 2 + 1 = 4 cargas extras
+Se base = 2, total = 6 cargas!</code></pre>
+
+        <h2>Valores Recomendados</h2>
+
+        <table>
+          <tr>
+            <th>Tier</th>
+            <th>Power Mult</th>
+            <th>Cooldown Mult</th>
+            <th>Charges Add</th>
+          </tr>
+          <tr>
+            <td>Common</td>
+            <td>1.0 - 1.1</td>
+            <td>0.9 - 0.95</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Uncommon</td>
+            <td>1.1 - 1.2</td>
+            <td>0.85 - 0.9</td>
+            <td>0 - 1</td>
+          </tr>
+          <tr>
+            <td>Rare</td>
+            <td>1.2 - 1.3</td>
+            <td>0.75 - 0.85</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Epic</td>
+            <td>1.3 - 1.5</td>
+            <td>0.65 - 0.75</td>
+            <td>1 - 2</td>
+          </tr>
+          <tr>
+            <td>Legendary</td>
+            <td>1.5 - 2.0</td>
+            <td>0.5 - 0.65</td>
+            <td>2 - 3</td>
+          </tr>
+        </table>
+
+        <div class="info-box warning">
+          <strong>⚠️ Cuidado com Acumulação</strong>
+          <p>Múltiplas relíquias LEGENDARY podem resultar em dashes extremamente poderosos. Balance cuidadosamente!</p>
+        </div>
+      </div>
+
+      <!-- Dash Special Effects Page -->
+      <div class="tab-content" id="page-dash-special">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Dash</span>
+          <span>/</span>
+          <span>Efeitos Especiais</span>
+        </div>
+        
+        <h1>Efeitos Especiais de Dash</h1>
+        <p>Lista completa de todos os efeitos especiais únicos disponíveis.</p>
+
+        <div class="info-box">
+          <strong>📝 Nota Importante</strong>
+          <p>A disponibilidade destes efeitos depende do NotEnoughDashes. Consulte a documentação do plugin para ver quais efeitos estão implementados na sua versão.</p>
+        </div>
+
+        <h2>Como Usar</h2>
+        <pre><code>dash_effects:
+  special_effects:
+    - phantom_blade
+    - frost_heart
+    - thunder_core</code></pre>
+
+        <h2>Lista de Efeitos Especiais</h2>
+
+        <h3>⚔️ phantom_blade</h3>
+        <p>Cria lâminas fantasmas durante o dash que causam dano aos inimigos.</p>
+        <pre><code>special_effects:
+  - phantom_blade</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Ofensivo</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Dano em área</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Partículas de sweep</p>
+          </div>
+        </div>
+
+        <h3>❄️ frost_heart</h3>
+        <p>Congela inimigos no trajeto do dash.</p>
+        <pre><code>special_effects:
+  - frost_heart</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Controle</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Slowness nos inimigos</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Partículas de gelo</p>
+          </div>
+        </div>
+
+        <h3>⚡ thunder_core</h3>
+        <p>Invoca raios no caminho do dash.</p>
+        <pre><code>special_effects:
+  - thunder_core</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Ofensivo</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Raios de dano</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Raios + partículas elétricas</p>
+          </div>
+        </div>
+
+        <h3>🌀 void_compass</h3>
+        <p>Permite atravessar blocos durante o dash.</p>
+        <pre><code>special_effects:
+  - void_compass</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Utilidade</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Atravessa paredes</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Partículas de portal</p>
+          </div>
+        </div>
+
+        <h3>👁️ shadow_veil</h3>
+        <p>Concede invisibilidade temporária após o dash.</p>
+        <pre><code>special_effects:
+  - shadow_veil</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Furtividade</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Invisibilidade 3s</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Partículas de fumaça</p>
+          </div>
+        </div>
+
+        <h3>🪶 aether_wing</h3>
+        <p>Concede levitação após o dash, permitindo "voo".</p>
+        <pre><code>special_effects:
+  - aether_wing</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Mobilidade</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Levitação breve</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Partículas brancas</p>
+          </div>
+        </div>
+
+        <h3>🔥 flame_trail</h3>
+        <p>Deixa um rastro de fogo que causa dano.</p>
+        <pre><code>special_effects:
+  - flame_trail</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Ofensivo</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Fogo no chão</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Chamas + fumaça</p>
+          </div>
+        </div>
+
+        <h3>💚 life_steal</h3>
+        <p>Recupera vida ao causar dano com o dash.</p>
+        <pre><code>special_effects:
+  - life_steal</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Sustentação</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Cura ao acertar</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Partículas verdes</p>
+          </div>
+        </div>
+
+        <h3>💨 wind_burst</h3>
+        <p>Empurra inimigos para longe.</p>
+        <pre><code>special_effects:
+  - wind_burst</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Controle</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Knockback em área</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Explosão de ar</p>
+          </div>
+        </div>
+
+        <h3>🌟 star_shower</h3>
+        <p>Cria projéteis que caem do céu.</p>
+        <pre><code>special_effects:
+  - star_shower</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Ofensivo</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Chuva de projéteis</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Estrelas cadentes</p>
+          </div>
+        </div>
+
+        <h3>🌊 tidal_wave</h3>
+        <p>Cria uma onda que empurra inimigos.</p>
+        <pre><code>special_effects:
+  - tidal_wave</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Controle</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Onda de knockback</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Partículas de água</p>
+          </div>
+        </div>
+
+        <h3>🔶 solar_flare</h3>
+        <p>Cega inimigos próximos após o dash.</p>
+        <pre><code>special_effects:
+  - solar_flare</code></pre>
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Tipo</strong>
+            <p>Controle</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Efeito</strong>
+            <p>Blindness em área</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Visual</strong>
+            <p>Flash de luz</p>
+          </div>
+        </div>
+
+        <h2>Combinando Efeitos</h2>
+        <p>Você pode ter MÚLTIPLOS efeitos especiais na mesma relíquia:</p>
+
+        <pre><code>ultimate_necklace:
+  name: "&dColar Supremo"
+  material: NETHER_STAR
+  tier: LEGENDARY
+  slots: [NECKLACE]
+  dash_effects:
+    power_multiplier: 1.5
+    cooldown_multiplier: 0.6
+    special_effects:
+      - phantom_blade
+      - frost_heart
+      - thunder_core
+      - shadow_veil</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Performance</strong>
+          <p>Muitos efeitos especiais simultâneos podem causar lag. Recomenda-se no máximo 3-4 efeitos por relíquia.</p>
+        </div>
+
+        <h2>Exemplo: Build Completo</h2>
+        <pre><code># Conjunto "Tempestade Sombria"
+shadow_helmet:
+  dash_effects:
+    special_effects: [shadow_veil]
+
+thunder_necklace:
+  dash_effects:
+    special_effects: [thunder_core]
+
+storm_belt:
+  dash_effects:
+    power_multiplier: 1.4
+    cooldown_multiplier: 0.7
+
+wind_boots:
+  dash_effects:
+    special_effects: [wind_burst, aether_wing]
+
+# Resultado: Dash poderoso com invisibilidade,
+# raios, empurrão e levitação!</code></pre>
+      </div>
+
+      <!-- Critics Overview Page -->
+      <div class="tab-content" id="page-critics-overview">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Críticos</span>
+          <span>/</span>
+          <span>Visão Geral</span>
+        </div>
+        
+        <h1>Integração com NotEnoughCritics</h1>
+        <p>Sistema avançado de modificação de críticos através de relíquias.</p>
+
+        <div class="info-box">
+          <strong>🔌 Plugin Opcional</strong>
+          <p>NotEnoughCritics é um plugin opcional. Se não estiver instalado, as relíquias funcionarão normalmente sem os efeitos de crítico.</p>
+        </div>
+
+        <h2>O que são Modificadores de Crítico?</h2>
+        <p>Modificadores de crítico permitem que relíquias alterem completamente o sistema de dano crítico:</p>
+
+        <ul>
+          <li><strong>Chance de Crítico</strong> - Probabilidade de acertar um crítico</li>
+          <li><strong>Dano Crítico</strong> - Multiplicador de dano ao acertar crítico</li>
+          <li><strong>Partículas Customizadas</strong> - Efeitos visuais únicos por variante</li>
+          <li><strong>Sons Customizados</strong> - Áudios especiais para cada tipo de crítico</li>
+          <li><strong>Sistema de Combo</strong> - Controle de tempo de reset e acumulação</li>
+          <li><strong>Efeitos Especiais</strong> - Comportamentos únicos (thunder_strike, frost_bite, etc.)</li>
+        </ul>
+
+        <h2>Entendendo Variantes de Crítico</h2>
+        <p>NotEnoughCritics possui diferentes variantes de crítico:</p>
+
+        <table>
+          <tr>
+            <th>Variante</th>
+            <th>Descrição</th>
+            <th>Uso</th>
+          </tr>
+          <tr>
+            <td><code>weapon</code></td>
+            <td>Crítico com arma na mão</td>
+            <td>Espadas, machados, etc.</td>
+          </tr>
+          <tr>
+            <td><code>hand</code></td>
+            <td>Crítico com mão vazia</td>
+            <td>Soco, combate corpo-a-corpo</td>
+          </tr>
+          <tr>
+            <td><code>projectile</code></td>
+            <td>Crítico com projétil</td>
+            <td>Arco, tridente, etc.</td>
+          </tr>
+        </table>
+
+        <div class="info-box">
+          <strong>🎯 Customização por Variante</strong>
+          <p>Você pode ter partículas e sons DIFERENTES para cada variante! Por exemplo: fogo para weapon, gelo para hand.</p>
+        </div>
+
+        <h2>Sistema de Acumulação</h2>
+
+        <h3>Multiplicadores e Adições</h3>
+        <p>Funcionam igual aos modificadores de dash:</p>
+
+        <pre><code>Relíquia 1: chance_multiplier: 1.3 (+30%)
+Relíquia 2: chance_multiplier: 1.5 (+50%)
+
+Resultado: 1.3 × 1.5 = 1.95 (+95% total)</code></pre>
+
+        <pre><code>Relíquia 1: chance_addition: 0.1 (+10%)
+Relíquia 2: chance_addition: 0.2 (+20%)
+
+Resultado: 0.1 + 0.2 = 0.3 (+30% total)</code></pre>
+
+        <h3>Overrides (Valores Fixos)</h3>
+        <p>Overrides IGNORAM todos os outros modificadores e usam um valor FIXO:</p>
+
+        <pre><code>chance_override: 0.5  # SEMPRE 50% de chance
+
+# IGNORA:
+# - chance_multiplier de TODAS as relíquias
+# - chance_addition de TODAS as relíquias
+# 
+# Resultado: 50% fixo, não importa o que mais você tenha</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Cuidado com Overrides</strong>
+          <p>Overrides são EXTREMAMENTE poderosos. Use apenas em relíquias LEGENDARY e balance cuidadosamente!</p>
+        </div>
+
+        <h3>Partículas e Sons</h3>
+        <p>Para partículas e sons, a ÚLTIMA relíquia equipada define o efeito:</p>
+
+        <pre><code>Relíquia 1 (slot 1): FLAME
+Relíquia 2 (slot 2): SOUL_FIRE_FLAME  ← Este é usado!
+Relíquia 3 (slot 3): ELECTRIC_SPARK   ← Este é usado!
+
+Resultado: ELECTRIC_SPARK (última equipada)</code></pre>
+
+        <h3>Efeitos Especiais</h3>
+        <p>TODOS os efeitos especiais são aplicados simultaneamente:</p>
+
+        <pre><code>Relíquia 1: thunder_strike
+Relíquia 2: frost_bite
+Relíquia 3: life_steal
+
+Resultado: Todos os 3 efeitos ativos!</code></pre>
+
+        <h2>Exemplo Básico</h2>
+        <pre><code>relics:
+  assassin_ring:
+    name: "&4Anel do Assassino"
+    material: NETHER_STAR
+    tier: LEGENDARY
+    slots:
+      - RING
+    critics_effects:
+      chance_multiplier: 1.5      # +50% chance
+      damage_multiplier: 2.0      # +100% dano (dobro)
+      custom_particles:
+        weapon: SOUL_FIRE_FLAME
+        hand: FLAME
+      custom_sounds:
+        weapon: ENTITY_WITHER_BREAK_BLOCK</code></pre>
+
+        <h2>Sistema de Combo</h2>
+        <p>NotEnoughCritics possui um sistema de combo que acumula dano crítico:</p>
+
+        <ul>
+          <li><strong>Acertar críticos</strong> aumenta o combo</li>
+          <li><strong>Errar ou spammar</strong> reseta o combo</li>
+          <li><strong>Tempo limite</strong> reseta o combo automaticamente</li>
+          <li><strong>Relíquias podem modificar</strong> o tempo de reset</li>
+        </ul>
+
+        <pre><code>critics_effects:
+  combo_reset_time_multiplier: 0.5   # -50% tempo (reseta mais rápido)
+  combo_reset_time_addition: 2       # +2 segundos extra
+  combo_reset_time_override: -1      # DESABILITA reset por tempo!</code></pre>
+
+        <div class="info-box legendary">
+          <strong>🔥 Combo Infinito</strong>
+          <p>Use <code>combo_reset_time_override: -1</code> para criar relíquias que mantêm combo ETERNAMENTE (apenas erra ou spam resetam)!</p>
+        </div>
+
+        <h2>Próximos Passos</h2>
+        <ul>
+          <li><a href="#" data-page="critics-effects">Efeitos de Crítico</a> - Lista completa de modificadores</li>
+          <li><a href="#" data-page="critics-modifiers">Modificadores</a> - Detalhes de cada tipo</li>
+          <li><a href="#" data-page="critics-particles">Partículas & Sons</a> - Customização visual/sonora</li>
+          <li><a href="#" data-page="critics-overrides">Overrides & Combo</a> - Sistema avançado</li>
+        </ul>
+      </div>
+
+      <!-- Critics Effects Page -->
+      <div class="tab-content" id="page-critics-effects">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Críticos</span>
+          <span>/</span>
+          <span>Efeitos de Crítico</span>
+        </div>
+        
+        <h1>Efeitos de Crítico</h1>
+        <p>Lista completa de todos os modificadores de crítico disponíveis.</p>
+
+        <h2>Sintaxe Completa</h2>
+        <pre><code>critics_effects:
+  # Modificadores básicos
+  chance_multiplier: 1.5
+  chance_addition: 0.2
+  damage_multiplier: 2.0
+  damage_addition: 5.0
+  
+  # Overrides (valores fixos)
+  chance_override: 0.5
+  damage_override: 20.0
+  
+  # Combo
+  combo_reset_time_multiplier: 0.7
+  combo_reset_time_addition: 2
+  combo_reset_time_override: -1
+  
+  # Visual/Sonoro
+  custom_particles:
+    weapon: SOUL_FIRE_FLAME
+    hand: FLAME
+  custom_sounds:
+    weapon: ENTITY_WITHER_BREAK_BLOCK
+  extra_sounds:
+    - sound: ENTITY_LIGHTNING_BOLT_THUNDER
+      volume: 0.8
+      pitch: 1.5
+  
+  # Efeitos especiais
+  special_effects:
+    - thunder_strike
+    - frost_bite</code></pre>
+
+        <h2>Modificadores de Chance</h2>
+
+        <h3>chance_multiplier</h3>
+        <p>Multiplica a chance base de crítico.</p>
+        <pre><code>chance_multiplier: 1.5   # +50% chance
+chance_multiplier: 2.0   # +100% chance (dobro)
+chance_multiplier: 0.5   # -50% chance (metade)</code></pre>
+
+        <div class="info-box">
+          <strong>📊 Chance Base</strong>
+          <p>A maioria dos servidores usa 10% (0.1) de chance base. Com multiplier 1.5, fica 15%.</p>
+        </div>
+
+        <h3>chance_addition</h3>
+        <p>Adiciona chance direta de crítico.</p>
+        <pre><code>chance_addition: 0.1   # +10% chance direta
+chance_addition: 0.25  # +25% chance direta
+chance_addition: 0.5   # +50% chance direta</code></pre>
+
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>Formato</strong>
+            <p>Decimal (0.1 = 10%)</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Range</strong>
+            <p>0.0 a 1.0</p>
+          </div>
+          <div class="attribute-item">
+            <strong>Acumulação</strong>
+            <p>Soma entre relíquias</p>
+          </div>
+        </div>
+
+        <h2>Modificadores de Dano</h2>
+
+        <h3>damage_multiplier</h3>
+        <p>Multiplica o dano crítico.</p>
+        <pre><code>damage_multiplier: 1.5   # +50% dano
+damage_multiplier: 2.0   # +100% dano (dobro)
+damage_multiplier: 3.0   # +200% dano (triplo)</code></pre>
+
+        <h3>damage_addition</h3>
+        <p>Adiciona dano fixo ao crítico.</p>
+        <pre><code>damage_addition: 5.0    # +5 de dano fixo
+damage_addition: 10.0   # +10 de dano fixo
+damage_addition: 20.0   # +20 de dano fixo</code></pre>
+
+        <div class="info-box success">
+          <strong>✅ Combinação Poderosa</strong>
+          <p>Usar AMBOS multiplier E addition cria críticos devastadores! Exemplo: 2.0x multiplier + 15 addition.</p>
+        </div>
+
+        <h2>Overrides (Valores Fixos)</h2>
+
+        <h3>chance_override</h3>
+        <p>Define chance FIXA, ignorando TUDO mais.</p>
+        <pre><code>chance_override: 0.5    # SEMPRE 50% de chance
+chance_override: 1.0    # SEMPRE 100% (crítico garantido)
+chance_override: 0.25   # SEMPRE 25% de chance</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ IGNORA TUDO</strong>
+          <p>Override ignora:</p>
+          <ul>
+            <li>chance_multiplier de TODAS as relíquias</li>
+            <li>chance_addition de TODAS as relíquias</li>
+            <li>Buffs temporários de poções</li>
+            <li>Modificadores do servidor</li>
+          </ul>
+          <p>Apenas outra relíquia com override pode mudar!</p>
+        </div>
+
+        <h3>damage_override</h3>
+        <p>Define dano crítico FIXO, ignorando TUDO mais.</p>
+        <pre><code>damage_override: 50.0   # SEMPRE 50 de dano crítico
+damage_override: 100.0  # SEMPRE 100 de dano crítico
+damage_override: 20.0   # SEMPRE 20 de dano crítico</code></pre>
+
+        <h2>Modificadores de Combo</h2>
+
+        <h3>combo_reset_time_multiplier</h3>
+        <p>Multiplica o tempo até o combo resetar.</p>
+        <pre><code>combo_reset_time_multiplier: 0.5   # -50% tempo (reseta mais rápido)
+combo_reset_time_multiplier: 1.5   # +50% tempo (dura mais)
+combo_reset_time_multiplier: 2.0   # +100% tempo (dobro)</code></pre>
+
+        <h3>combo_reset_time_addition</h3>
+        <p>Adiciona segundos ao tempo de combo.</p>
+        <pre><code>combo_reset_time_addition: 2    # +2 segundos
+combo_reset_time_addition: 5    # +5 segundos
+combo_reset_time_addition: -1   # -1 segundo</code></pre>
+
+        <h3>combo_reset_time_override</h3>
+        <p>Define tempo FIXO ou DESABILITA o reset por tempo.</p>
+        <pre><code>combo_reset_time_override: 10   # SEMPRE 10 segundos
+combo_reset_time_override: 20   # SEMPRE 20 segundos
+combo_reset_time_override: -1   # DESABILITA reset por tempo!</code></pre>
+
+        <div class="info-box legendary">
+          <strong>🔥 Combo Infinito</strong>
+          <p><code>combo_reset_time_override: -1</code> cria um combo ETERNO que só reseta ao errar ou spammar!</p>
+        </div>
+
+        <h2>Exemplos por Tier</h2>
+
+        <h3><span class="tier-badge tier-uncommon">UNCOMMON</span></h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.2    # +20% chance
+  damage_multiplier: 1.3    # +30% dano</code></pre>
+
+        <h3><span class="tier-badge tier-rare">RARE</span></h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.4    # +40% chance
+  damage_multiplier: 1.5    # +50% dano
+  custom_particles:
+    weapon: FLAME</code></pre>
+
+        <h3><span class="tier-badge tier-epic">EPIC</span></h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.6    # +60% chance
+  damage_multiplier: 2.0    # +100% dano
+  combo_reset_time_addition: 3
+  custom_particles:
+    weapon: SOUL_FIRE_FLAME
+  special_effects:
+    - frost_bite</code></pre>
+
+        <h3><span class="tier-badge tier-legendary">LEGENDARY</span></h3>
+        <pre><code>critics_effects:
+  chance_override: 0.5      # 50% fixo
+  damage_multiplier: 2.5    # +150% dano
+  combo_reset_time_override: -1
+  custom_particles:
+    weapon: END_ROD
+    hand: ENCHANTED_HIT
+  custom_sounds:
+    weapon: ENTITY_WITHER_BREAK_BLOCK
+  extra_sounds:
+    - sound: ENTITY_LIGHTNING_BOLT_THUNDER
+      volume: 0.8
+      pitch: 1.5
+  special_effects:
+    - god_slayer
+    - thunder_strike</code></pre>
+      </div>
+
+      <!-- Critics Modifiers Page -->
+      <div class="tab-content" id="page-critics-modifiers">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Críticos</span>
+          <span>/</span>
+          <span>Modificadores</span>
+        </div>
+        
+        <h1>Modificadores de Crítico</h1>
+        <p>Guia detalhado sobre como cada modificador funciona e interage.</p>
+
+        <h2>Ordem de Aplicação</h2>
+        <p>Entender a ordem é CRUCIAL para balancear relíquias:</p>
+
+        <div class="info-box">
+          <strong>📐 Sequência de Cálculo</strong>
+          <ol>
+            <li><strong>Verificar Override:</strong> Se existe override, PARE e use ele</li>
+            <li><strong>Aplicar Multipliers:</strong> Multiplica chance/dano base</li>
+            <li><strong>Aplicar Additions:</strong> Soma/subtrai valores diretos</li>
+            <li><strong>Aplicar Cap:</strong> Limita ao máximo permitido</li>
+            <li><strong>Resultado Final:</strong> Valor usado no jogo</li>
+          </ol>
+        </div>
+
+        <h2>Cálculo de Chance de Crítico</h2>
+
+        <h3>Sem Override</h3>
+        <pre><code>Chance Base: 10% (0.1)
+
+Passo 1 - Multipliers:
+  Relíquia A: 1.5x
+  Relíquia B: 1.3x
+  Total: 1.5 × 1.3 = 1.95x
+  Resultado: 0.1 × 1.95 = 0.195 (19.5%)
+
+Passo 2 - Additions:
+  Relíquia C: +0.1
+  Relíquia D: +0.15
+  Total: +0.25
+  Resultado: 0.195 + 0.25 = 0.445 (44.5%)
+
+Chance Final: 44.5%</code></pre>
+
+        <h3>Com Override</h3>
+        <pre><code>Chance Base: 10%
+Multipliers: 2.0x, 1.5x
+Additions: +0.2, +0.15
+Override: 0.5 (50%)
+
+Resultado: 50% (IGNORA TODO O RESTO!)</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Override é Absoluto</strong>
+          <p>Se QUALQUER relíquia tiver override, APENAS o override conta. Última relíquia com override vence.</p>
+        </div>
+
+        <h2>Cálculo de Dano Crítico</h2>
+
+        <h3>Exemplo Completo</h3>
+        <pre><code>Dano Base da Espada: 10
+Atributo Strength: +8 (de relíquias)
+Dano Total: 18
+
+Critics:
+  damage_multiplier: 2.0x (de 2 relíquias: 1.5 × 1.333)
+  damage_addition: +15 (de 3 relíquias: 5 + 5 + 5)
+
+Cálculo:
+  1. Multiplicar: 18 × 2.0 = 36
+  2. Adicionar: 36 + 15 = 51
+
+Dano Crítico Final: 51</code></pre>
+
+        <h3>Com Override</h3>
+        <pre><code>Dano Total: 18
+damage_override: 100
+
+Resultado: 100 (IGNORA multiplicadores e additions!)</code></pre>
+
+        <h2>Sistema de Combo</h2>
+
+        <h3>Como Funciona</h3>
+        <ol>
+          <li>Acertar crítico = +1 combo</li>
+          <li>Cada nível de combo aumenta dano</li>
+          <li>Errar golpe = reset combo</li>
+          <li>Spammar muito rápido = reset combo</li>
+          <li>Tempo limite = reset combo (configurável)</li>
+        </ol>
+
+        <h3>Modificando Tempo de Reset</h3>
+        <pre><code>Tempo Base: 5 segundos
+
+Exemplo 1 - Multiplicador:
+  combo_reset_time_multiplier: 1.5
+  Resultado: 5 × 1.5 = 7.5 segundos
+
+Exemplo 2 - Adição:
+  combo_reset_time_addition: 3
+  Resultado: 5 + 3 = 8 segundos
+
+Exemplo 3 - Ambos:
+  combo_reset_time_multiplier: 1.5
+  combo_reset_time_addition: 3
+  Cálculo: (5 × 1.5) + 3 = 10.5 segundos
+
+Exemplo 4 - Override Infinito:
+  combo_reset_time_override: -1
+  Resultado: NUNCA reseta por tempo!</code></pre>
+
+        <div class="info-box">
+          <strong>🎯 Estratégias de Combo</strong>
+          <p><strong>PvP:</strong> Tempo curto (reset rápido) para combos explosivos<br>
+          <strong>PvE:</strong> Tempo longo para acumular contra bosses<br>
+          <strong>Infinito:</strong> Para builds extremas focadas em combo</p>
+        </div>
+
+        <h2>Cenários de Múltiplas Relíquias</h2>
+
+        <h3>Cenário 1: Stack de Chance</h3>
+        <pre><code>Base: 10%
+
+Anel 1: chance_multiplier: 1.5 (+50%)
+Anel 2: chance_multiplier: 1.4 (+40%)
+Colar:  chance_addition: 0.2 (+20%)
+
+Cálculo:
+  1. Multipliers: 1.5 × 1.4 = 2.1
+     10% × 2.1 = 21%
+  2. Addition: 21% + 20% = 41%
+
+Chance Final: 41%</code></pre>
+
+        <h3>Cenário 2: Stack de Dano</h3>
+        <pre><code>Dano Base: 15
+
+Capacete: damage_multiplier: 1.6
+Cinto:    damage_multiplier: 1.5
+Bota:     damage_addition: 10
+
+Cálculo:
+  1. Multipliers: 1.6 × 1.5 = 2.4
+     15 × 2.4 = 36
+  2. Addition: 36 + 10 = 46
+
+Dano Crítico: 46</code></pre>
+
+        <h3>Cenário 3: Override vs Stack</h3>
+        <pre><code>Jogador tem:
+  - 5 relíquias com chance_multiplier
+  - 3 relíquias com chance_addition
+  - Total calculado: 80% de chance
+
+Equipa nova relíquia:
+  - chance_override: 0.5
+
+Resultado: 50% de chance
+(IGNORA os 80% calculados!)</code></pre>
+
+        <h2>Builds Recomendadas</h2>
+
+        <h3>Build "Assassino" - Alta Chance</h3>
+        <pre><code># Foco: Máxima chance de crítico
+Anel 1: chance_multiplier: 1.5
+Anel 2: chance_multiplier: 1.4
+Colar:  chance_addition: 0.25
+Capacete: chance_addition: 0.15
+
+Resultado: ~70% de chance</code></pre>
+
+        <h3>Build "Executor" - Alto Dano</h3>
+        <pre><code># Foco: Dano crítico devastador
+Capacete: damage_multiplier: 2.0
+Cinto:    damage_multiplier: 1.8
+Bota 1:   damage_addition: 15
+Bota 2:   damage_addition: 15
+
+Resultado: ~3.6x dano + 30 fixo</code></pre>
+
+        <h3>Build "Mestre do Combo"</h3>
+        <pre><code># Foco: Combo infinito
+Colar: combo_reset_time_override: -1
+Anel: chance_multiplier: 1.5
+Cinto: damage_multiplier: 1.8
+
+Resultado: Combo eterno com dano crescente</code></pre>
+
+        <h3>Build "Destino" - Garantido</h3>
+        <pre><code># Foco: 100% de chance
+Capacete: chance_override: 1.0
+Cinto:    damage_multiplier: 2.5
+Bota:     damage_addition: 20
+
+Resultado: Crítico SEMPRE com dano alto</code></pre>
+
+        <div class="info-box legendary">
+          <strong>🔥 Build Supremo</strong>
+          <p>Combine override de 100% chance com alto dano e combo infinito para a build definitiva!</p>
+        </div>
+      </div>
+
+      <!-- Critics Particles Page -->
+      <div class="tab-content" id="page-critics-particles">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Críticos</span>
+          <span>/</span>
+          <span>Partículas & Sons</span>
+        </div>
+        
+        <h1>Partículas & Sons Customizados</h1>
+        <p>Guia completo para customizar efeitos visuais e sonoros de críticos.</p>
+
+        <h2>Partículas Customizadas</h2>
+        <p>Defina partículas únicas para cada variante de crítico:</p>
+
+        <h3>Sintaxe Básica</h3>
+        <pre><code>critics_effects:
+  custom_particles:
+    weapon: SOUL_FIRE_FLAME      # Com arma
+    hand: FLAME                  # Mão vazia
+    projectile: ELECTRIC_SPARK   # Projétil</code></pre>
+
+        <div class="info-box">
+          <strong>🎨 Variantes Opcionais</strong>
+          <p>Você não precisa definir todas as variantes. Se não definir, usa a partícula padrão do plugin.</p>
+        </div>
+
+        <h3>Partículas Populares</h3>
+        <table>
+          <tr>
+            <th>Partícula</th>
+            <th>Aparência</th>
+            <th>Uso Recomendado</th>
+          </tr>
+          <tr>
+            <td><code>FLAME</code></td>
+            <td>Chamas laranjas</td>
+            <td>Críticos de fogo</td>
+          </tr>
+          <tr>
+            <td><code>SOUL_FIRE_FLAME</code></td>
+            <td>Chamas azuis</td>
+            <td>Críticos mágicos/dark</td>
+          </tr>
+          <tr>
+            <td><code>ELECTRIC_SPARK</code></td>
+            <td>Faíscas elétricas</td>
+            <td>Críticos de raio</td>
+          </tr>
+          <tr>
+            <td><code>SNOWFLAKE</code></td>
+            <td>Flocos de neve</td>
+            <td>Críticos de gelo</td>
+          </tr>
+          <tr>
+            <td><code>END_ROD</code></td>
+            <td>Brilho branco</td>
+            <td>Críticos sagrados</td>
+          </tr>
+          <tr>
+            <td><code>DRAGON_BREATH</code></td>
+            <td>Névoa roxa</td>
+            <td>Críticos venenosos</td>
+          </tr>
+          <tr>
+            <td><code>ENCHANTED_HIT</code></td>
+            <td>Estrelas brilhantes</td>
+            <td>Críticos encantados</td>
+          </tr>
+          <tr>
+            <td><code>SOUL</code></td>
+            <td>Almas flutuantes</td>
+            <td>Críticos necromantes</td>
+          </tr>
+          <tr>
+            <td><code>GLOW</code></td>
+            <td>Brilho suave</td>
+            <td>Críticos equilibrados</td>
+          </tr>
+          <tr>
+            <td><code>REVERSE_PORTAL</code></td>
+            <td>Portal inverso</td>
+            <td>Críticos do vazio</td>
+          </tr>
+        </table>
+
+        <h2>Sons Customizados</h2>
+
+        <h3>Sons Principais</h3>
+        <p>Sons que tocam ao acertar crítico:</p>
+
+        <pre><code>critics_effects:
+  custom_sounds:
+    weapon: ENTITY_WITHER_BREAK_BLOCK
+    hand: BLOCK_BELL_USE
+    projectile: ENTITY_ARROW_HIT_PLAYER</code></pre>
+
+        <h3>Sons Extras</h3>
+        <p>Sons ADICIONAIS que tocam junto com o principal:</p>
+
+        <pre><code>critics_effects:
+  extra_sounds:
+    - sound: ENTITY_LIGHTNING_BOLT_THUNDER
+      volume: 0.8    # 0.0 a 1.0 (padrão: 1.0)
+      pitch: 1.5     # 0.5 a 2.0 (padrão: 1.0)
+    
+    - sound: ENTITY_ENDER_DRAGON_GROWL
+      volume: 0.6
+      pitch: 0.8
+    
+    - sound: BLOCK_ENCHANTMENT_TABLE_USE
+      volume: 1.0
+      pitch: 2.0</code></pre>
+
+        <div class="info-box">
+          <strong>🔊 Volume e Pitch</strong>
+          <p><strong>Volume:</strong> 0.0 = mudo, 1.0 = máximo<br>
+          <strong>Pitch:</strong> 0.5 = grave, 1.0 = normal, 2.0 = agudo</p>
+        </div>
+
+        <h3>Sons Populares</h3>
+        <table>
+          <tr>
+            <th>Som</th>
+            <th>Descrição</th>
+            <th>Uso Recomendado</th>
+          </tr>
+          <tr>
+            <td><code>ENTITY_WITHER_BREAK_BLOCK</code></td>
+            <td>Explosão profunda</td>
+            <td>Críticos poderosos</td>
+          </tr>
+          <tr>
+            <td><code>ENTITY_LIGHTNING_BOLT_THUNDER</code></td>
+            <td>Trovão</td>
+            <td>Críticos elétricos</td>
+          </tr>
+          <tr>
+            <td><code>BLOCK_GLASS_BREAK</code></td>
+            <td>Vidro quebrando</td>
+            <td>Críticos de gelo</td>
+          </tr>
+          <tr>
+            <td><code>ITEM_FIRECHARGE_USE</code></td>
+            <td>Fogo</td>
+            <td>Críticos flamejantes</td>
+          </tr>
+          <tr>
+            <td><code>BLOCK_BELL_USE</code></td>
+            <td>Sino</td>
+            <td>Críticos sagrados</td>
+          </tr>
+          <tr>
+            <td><code>ENTITY_ENDERMAN_TELEPORT</code></td>
+            <td>Teleporte</td>
+            <td>Críticos do vazio</td>
+          </tr>
+          <tr>
+            <td><code>BLOCK_AMETHYST_BLOCK_CHIME</code></td>
+            <td>Cristal</td>
+            <td>Críticos mágicos</td>
+          </tr>
+          <tr>
+            <td><code>ENTITY_PLAYER_LEVELUP</code></td>
+            <td>Level up</td>
+            <td>Críticos de combo</td>
+          </tr>
+        </table>
+
+        <h2>Exemplos Temáticos</h2>
+
+        <h3>Crítico de Fogo 🔥</h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.5
+  damage_multiplier: 1.8
+  custom_particles:
+    weapon: SOUL_FIRE_FLAME
+    hand: FLAME
+  custom_sounds:
+    weapon: ITEM_FIRECHARGE_USE
+    hand: ITEM_FIRECHARGE_USE
+  extra_sounds:
+    - sound: ENTITY_BLAZE_SHOOT
+      volume: 0.7
+      pitch: 1.8
+  special_effects:
+    - eternal_flame</code></pre>
+
+        <h3>Crítico de Gelo ❄️</h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.4
+  damage_multiplier: 1.6
+  custom_particles:
+    weapon: SNOWFLAKE
+    hand: SOUL
+  custom_sounds:
+    weapon: BLOCK_GLASS_BREAK
+    hand: BLOCK_GLASS_BREAK
+  extra_sounds:
+    - sound: BLOCK_GLASS_BREAK
+      volume: 0.5
+      pitch: 0.8
+  special_effects:
+    - frost_bite</code></pre>
+
+        <h3>Crítico Elétrico ⚡</h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.6
+  damage_multiplier: 2.0
+  custom_particles:
+    weapon: ELECTRIC_SPARK
+    hand: SOUL
+  custom_sounds:
+    weapon: ENTITY_LIGHTNING_BOLT_THUNDER
+  extra_sounds:
+    - sound: ENTITY_CREEPER_PRIMED
+      volume: 0.6
+      pitch: 2.0
+  special_effects:
+    - thunder_strike</code></pre>
+
+        <h3>Crítico Sagrado ✨</h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.4
+  damage_multiplier: 1.8
+  custom_particles:
+    weapon: END_ROD
+    hand: ENCHANTED_HIT
+  custom_sounds:
+    weapon: BLOCK_BELL_USE
+    hand: BLOCK_BELL_RESONATE
+  extra_sounds:
+    - sound: ENTITY_EXPERIENCE_ORB_PICKUP
+      volume: 1.0
+      pitch: 2.0
+    - sound: BLOCK_ENCHANTMENT_TABLE_USE
+      volume: 0.8
+      pitch: 1.5
+  special_effects:
+    - divine_blessing</code></pre>
+
+        <h3>Crítico das Sombras 🌑</h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.5
+  damage_multiplier: 1.9
+  custom_particles:
+    weapon: DRAGON_BREATH
+    hand: REVERSE_PORTAL
+  custom_sounds:
+    weapon: ENTITY_ENDERMAN_TELEPORT
+    hand: ENTITY_ENDERMAN_SCREAM
+  extra_sounds:
+    - sound: BLOCK_PORTAL_TRIGGER
+      volume: 0.5
+      pitch: 0.5
+  special_effects:
+    - void_touch
+    - shadow_veil</code></pre>
+
+        <h3>Crítico Venenoso 🧪</h3>
+        <pre><code>critics_effects:
+  chance_multiplier: 1.3
+  damage_multiplier: 1.7
+  custom_particles:
+    weapon: SNEEZE
+    hand: SPORE_BLOSSOM_AIR
+  custom_sounds:
+    weapon: ENTITY_SPIDER_AMBIENT
+  extra_sounds:
+    - sound: BLOCK_BREWING_STAND_BREW
+      volume: 0.8
+      pitch: 0.7
+  special_effects:
+    - venom_strike</code></pre>
+
+        <h2>Sistema de Acumulação</h2>
+
+        <h3>Partículas</h3>
+        <p>A ÚLTIMA relíquia equipada define a partícula:</p>
+
+        <pre><code>Slot 1 (Anel): weapon: FLAME
+Slot 2 (Colar): weapon: SOUL_FIRE_FLAME
+Slot 3 (Capacete): weapon: ELECTRIC_SPARK  ← ESTE É USADO
+
+Resultado: ELECTRIC_SPARK para weapon</code></pre>
+
+        <div class="info-box">
+          <strong>💡 Prioridade de Slots</strong>
+          <p>Organize suas relíquias nos slots para controlar qual partícula/som será usado! Slots maiores = última prioridade.</p>
+        </div>
+
+        <h3>Sons Principais</h3>
+        <p>Mesma regra: ÚLTIMO equipado vence.</p>
+
+        <h3>Sons Extras</h3>
+        <p>TODOS os sons extras são tocados simultaneamente:</p>
+
+        <pre><code>Relíquia 1: extra_sounds [THUNDER]
+Relíquia 2: extra_sounds [GLASS_BREAK]
+Relíquia 3: extra_sounds [BELL_USE]
+
+Resultado: Todos os 3 sons tocam juntos!</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Cuidado com Spam</strong>
+          <p>Muitos sons extras podem causar poluição sonora. Recomenda-se máximo 3-4 sons por crítico.</p>
+        </div>
+
+        <h2>Testando Efeitos</h2>
+        <p>Para testar suas customizações:</p>
+
+        <ol>
+          <li>Crie a relíquia com os efeitos</li>
+          <li>Use <code>/ner give [seu_nome] [reliquia]</code></li>
+          <li>Equipe no menu <code>/relics</code></li>
+          <li>Acerte mobs/jogadores para ver/ouvir</li>
+          <li>Ajuste volume/pitch conforme necessário</li>
+        </ol>
+
+        <div class="info-box success">
+          <strong>✅ Dica de Design</strong>
+          <p>Combine partículas e sons que façam sentido juntos! Gelo = SNOWFLAKE + GLASS_BREAK, Fogo = FLAME + FIRECHARGE_USE.</p>
+        </div>
+      </div>
+
+      <!-- Critics Overrides Page -->
+      <div class="tab-content" id="page-critics-overrides">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Integração: Críticos</span>
+          <span>/</span>
+          <span>Overrides & Combo</span>
+        </div>
+        
+        <h1>Overrides e Sistema de Combo</h1>
+        <p>Guia avançado sobre overrides e controle total do sistema de combo.</p>
+
+        <h2>O que são Overrides?</h2>
+        <p>Overrides são valores FIXOS que ignoram COMPLETAMENTE todos os outros modificadores.</p>
+
+        <div class="info-box warning">
+          <strong>⚠️ PODER ABSOLUTO</strong>
+          <p>Overrides são a mecânica mais poderosa do sistema. Use com EXTREMO cuidado no balanceamento!</p>
+        </div>
+
+        <h2>chance_override</h2>
+        <p>Define chance de crítico FIXA, ignorando tudo mais.</p>
+
+        <h3>Valores Possíveis</h3>
+        <table>
+          <tr>
+            <th>Valor</th>
+            <th>Resultado</th>
+            <th>Uso</th>
+          </tr>
+          <tr>
+            <td><code>0.0</code></td>
+            <td>0% (nunca)</td>
+            <td>Relíquias amaldiçoadas</td>
+          </tr>
+          <tr>
+            <td><code>0.25</code></td>
+            <td>25% sempre</td>
+            <td>Balanceado fixo</td>
+          </tr>
+          <tr>
+            <td><code>0.5</code></td>
+            <td>50% sempre</td>
+            <td>Equilíbrio perfeito</td>
+          </tr>
+          <tr>
+            <td><code>0.75</code></td>
+            <td>75% sempre</td>
+            <td>Alta consistência</td>
+          </tr>
+          <tr>
+            <td><code>1.0</code></td>
+            <td>100% (sempre)</td>
+            <td>Crítico garantido</td>
+          </tr>
+        </table>
+
+        <h3>Exemplo: Anel do Destino</h3>
+        <pre><code>fate_ring:
+  name: "&5Anel do Destino"
+  material: ENDER_EYE
+  tier: LEGENDARY
+  lore:
+    - "&7O destino está traçado:"
+    - "&750% de chance, sempre."
+    - "&7Nada pode mudar isso."
+  slots: [RING]
+  attributes:
+    max_health: 20.0
+    strength: 8.0
+  critics_effects:
+    chance_override: 0.5    # 50% FIXO
+    damage_multiplier: 1.8</code></pre>
+
+        <div class="info-box">
+          <strong>🎯 Por que usar Override de Chance?</strong>
+          <ul>
+            <li><strong>Consistência:</strong> Jogadores sabem exatamente a chance</li>
+            <li><strong>Balanceamento:</strong> Previne stacks absurdos</li>
+            <li><strong>Tema:</strong> "Destino" = chance fixa e imutável</li>
+          </ul>
+        </div>
+
+        <h3>Exemplo: Elmo Matador de Deuses</h3>
+        <pre><code>godslayer_helmet:
+  name: "&6Elmo do Matador de Deuses"
+  material: NETHERITE_HELMET
+  tier: LEGENDARY
+  lore:
+    - "&7Cada golpe é um crítico."
+    - "&7Cada crítico é devastador."
+  slots: [HELMET]
+  attributes:
+    strength: 20.0
+    max_health: 30.0
+  critics_effects:
+    chance_override: 1.0      # 100% GARANTIDO
+    damage_multiplier: 2.5
+    custom_particles:
+      weapon: END_ROD
+      hand: ENCHANTED_HIT
+    special_effects:
+      - god_slayer</code></pre>
+
+        <div class="info-box legendary">
+          <strong>👑 Relíquia Suprema</strong>
+          <p>100% de chance = crítico SEMPRE. Reserve para as relíquias mais raras e poderosas do servidor!</p>
+        </div>
+
+        <h2>damage_override</h2>
+        <p>Define dano crítico FIXO, ignorando tudo mais.</p>
+
+        <h3>Quando Usar</h3>
+        <ul>
+          <li><strong>Consistência de Dano:</strong> Sempre o mesmo dano</li>
+          <li><strong>Cap de Poder:</strong> Limitar dano máximo</li>
+          <li><strong>Builds Especiais:</strong> Mecânicas únicas</li>
+        </ul>
+
+        <h3>Exemplo: Lâmina do Executor</h3>
+        <pre><code>executioner_blade:
+  name: "&4Lâmina do Executor"
+  material: NETHERITE_SWORD
+  tier: LEGENDARY
+  lore:
+    - "&7Cada crítico causa exatamente"
+    - "&7100 de dano. Nem mais, nem menos."
+  slots: [RING]
+  critics_effects:
+    damage_override: 100.0    # SEMPRE 100 de dano
+    chance_multiplier: 1.5</code></pre>
+
+        <div class="info-box warning">
+          <strong>⚠️ Cuidado</strong>
+          <p>damage_override IGNORA o dano da arma, atributos de força, e todos os multipliers/additions!</p>
+        </div>
+
+        <h2>Sistema de Combo Avançado</h2>
+
+        <h3>Como o Combo Funciona</h3>
+        <ol>
+          <li>Acertar crítico = +1 combo</li>
+          <li>Cada nível aumenta o dano crítico</li>
+          <li>Combo reseta se:
+            <ul>
+              <li>Errar um golpe</li>
+              <li>Spammar muito rápido</li>
+              <li>Tempo limite atingido</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>combo_reset_time_multiplier</h3>
+        <pre><code># Base: 5 segundos
+
+# Aumentar tempo (combo dura mais)
+combo_reset_time_multiplier: 1.5    # 7.5 segundos
+combo_reset_time_multiplier: 2.0    # 10 segundos
+
+# Reduzir tempo (combo dura menos)
+combo_reset_time_multiplier: 0.7    # 3.5 segundos
+combo_reset_time_multiplier: 0.5    # 2.5 segundos</code></pre>
+
+        <h3>combo_reset_time_addition</h3>
+        <pre><code># Base: 5 segundos
+
+# Adicionar tempo
+combo_reset_time_addition: 3    # 8 segundos
+combo_reset_time_addition: 5    # 10 segundos
+
+# Remover tempo
+combo_reset_time_addition: -2   # 3 segundos</code></pre>
+
+        <h3>combo_reset_time_override</h3>
+        <p>O mais poderoso: define tempo FIXO ou DESABILITA completamente.</p>
+
+        <pre><code># Tempo fixo
+combo_reset_time_override: 10   # SEMPRE 10 segundos
+
+# COMBO INFINITO (nunca reseta por tempo)
+combo_reset_time_override: -1   # DESABILITA reset automático!</code></pre>
+
+        <div class="info-box legendary">
+          <strong>🔥 Combo Eterno</strong>
+          <p><code>combo_reset_time_override: -1</code> cria um combo que NUNCA reseta automaticamente. Apenas errar ou spammar resetam!</p>
+        </div>
+
+        <h2>Builds de Combo Avançadas</h2>
+
+        <h3>Build "Combo Infinito"</h3>
+        <pre><code>eternal_combo_belt:
+  name: "&dCinto do Combo Eterno"
+  material: END_CRYSTAL
+  tier: LEGENDARY
+  slots: [BELT]
+  attributes:
+    max_health: 15.0
+    strength: 10.0
+  critics_effects:
+    combo_reset_time_override: -1    # Combo NUNCA expira
+    chance_multiplier: 1.25
+    damage_multiplier: 1.6
+    custom_particles:
+      weapon: PORTAL
+    special_effects:
+      - perfect_balance</code></pre>
+
+        <h3>Build "Combo Explosivo"</h3>
+        <pre><code>explosive_combo_necklace:
+  name: "&cColar do Combo Explosivo"
+  material: TNT
+  tier: EPIC
+  slots: [NECKLACE]
+  critics_effects:
+    combo_reset_time_multiplier: 0.5   # Reseta RÁPIDO
+    damage_multiplier: 2.0             # Mas MUITO dano
+    chance_multiplier: 1.4</code></pre>
+
+        <h3>Build "Mestre do Combo"</h3>
+        <pre><code>combo_master_ring:
+  name: "&5Anel Mestre do Combo"
+  material: AMETHYST_SHARD
+  tier: LEGENDARY
+  slots: [RING]
+  critics_effects:
+    combo_reset_time_addition: 5       # +5 segundos extra
+    combo_reset_time_multiplier: 1.5   # +50% tempo base
+    # Total: (5 × 1.5) + 5 = 12.5 segundos!
+    damage_multiplier: 1.8
+    special_effects:
+      - combo_master</code></pre>
+
+        <h2>Interação entre Overrides</h2>
+
+        <h3>Múltiplas Relíquias com Override</h3>
+        <p>Última relíquia equipada VENCE:</p>
+
+        <pre><code>Slot 1: chance_override: 0.3 (30%)
+Slot 2: chance_override: 0.5 (50%)
+Slot 3: chance_override: 0.7 (70%)  ← ESTE É USADO
+
+Resultado: 70% de chance</code></pre>
+
+        <h3>Override + Modificadores Normais</h3>
+        <pre><code>Relíquia 1: chance_multiplier: 2.0
+Relíquia 2: chance_addition: 0.3
+Relíquia 3: chance_override: 0.5
+
+Resultado: 50% (override IGNORA os outros)</code></pre>
+
+        <h2>Estratégias de Balanceamento</h2>
+
+        <h3>Overrides para LEGENDARY</h3>
+        <ul>
+          <li>Use apenas em relíquias LEGENDARY</li>
+          <li>Combine com alto custo ou trade-off</li>
+          <li>Valores recomendados: 0.5 a 0.75</li>
+          <li>100% apenas para supremas</li>
+        </ul>
+
+        <h3>Combo Infinito</h3>
+        <ul>
+          <li>Reserve para 1-2 relíquias no servidor</li>
+          <li>Balance com menor dano/chance base</li>
+          <li>Considere custo em outros stats</li>
+        </ul>
+
+        <h3>Trade-offs Recomendados</h3>
+        <pre><code># Exemplo: Combo infinito com custo
+cursed_eternal_ring:
+  critics_effects:
+    combo_reset_time_override: -1    # Combo infinito
+    damage_multiplier: 1.3           # Mas menos dano
+  attributes:
+    max_health: -5.0                 # E perde vida
+    speed: -3.0                      # E velocidade</code></pre>
+
+        <div class="info-box success">
+          <strong>✅ Balanceamento Saudável</strong>
+          <p>Poder extremo = custo extremo. Relíquias com override devem ter desvantagens claras!</p>
+        </div>
+      </div>
+
+      <!-- Menu Config Page -->
+      <div class="tab-content" id="page-menu-config">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Avançado</span>
+          <span>/</span>
+          <span>Configurar Menu</span>
+        </div>
+        
+        <h1>Configuração do Menu</h1>
+        <p>Personalize completamente o menu de relíquias no arquivo <code>relics_menu.yml</code>.</p>
+
+        <h2>Estrutura do Menu</h2>
+        <pre><code>menu:
+  title: "&6&lRelíquias"
+  size: 54  # Múltiplo de 9 (9, 18, 27, 36, 45, 54)
+
+# Item de estatísticas
+stats_item:
+  enabled: true
+  slot: 0
+  material: PLAYER_HEAD
+  name: "&b&l📊 Suas Estatísticas"
+
+# Slots de relíquias
+relic_slots:
+  helmet:
+    slot: 13
+    display_name: "&e&lCapacete"
+    allowed_types: [HELMET]
+  
+  # ... mais slots
+
+# Decoração
+decoration:
+  material: BLACK_STAINED_GLASS_PANE
+  name: " "
+  slots: []  # Vazio = preenche automaticamente
+
+# Mensagens
+messages:
+  invalid_relic: "&cEste item não pode ser colocado neste slot!"
+  menu_opened: "&aMenu de relíquias aberto!"
+  stats_updated: "&aEstatísticas atualizadas!"</code></pre>
+
+        <h2>Configurando o Título</h2>
+        <pre><code>menu:
+  title: "&6&lRelíquias"          # Simples
+  title: "&5&l✦ &dRelíquias &5&l✦"   # Com símbolos
+  title: "&b&lEquipamento Épico"  # Custom</code></pre>
+
+        <h2>Tamanho do Menu</h2>
+        <p>Escolha o tamanho baseado no número de slots:</p>
+
+        <table>
+          <tr>
+            <th>Slots de Relíquia</th>
+            <th>Tamanho Recomendado</th>
+            <th>Linhas</th>
+          </tr>
+          <tr>
+            <td>4-5</td>
+            <td>27</td>
+            <td>3 linhas</td>
+          </tr>
+          <tr>
+            <td>6-9</td>
+            <td>36 ou 45</td>
+            <td>4-5 linhas</td>
+          </tr>
+          <tr>
+            <td>10-14</td>
+            <td>54</td>
+            <td>6 linhas</td>
+          </tr>
+        </table>
+
+        <pre><code>menu:
+  size: 27   # Menu pequeno (3 linhas)
+  size: 45   # Menu médio (5 linhas)
+  size: 54   # Menu grande (6 linhas)</code></pre>
+
+        <h2>Configurando Slots de Relíquia</h2>
+
+        <h3>Estrutura de um Slot</h3>
+        <pre><code>relic_slots:
+  nome_interno:                    # ID único do slot
+    slot: 13                       # Posição no inventário (0-53)
+    display_name: "&e&lCapacete"   # Nome exibido
+    allowed_types: [HELMET]        # Tipos permitidos</code></pre>
+
+        <h3>Posições no Inventário</h3>
+        <pre><code># Layout 54 slots (6 linhas)
+ 0   1   2   3   4   5   6   7   8
+ 9  10  11  12  13  14  15  16  17
+18  19  20  21  22  23  24  25  26
+27  28  29  30  31  32  33  34  35
+36  37  38  39  40  41  42  43  44
+45  46  47  48  49  50  51  52  53</code></pre>
+
+        <h3>Layout Recomendado (7 slots)</h3>
+        <pre><code>relic_slots:
+  # Linha superior
+  helmet:
+    slot: 13    # Centro da linha 2
+    display_name: "&e&lCapacete"
+    allowed_types: [HELMET]
+  
+  # Linha do meio
+  necklace:
+    slot: 22    # Centro da linha 3
+    display_name: "&b&lColar"
+    allowed_types: [NECKLACE]
+  
+  ring_left:
+    slot: 29    # Esquerda da linha 4
+    display_name: "&d&lAnel Esquerdo"
+    allowed_types: [RING]
+  
+  belt:
+    slot: 31    # Centro da linha 4
+    display_name: "&a&lCinto"
+    allowed_types: [BELT]
+  
+  ring_right:
+    slot: 33    # Direita da linha 4
+    display_name: "&d&lAnel Direito"
+    allowed_types: [RING]
+  
+  # Linha inferior
+  boots_left:
+    slot: 38    # Esquerda da linha 5
+    display_name: "&6&lBota Esquerda"
+    allowed_types: [BOOTS]
+  
+  boots_right:
+    slot: 42    # Direita da linha 5
+    display_name: "&6&lBota Direita"
+    allowed_types: [BOOTS]</code></pre>
+
+        <h2>Item de Estatísticas</h2>
+        <pre><code>stats_item:
+  enabled: true              # Habilitar/desabilitar
+  slot: 0                    # Canto superior esquerdo
+  material: PLAYER_HEAD      # Material do item
+  name: "&b&l📊 Suas Estatísticas"</code></pre>
+
+        <div class="info-box">
+          <strong>💡 Desabilitar Stats</strong>
+          <p>Se não quiser o item de stats, use <code>enabled: false</code></p>
+        </div>
+
+        <h2>Decoração</h2>
+
+        <h3>Preenchimento Automático</h3>
+        <pre><code>decoration:
+  material: BLACK_STAINED_GLASS_PANE
+  name: " "
+  slots: []  # Vazio = preenche TODOS os slots não usados</code></pre>
+
+        <h3>Decoração Manual</h3>
+        <pre><code>decoration:
+  material: GRAY_STAINED_GLASS_PANE
+  name: "&8━━━━━━━━━━━"
+  slots: [0, 1, 2, 3, 4, 5, 6, 7, 8]  # Apenas primeira linha</code></pre>
+
+        <h3>Materiais Populares</h3>
+        <ul>
+          <li><code>BLACK_STAINED_GLASS_PANE</code> - Elegante, discreto</li>
+          <li><code>GRAY_STAINED_GLASS_PANE</code> - Neutro</li>
+          <li><code>PURPLE_STAINED_GLASS_PANE</code> - Místico</li>
+          <li><code>BLUE_STAINED_GLASS_PANE</code> - Mágico</li>
+          <li><code>AIR</code> - Sem decoração</li>
+        </ul>
+
+        <h2>Mensagens</h2>
+        <pre><code>messages:
+  invalid_relic: "&cEste item não pode ser colocado neste slot!"
+  menu_opened: "&aMenu de relíquias aberto!"
+  stats_updated: "&aEstatísticas atualizadas!"</code></pre>
+
+        <h2>Exemplos de Layouts</h2>
+
+        <h3>Layout Compacto (5 slots)</h3>
+        <pre><code>menu:
+  size: 27
+
+relic_slots:
+  helmet:
+    slot: 4
+  necklace:
+    slot: 13
+  ring_left:
+    slot: 11
+  ring_right:
+    slot: 15
+  boots:
+    slot: 22</code></pre>
+
+        <h3>Layout Expandido (9 slots)</h3>
+        <pre><code>menu:
+  size: 54
+
+relic_slots:
+  helmet:
+    slot: 13
+  necklace:
+    slot: 22
+  belt:
+    slot: 31
+  ring_1:
+    slot: 28
+  ring_2:
+    slot: 29
+  ring_3:
+    slot: 33
+  ring_4:
+    slot: 34
+  boots_left:
+    slot: 38
+  boots_right:
+    slot: 42</code></pre>
+
+        <h3>Layout Temático</h3>
+        <pre><code>menu:
+  title: "&5&l✦ &d&lRELÍQUIAS MÍSTICAS &5&l✦"
+  size: 45
+
+decoration:
+  material: PURPLE_STAINED_GLASS_PANE
+  name: "&5&l◆"
+
+messages:
+  invalid_relic: "&5&l✦ &dEste item não pode ser colocado aqui!"
+  menu_opened: "&5&l✦ &dMenu místico aberto!"</code></pre>
+
+        <div class="info-box success">
+          <strong>✅ Dica de Design</strong>
+          <p>Mantenha os slots principais no centro do menu e use decoração nas bordas para melhor visual!</p>
+        </div>
+      </div>
+
+      <!-- Stats Display Page -->
+      <div class="tab-content" id="page-stats-display">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Avançado</span>
+          <span>/</span>
+          <span>Display de Stats</span>
+        </div>
+
+        <h1>Display de Estatísticas</h1>
+        <p>O Display de Stats é uma ferramenta visual integrada ao menu que permite monitorar seu poder total em tempo real, somando atributos base e bônus de relíquias.</p>
+
+        <div class="info-box success">
+          <strong>📊 Atributos Monitorados</strong>
+          <p>O sistema lê automaticamente valores de Vida, Dano e Velocidade, além de integrar dados dos plugins NotEnoughDashes e NotEnoughCritics.</p>
+        </div>
+
+        <h2>Interface do Display</h2>
+        <p>Ao passar o mouse sobre o item de estatísticas no menu, você verá as seguintes informações:</p>
+        
+        <div class="attribute-list">
+          <div class="attribute-item">
+            <strong>⚔️ Combate</strong>
+            <p>Vida Máxima, Dano Base e Velocidade de Movimento.</p>
+          </div>
+          <div class="attribute-item">
+            <strong>💥 Críticos</strong>
+            <p>Chance e Multiplicador de Dano Crítico atual.</p>
+          </div>
+          <div class="attribute-item">
+            <strong>🏃 Dash</strong>
+            <p>Cargas disponíveis, Cooldown e Poder do Dash.</p>
+          </div>
+        </div>
+
+        <h2>Resumo de Raridades</h2>
+        <p>O display também exibe um contador de quantas relíquias de cada Tier você tem equipadas no momento.</p>
+        <pre><code>▸ Relíquias Equipadas
+  5 / 7 slots
+
+  • Lendário: 2
+  • Épico: 1
+  • Raro: 2</code></pre>
+      </div>
+
+      <div class="tab-content" id="page-examples">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Avançado</span>
+          <span>/</span>
+          <span>Exemplos Práticos</span>
+        </div>
+
+        <h1>Exemplos de Configuração</h1>
+        <p>Abaixo estão modelos prontos para uso no seu arquivo <code>relics.yml</code>.</p>
+
+        <h2>1. Relíquia de Combate Puro (Tier Lendário)</h2>
+        <pre><code>phoenix_crown:
+  name: "&6&lCoroa da Fênix"
+  material: GOLDEN_HELMET
+  tier: LEGENDARY
+  lore:
+    - "&7Renasça das cinzas com o poder solar."
+  slots: [HELMET]
+  attributes:
+    strength: 5.0
+    max_health: 10.0
+  critics_effects:
+    special_effects: [eternal_flame]</code></pre>
+
+        <h2>2. Relíquia de Mobilidade (Build de Dash)</h2>
+        <pre><code>infinity_belt:
+  name: "&d&lCinto do Espaço"
+  material: END_CRYSTAL
+  tier: EPIC
+  slots: [BELT]
+  dash_effects:
+    charges_addition: 2
+    recharge_multiplier: 0.5
+    special_effects: [void_compass]</code></pre>
+
+        <h2>3. Relíquia de Utilidade (Status Permanente)</h2>
+        <pre><code>ocean_amulet:
+  name: "&b&lAmuleto das Marés"
+  material: HEART_OF_THE_SEA
+  tier: RARE
+  slots: [NECKLACE]
+  potion_effects:
+    water_breathing: 1
+    conduit_power: 1</code></pre>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
