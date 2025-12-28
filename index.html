@@ -129,6 +129,7 @@
       display:flex;
       align-items:center;
       gap:16px;
+      left: 5rem;
       margin-bottom:24px;
       padding:16px;
       background:var(--card);
@@ -198,26 +199,23 @@
       justify-content:center;
     }
     
-    .character-placeholder{
-      width:100%;
-      height:100%;
-      background:linear-gradient(135deg,#1a1a1a 0%,#0f0f0f 100%);
-      border-radius:16px;
-      border:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:120px;
-      position:relative;
-      overflow:hidden;
+    .character-placeholder {
+      width: 150%;
+      height: 150%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
     }
-    
-    .character-placeholder::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at 30% 30%,rgba(59,130,246,0.1),transparent 70%);
-      pointer-events:none;
+
+    /* Nova classe para a imagem do buddy */
+    .buddy-img {
+      max-width: 150%;
+      max-height: 150%;
+      object-fit: contain;
+      /* Opcional: Adicione um leve filtro de sombra se quiser que ele se destaque no fundo */
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
     }
     
     /* Tools Section */
@@ -452,7 +450,7 @@
     
     <div class="hero-3d">
       <div class="character-placeholder">
-        🧑‍💻
+        <img src="img/buddy.png" alt="Buddy" class="buddy-img">
       </div>
     </div>
   </section>
