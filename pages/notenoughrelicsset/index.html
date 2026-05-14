@@ -135,6 +135,36 @@
       position: relative;
     }
 
+    /* YouTube Placeholder */
+    .yt-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+      z-index: 50; /* Acima do canvas, mas abaixo dos modais */
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      text-align: center;
+    }
+    .yt-placeholder h2 { font-size: 24px; font-weight: 700; color: var(--text); }
+    .yt-placeholder p { font-size: 14px; color: var(--muted); max-width: 400px; line-height: 1.5; }
+    .yt-placeholder iframe { border-radius: 8px; border: 1px solid var(--border); background: #000; }
+    
+    /* Classe para esconder o vídeo suavemente */
+    .yt-placeholder.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
     /* Connection Lines - SVG Interactions */
     .connection-group { pointer-events: auto; cursor: pointer; }
     .connection-hitbox { stroke: transparent; stroke-width: 24px; fill: none; }
@@ -317,6 +347,14 @@
   </div>
 
   <main class="workspace" id="workspace">
+    
+    <div id="youtubePlaceholder" class="yt-placeholder">
+      <h2>Welcome to Relic Sets Creator</h2>
+      <p>Click <b>Import Relics Config</b> above to load your existing relics, or watch the tutorial below to learn how the Sets system works.</p>
+      
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/RqGBM7XzM_E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
     <div class="canvas-container" id="canvasContainer">
       <svg id="connections-layer"></svg>
     </div>
@@ -468,6 +506,8 @@
           closeModals();
           renderNodes();
           
+          // Sucesso: Esconde o video do YouTube e libera o botao de Sets
+          document.getElementById('youtubePlaceholder').classList.add('hidden');
           document.getElementById('importSetsBtn').disabled = false;
           showToast("Base Relics imported successfully!", true);
         } catch (err) {
@@ -575,7 +615,6 @@
       let firstLore = data.lore && data.lore.length > 0 ? data.lore[0].replace(/&[0-9a-fk-or]/g, '') : "No description provided.";
       let matName = data.material ? data.material.toLowerCase() : "enchanted_book";
       
-      // Cria a lógica das imagens. Se der erro na api block, injeta o ring svg
       let iconSrc = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/item/${matName}.png`;
       let blockSrc = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/block/${matName}.png`;
 
@@ -602,18 +641,14 @@
         </div>
       `;
 
-      // Evento de Clique Consertado
       node.addEventListener('click', (e) => {
-        // PRIORIDADE 1: Se estiver linkando e clicar neste node, termina o link.
         if (isLinking && linkSource !== id) {
           finishLink(id);
           return;
         }
 
-        // PRIORIDADE 2: Se foi um movimento de arrastar em vez de um clique, ignora a abertura do popup
         if (hasDragged) return;
 
-        // PRIORIDADE 3: Se não tá arrastando, não tá linkando e clicou no node que já pertence a um grupo, abre o popup.
         if (!isLinking && groups[id] && !e.target.closest('.node-toggle') && !e.target.closest('.connector')) {
            openSetConfig(id);
         }
