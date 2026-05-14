@@ -3,19 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NotEnoughRelics - Wiki</title>
+  <title>KOstudios Web</title>
+  <link rel="icon" type="image/png" href="/img/KOstudio.png" />
   <link rel="stylesheet" href="../../css/loader.css">
   <link rel="stylesheet" href="style.css">
   <script src="../../js/loader.js" defer></script>
 
-  <link rel="preload" as="image" href="img/reload_1.png">
-  <link rel="preload" as="image" href="img/reload_2.png">
-  <link rel="preload" as="image" href="img/reload_3.png">
-  <link rel="preload" as="image" href="img/reload_4.png">
-  <link rel="preload" as="image" href="img/reload_5.png">
-  <link rel="preload" as="image" href="img/reload_6.png">
-  <link rel="preload" as="image" href="img/reload_7.png">
-  <link rel="preload" as="image" href="img/reload_8.png">
 </head>
 <body>
   <header>
@@ -74,6 +67,20 @@
           <span>Commands & Triggers</span>
         </div>
       </div>
+
+      <div class="sidebar-section">
+        <h3>Advanced Systems</h3>
+        <div class="sidebar-item" data-page="relic-sets">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span>Relic Sets</span>
+        </div>
+      </div>
       
       <div class="sidebar-section">
         <h3>Resources</h3>
@@ -116,6 +123,7 @@
           <li><strong>Stats & Attributes:</strong> Apply static modifiers like Max Health, Strength, Luck, and Movement Speed.</li>
           <li><strong>Utility Mechanics:</strong> Configure i-frames, double jumps, fall damage reduction, and reach extensions.</li>
           <li><strong>Event Triggers:</strong> Execute console commands, sounds, and particles reacting to damage, kills, equipping, or ticks.</li>
+          <li><strong>Relic Sets:</strong> Link multiple relics to provide massive bonuses when equipped together.</li>
         </ul>
       </div>
 
@@ -338,6 +346,81 @@
   interval-ticks: 60</code></pre>
       </div>
 
+      <div class="tab-content" id="page-relic-sets">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Advanced Systems</span>
+          <span>/</span>
+          <span>Relic Sets</span>
+        </div>
+        
+        <h1>Relic Sets Configuration</h1>
+        <p>Relic Sets allow you to link multiple individual relics into a unified set. When a player manages to collect and equip all the required relics within a set simultaneously, they are rewarded with bonus attributes and custom visual/audio effects.</p>
+        
+        <div class="info-box success">
+          <strong>💡 Generator Tool</strong>
+          <p>We highly recommend using our visual <a href="/pages/notenoughrelicsset/index.html">Relic Set Creator</a>. It allows you to drag, drop, and link your existing relics together to generate the <code>relic_sets.yml</code> file automatically!</p>
+        </div>
+
+        <h3>Configuration File (relic_sets.yml)</h3>
+        <p>This system operates within its own dedicated configuration file. Below is an example of a complete set configuration:</p>
+
+        <pre><code>relic_sets:
+  merchant_fortune_set:
+    relics:
+      - golden_ring_advanced
+      - ancient_coin_advanced
+      - silver_necklace
+    extra-stats:
+      attributes:
+        luck: 15.0
+        max_health: 4.0
+        knockback_resistance: 1.0
+
+set_config:
+  on-enable-sound:
+    - "UI_TOAST_CHALLENGE_COMPLETE"
+    - "BLOCK_BEACON_ACTIVATE"
+  on-disable-sound:
+    - "BLOCK_BEACON_DEACTIVATE"
+  particle:
+    - "VILLAGER_HAPPY"
+    - "END_ROD"</code></pre>
+
+        <h3>Understanding the Keys</h3>
+        <table>
+          <tr>
+            <th>Key</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><code>relics</code></td>
+            <td>A list containing the exact IDs of the relics required to complete the set.</td>
+          </tr>
+          <tr>
+            <td><code>extra-stats.attributes</code></td>
+            <td>Bonus attributes granted <strong>only</strong> when the entire set is equipped. These stack additively with the individual relic stats.</td>
+          </tr>
+          <tr>
+            <td><code>set_config</code></td>
+            <td>The global configuration block. This dictates what happens cosmetically when <em>any</em> set is completed or broken.</td>
+          </tr>
+          <tr>
+            <td><code>on-enable-sound</code></td>
+            <td>A list of Bukkit Sound enums played to the player exactly when they equip the final missing piece of a set.</td>
+          </tr>
+          <tr>
+            <td><code>on-disable-sound</code></td>
+            <td>A list of sounds played when a complete set is broken (e.g., the player removes one of the pieces).</td>
+          </tr>
+          <tr>
+            <td><code>particle</code></td>
+            <td>Bukkit Particle enums spawned around the player the moment the set becomes fully active.</td>
+          </tr>
+        </table>
+      </div>
+
       <div class="tab-content" id="page-examples">
         <div class="breadcrumb">
           <a href="#" data-page="home">Home</a>
@@ -429,7 +512,6 @@
   </div>
 
   <script>
-    // Page Navigation
     const sidebarItems = document.querySelectorAll('.sidebar-item');
     const wikiContent = document.getElementById('wikiContent');
     
@@ -438,7 +520,6 @@
         const pageId = item.dataset.page;
         showPage(pageId);
         
-        // Update active state
         sidebarItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
       });
@@ -455,7 +536,6 @@
       }
     }
     
-    // Search functionality
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', (e) => {
       const searchTerm = e.target.value.toLowerCase();
@@ -463,21 +543,19 @@
       sidebarItems.forEach(item => {
         const text = item.textContent.toLowerCase();
         if (text.includes(searchTerm)) {
-          item.style.display = 'block';
+          item.style.display = 'flex';
         } else {
           item.style.display = 'none';
         }
       });
     });
     
-    // Link navigation within content
     document.addEventListener('click', (e) => {
       if (e.target.tagName === 'A' && e.target.dataset.page) {
         e.preventDefault();
         const pageId = e.target.dataset.page;
         showPage(pageId);
         
-        // Update sidebar
         sidebarItems.forEach(item => {
           if (item.dataset.page === pageId) {
             item.classList.add('active');

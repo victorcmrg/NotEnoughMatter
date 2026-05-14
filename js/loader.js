@@ -4,7 +4,7 @@
         const loaderHTML = `
             <div id="loader">
                 <div class="loader-container">
-                    <img id="loader-img" src="" alt="Loading...">
+                    <img id="loader-img">
                 </div>
             </div>
         `;

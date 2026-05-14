@@ -12,13 +12,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Axiforma';
-    src: url('../../fonts/Axiforma-SemiBold.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-}
-
 :root {
     --bg: #0d0d0d;
     --card: #141414;
@@ -74,7 +67,7 @@ header {
 }
 
 .logo {
-    font-family: 'Axiforma', sans-serif;
+    font-family: 'CustomFont', sans-serif;
     font-weight: 600;
     font-size: 20px;
     color: var(--text);

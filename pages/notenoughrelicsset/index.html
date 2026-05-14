@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NotEnoughRelics - Set Generator</title>
-  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <title>KOstudios Web</title>
+  <link rel="icon" type="image/png" href="/img/KOstudio.png" />
+  <link rel="stylesheet" href="../../css/loader.css">
+  <script src="../../js/loader.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   
   <style>
-    @font-face{font-family:'CustomFont';src:url('fonts/font.otf') format('opentype');font-weight:normal;font-style:normal}
-    @font-face{font-family:'CustomFont';src:url('fonts/bold.otf') format('opentype');font-weight:700;font-style:normal}
+    @font-face{font-family:'CustomFont';src:url('../../fonts/font.otf') format('opentype');font-weight:normal;font-style:normal}
+    @font-face{font-family:'CustomFont';src:url('../../fonts/bold.otf') format('opentype');font-weight:700;font-style:normal}
     
     :root{
       --bg: #0a0a0a;
@@ -212,6 +214,7 @@
       border-radius: 8px;
       object-fit: contain;
       image-rendering: pixelated;
+      padding: 4px;
     }
     .node-info { flex: 1; overflow: hidden; }
     .node-name { font-size: 14px; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
@@ -283,28 +286,16 @@
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast.success { background: var(--success); }
   </style>
-
-  <link rel="stylesheet" href="../../css/loader.css">
-
-  <script src="../../js/loader.js" defer></script>
-  <link rel="preload" as="image" href="img/reload_1.png">
-  <link rel="preload" as="image" href="img/reload_2.png">
-  <link rel="preload" as="image" href="img/reload_3.png">
-  <link rel="preload" as="image" href="img/reload_4.png">
-  <link rel="preload" as="image" href="img/reload_5.png">
-  <link rel="preload" as="image" href="img/reload_6.png">
-  <link rel="preload" as="image" href="img/reload_7.png">
-  <link rel="preload" as="image" href="img/reload_8.png">
 </head>
 <body>
   <header>
     <div class="header-content">
       <a href="/" class="logo">
-        <img src="/img/KOstudio.png" alt="KoStudios" class="logo-img" onerror="this.src='https://via.placeholder.com/32';">
+        <img src="/img/KOstudio.png" alt="KoStudios Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/32';">
         KoStudios
       </a>
       <nav>
-        <a href="/pages/notenoughrelicsstart/index.html">Tools</a>
+        <a href="/index.html">Home</a>
         <a href="/pages/wiki_relics/index.html">Wiki</a>
         <a href="https://github.com/victorcmrg" target="_blank">GitHub</a>
       </nav>
@@ -422,6 +413,9 @@
     const canvasContainer = document.getElementById('canvasContainer');
     const svgLayer = document.getElementById('connections-layer');
     const workspace = document.getElementById('workspace');
+
+    // O SVG que será usado caso falhe o carregamento da imagem do minecraft
+    const fallbackRingSVG = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffd700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='7'/%3E%3Cpolygon points='12 3 14 7 12 9 10 7' fill='%233b82f6' stroke='%233b82f6'/%3E%3C/svg%3E";
 
     /* =========================================
        TOAST & MODAL LOGIC
@@ -580,13 +574,16 @@
       let dispName = data.name ? data.name.replace(/&[0-9a-fk-or]/g, '') : id;
       let firstLore = data.lore && data.lore.length > 0 ? data.lore[0].replace(/&[0-9a-fk-or]/g, '') : "No description provided.";
       let matName = data.material ? data.material.toLowerCase() : "enchanted_book";
+      
+      // Cria a lógica das imagens. Se der erro na api block, injeta o ring svg
       let iconSrc = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/item/${matName}.png`;
+      let blockSrc = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/block/${matName}.png`;
 
       node.innerHTML = `
         <div class="connector connector-left" onclick="startLink('${id}', event, this)">+</div>
         <div class="connector connector-right" onclick="startLink('${id}', event, this)">+</div>
         <div class="node-header" onmousedown="startDrag('${id}', event)">
-          <img src="${iconSrc}" class="node-icon" onerror="this.src='https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/block/${matName}.png'">
+          <img src="${iconSrc}" class="node-icon" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${blockSrc}';}else{this.src='${fallbackRingSVG}';}">
           <div class="node-info">
             <div class="node-name">${dispName}</div>
             <div class="node-lore">${firstLore}...</div>

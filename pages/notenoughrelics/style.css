@@ -12,12 +12,7 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Axiforma';
-    src: url('../../fonts/Axiforma-SemiBold.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-}
+
 
 :root {
     --bg: #0d0d0d;
@@ -77,7 +72,7 @@ header {
 }
 
 .logo {
-    font-family: 'Axiforma', sans-serif;
+    font-family: 'CustomFont', sans-serif;
     font-weight: 600;
     font-size: 20px;
     color: var(--text);
@@ -448,14 +443,11 @@ input[type="number"] {
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
-    box-shadow: 0 0 20px rgba(211, 146, 6, 0.4), 0 0 40px rgba(211, 190, 6, 0.3), 0 0 60px rgba(211, 211, 6, 0.1);
-    animation: glowPulse 3s ease-in-out infinite;
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    animation: glowPulse 2.5s ease-in-out infinite;
 }
 
 @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(211, 146, 6, 0.5), 0 0 40px rgba(211, 190, 6, 0.3), 0 0 60px rgba(211, 211, 6, 0.1); }
-    50% { box-shadow: 0 0 30px rgba(211, 146, 6, 0.6), 0 0 60px rgba(211, 190, 6, 0.4), 0 0 90px rgba(211, 211, 6, 0.1); }
-}
     0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.1); }
     50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3); }
 }
@@ -556,19 +548,83 @@ input[type="number"] {
     background: rgba(59, 130, 246, 0.05);
 }
 
+/* =========================================
+   FLOATING CTA BUTTON (Relic Sets)
+   ========================================= */
+.floating-cta {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--card);
+    border: 1px solid rgba(218, 187, 13, 0.637);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(252, 255, 85, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    max-width: 340px;
+}
+
+.floating-cta:hover {
+    transform: translateY(-6px);
+    background: var(--card-hover);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 30px rgba(255, 244, 85, 0.3);
+    border-color: rgba(218, 187, 13, 0.637);
+}
+
+.cta-icon {
+    background: rgba(255, 244, 85, 0.15);
+    color: var(--accent);
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cta-text strong {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cta-text span {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
 /* Responsive */
 @media(max-width:1024px) {
     .wiki-container {
         grid-template-columns: 1fr;
     }
-
     .sidebar {
         position: static;
         order: -1;
     }
-
     .wiki-content {
         padding: 24px;
+    }
+}
+
+@media(max-width:768px) {
+    .floating-cta {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
     }
 }
 
@@ -576,7 +632,6 @@ input[type="number"] {
     .form-grid {
         grid-template-columns: 1fr;
     }
-
     .rarity-select {
         flex-direction: column;
     }
