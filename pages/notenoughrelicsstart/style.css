@@ -1,0 +1,284 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../../fonts/font.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../../fonts/bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Axiforma';
+    src: url('../../fonts/Axiforma-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+:root {
+    --bg: #0d0d0d;
+    --card: #141414;
+    --card-hover: #1c1c1c;
+    --muted: #bfc9df;
+    --text: #e9eef8;
+    --accent: #5561ff;
+    --accent-hover: #6d79ff;
+    --border: #222;
+    --glow: rgba(115, 135, 255, 0.12);
+    --pastel-blue: #a8d5ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'CustomFont', Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(15, 15, 15, 0.8);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Axiforma', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: -0.02em;
+}
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color .2s ease;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--text);
+}
+
+/* Intermediary Page Layout */
+.split-layout {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 60px;
+    flex-grow: 1;
+    align-items: start;
+}
+
+/* Left Panel - Sticky */
+.left-panel {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    width: fit-content;
+}
+
+.back-link:hover {
+    color: var(--text);
+}
+
+.left-panel h1 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.left-panel p.description {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* Action Cards */
+.action-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.action-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: all .3s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    background: var(--card-hover);
+}
+
+.action-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--accent);
+}
+
+.action-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.action-text p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* Right Panel - Scrollable Image */
+.right-panel {
+    height: calc(100vh - 120px);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Imagem Gigante */
+.right-panel img {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 2500px;
+    object-fit: cover;
+    background: linear-gradient(to bottom, #111 0%, #1a1a1a 50%, #0a0a0a 100%);
+}
+
+/* Estilização da Scrollbar no Painel Direito */
+.right-panel::-webkit-scrollbar {
+    width: 10px;
+}
+
+.right-panel::-webkit-scrollbar-track {
+    background: var(--bg);
+    border-radius: 0 16px 16px 0;
+}
+
+.right-panel::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+    border: 2px solid var(--bg);
+}
+
+.right-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* Responsive */
+@media(max-width:1024px) {
+    .split-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin: 32px auto;
+    }
+
+    .left-panel {
+        position: static;
+    }
+
+    .right-panel {
+        height: 600px;
+    }
+}
+
+@media(max-width:768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+}

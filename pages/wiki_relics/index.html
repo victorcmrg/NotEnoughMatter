@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NotEnoughRelics - Wiki</title>
+  <link rel="stylesheet" href="../../css/loader.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../js/loader.js" defer></script>
+
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="/img/KOstudio.png" alt="KoStudios Logo" class="logo-img">
+        KoStudios
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="https://github.com/victorcmrg" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wiki-container">
+    <aside class="sidebar">
+      <div class="wiki-search">
+        <input type="text" placeholder="Search documentation..." id="searchInput">
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Getting Started</h3>
+        <div class="sidebar-item active" data-page="home">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+          <span>Introduction</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Relic Configuration</h3>
+        <div class="sidebar-item" data-page="creation-basics">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+          </svg>
+          <span>Basic Structure</span>
+        </div>
+        <div class="sidebar-item sub" data-page="simple-relics">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <span>Attributes & Stats</span>
+        </div>
+        <div class="sidebar-item sub" data-page="effects-buffs">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 21q-.825 0-1.413-.588T5 19V5q0-.825.588-1.413T7 3h7l-2 2H7v14h10v-5l2-2v7q0 .825-.588 1.413T17 21H7Zm9.175-11.8L15 7.825l4.2-4.2q.575-.575 1.413-.575t1.413.575q.575.575.575 1.412t-.575 1.413l-4.2 4.2l-1.175-1.175l4.225-4.25q.15-.15.15-.35t-.15-.35q-.15-.15-.35-.15t-.35.15l-4.25 4.225Z"/>
+          </svg>
+          <span>Effects & Mechanics</span>
+        </div>
+        <div class="sidebar-item sub" data-page="command-relics">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zM7 15h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+          </svg>
+          <span>Commands & Triggers</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3>Resources</h3>
+        <div class="sidebar-item" data-page="examples">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+          <span>Example Snippets</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="wiki-content" id="wikiContent">
+      
+      <a href="/index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Home
+      </a>
+
+      <div class="tab-content active" id="page-home">
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <span>Documentation</span>
+        </div>
+        
+        <h1>NotEnoughRelics Documentation</h1>
+        <p>Welcome to the NotEnoughRelics documentation. Learn how to configure custom artifacts, set up passive modifiers, and bind commands to player events.</p>
+        
+        <div class="info-box">
+          <strong>📝 YAML Configuration</strong>
+          <p>All items must be configured under the <code>relics:</code> key in your plugin files. Use the sidebar to navigate through the available configuration blocks.</p>
+        </div>
+        
+        <h2>Core Features</h2>
+        <ul>
+          <li><strong>Stats & Attributes:</strong> Apply static modifiers like Max Health, Strength, Luck, and Movement Speed.</li>
+          <li><strong>Utility Mechanics:</strong> Configure i-frames, double jumps, fall damage reduction, and reach extensions.</li>
+          <li><strong>Event Triggers:</strong> Execute console commands, sounds, and particles reacting to damage, kills, equipping, or ticks.</li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="page-creation-basics">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Relic Configuration</span>
+          <span>/</span>
+          <span>Basic Structure</span>
+        </div>
+        
+        <h1>Basic Structure</h1>
+        <p>Every relic relies on a foundational YAML structure defining its visual presence, metadata, and tier.</p>
+        
+        <pre><code>relics:
+  my_custom_relic:
+    name: "&eMy Custom Relic"
+    material: ENCHANTED_BOOK
+    glint: false
+    lore:
+      - "&7A properly formatted artifact."
+    slots:
+      - RING
+    tier: COMMON
+    glow:
+      enable: true
+      color: "#E2B640"
+    custom_model_data: 4310002</code></pre>
+        
+        <h3>Required Keys</h3>
+        <table>
+          <tr>
+            <th>Key</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td>The display name of the item. Supports color codes (&).</td>
+          </tr>
+          <tr>
+            <td><code>material</code></td>
+            <td>The Bukkit Material type (e.g., <code>ENCHANTED_BOOK</code>, <code>LEATHER_HELMET</code>).</td>
+          </tr>
+          <tr>
+            <td><code>glint</code></td>
+            <td>Toggles the vanilla enchantment glint.</td>
+          </tr>
+          <tr>
+            <td><code>slots</code></td>
+            <td>List of valid equipment slots (e.g., <code>RING</code>, <code>HELMET</code>, <code>CLOAK</code>, <code>GLOVES</code>, <code>BELT</code>, <code>NECKLACE</code>, <code>RELICS</code>).</td>
+          </tr>
+          <tr>
+            <td><code>tier</code></td>
+            <td>Item rarity tier (e.g., <code>COMMON</code>, <code>UNCOMMON</code>, <code>RARE</code>, <code>EPIC</code>, <code>LEGENDARY</code>, <code>MYTHIC</code>).</td>
+          </tr>
+          <tr>
+            <td><code>glow</code></td>
+            <td>Custom glowing effect configuration. Set <code>enable: true</code> and specify a HEX <code>color</code>.</td>
+          </tr>
+          <tr>
+            <td><code>custom_model_data</code></td>
+            <td>Integer value used to assign custom textures via resource packs.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-content" id="page-simple-relics">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Relic Configuration</span>
+          <span>/</span>
+          <span>Attributes & Stats</span>
+        </div>
+        
+        <h1>Attributes & Stats</h1>
+        <p>Passive attributes modify player stats while the relic is equipped in its designated slot.</p>
+        
+        <div class="info-box success">
+          <strong>💡 Stacking Attributes</strong>
+          <p>You can stack multiple attributes on a single relic. Just list all desired stat keys under the <code>attributes:</code> block.</p>
+        </div>
+        
+        <h3>The <code>attributes</code> Block</h3>
+        <p>Define stat modifications under the <code>attributes:</code> section:</p>
+        
+        <pre><code>attributes:
+  max_health: 4.0
+  luck: 2.0
+  speed: 1.0
+  strength: 3.0
+  knockback_resistance: 5.0</code></pre>
+        
+        <h3>Available Attributes</h3>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+            <th>Format</th>
+          </tr>
+          <tr>
+            <td><code>max_health</code></td>
+            <td>Increases maximum health (1.0 = half a heart).</td>
+            <td>Float (e.g., <code>6.0</code>)</td>
+          </tr>
+          <tr>
+            <td><code>luck</code></td>
+            <td>Increases the generic luck stat.</td>
+            <td>Float (e.g., <code>4.0</code>)</td>
+          </tr>
+          <tr>
+            <td><code>speed</code></td>
+            <td>Increases movement speed.</td>
+            <td>Float (e.g., <code>0.2</code>)</td>
+          </tr>
+          <tr>
+            <td><code>strength</code></td>
+            <td>Increases melee damage output.</td>
+            <td>Float (e.g., <code>5.0</code>)</td>
+          </tr>
+          <tr>
+            <td><code>knockback_resistance</code></td>
+            <td>Reduces incoming knockback.</td>
+            <td>Float (e.g., <code>10.0</code>)</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-content" id="page-effects-buffs">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Relic Configuration</span>
+          <span>/</span>
+          <span>Effects & Mechanics</span>
+        </div>
+        
+        <h1>Special Effects & Mechanics</h1>
+        <p>Use the <code>special_effects</code> block to add utility mechanics like invulnerability frames, reach extensions, and extra jumps.</p>
+        
+        <pre><code>special_effects:
+  invulnerability_time: 0.5
+  fall_damage_reduction: 0.3
+  entity_range: 1.5
+  block_range: 2.0
+  double_jump: 1</code></pre>
+  
+        <h3>Available Mechanics</h3>
+        <table>
+          <tr>
+            <th>Key</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><code>invulnerability_time</code></td>
+            <td>Grants seconds of i-frames after the player is hit (e.g., <code>0.8</code>).</td>
+          </tr>
+          <tr>
+            <td><code>fall_damage_reduction</code></td>
+            <td>Reduces incoming fall damage by a percentage (e.g., <code>0.3</code> = 30%).</td>
+          </tr>
+          <tr>
+            <td><code>entity_range</code></td>
+            <td>Increases attack reach against entities in blocks.</td>
+          </tr>
+          <tr>
+            <td><code>block_range</code></td>
+            <td>Increases block breaking and interaction reach in blocks.</td>
+          </tr>
+          <tr>
+            <td><code>double_jump</code></td>
+            <td>Grants extra mid-air jumps (Integer).</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-content" id="page-command-relics">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Relic Configuration</span>
+          <span>/</span>
+          <span>Commands & Triggers</span>
+        </div>
+        
+        <h1>Commands & Triggers</h1>
+        <p>The <code>commands</code> block allows relics to listen for specific player events (like taking damage or killing mobs) and execute console commands, play sounds, or spawn particles.</p>
+        
+        <div class="info-box warning">
+          <strong>⚠️ Using Placeholders</strong>
+          <p>Pass dynamic player data into commands using <code>%player_name%</code>, <code>%player_x%</code>, <code>%player_y%</code>, and <code>%player_z%</code>.</p>
+        </div>
+
+        <h3>Event Listeners</h3>
+        <p>Each listener requires a list of commands and a probability variable (<code>[event]-chance</code>) ranging from 0.0 to 1.0.</p>
+        
+        <ul>
+          <li><code>onEquip</code>: Triggers when the item is slotted.</li>
+          <li><code>onUnequip</code>: Triggers when the item is unslotted.</li>
+          <li><code>onKill</code>: Triggers upon killing an entity.</li>
+          <li><code>onDeath</code>: Triggers upon player death.</li>
+          <li><code>onDamage</code>: Triggers upon taking damage.</li>
+          <li><code>onDamageDealt</code>: Triggers upon dealing damage.</li>
+          <li><code>onInterval</code>: Triggers repeatedly based on defined <code>interval-ticks</code>.</li>
+        </ul>
+
+        <h3>Configuration Example</h3>
+        <pre><code>commands:
+  command-feedback: false
+
+  onKill:
+    - "playsound minecraft:entity.experience_orb.pickup player %player_name% %player_x% %player_y% %player_z% 1 2"
+    - "particle minecraft:note %player_x% %player_y% %player_z% 1 1 1 1 15"
+  onKill-chance: 0.5
+
+  onInterval:
+    - "particle minecraft:enchant %player_x% %player_y% %player_z% 0.5 1 0.5 0 5"
+  onInterval-chance: 0.1
+  interval-ticks: 60</code></pre>
+      </div>
+
+      <div class="tab-content" id="page-examples">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Resources</span>
+          <span>/</span>
+          <span>Example Snippets</span>
+        </div>
+        
+        <h1>Example Snippets</h1>
+        <p>Complete configuration examples combining attributes, mechanics, and triggers.</p>
+
+        <h3>Example 1: Advanced Shadow Cloak</h3>
+        <p>A mobility-focused artifact granting speed, strength, and extra jumps.</p>
+        <pre><code>shadow_cloak_advanced:
+  name: "&8Advanced Shadow Cloak"
+  material: BLACK_BANNER
+  lore:
+    - "&7Hides in the darkness"
+    - "&7with deadly efficiency."
+    - ""
+    - "&eSpecial Effect:"
+    - "&7• +&a7.0 &7Speed"
+    - "&7• +&a5.0 &7Strength"
+    - "&7• +&a1.5 &7entity reach range"
+    - "&7• +&a1 &7extra mid-air jump"
+  slots:
+    - CLOAK
+  tier: UNCOMMON
+  glow:
+    enable: true
+    color: "#696969"
+  custom_model_data: 4310022
+  attributes:
+    speed: 7.0
+    strength: 5.0
+  special_effects:
+    entity_range: 1.5
+    double_jump: 1</code></pre>
+
+        <h3>Example 2: Mystic Orchestra</h3>
+        <p>An epic item that acts dynamically through sound execution on combat events.</p>
+        <pre><code>mystic_orchestra:
+  name: "&d&lOrquestra Mística"
+  material: NOTE_BLOCK
+  lore:
+    - "&7A musical artifact that plays"
+    - "&7melodies on every action."
+    - ""
+    - "&6Bonuses:"
+    - "&7• +&a8.0 &7Luck"
+    - "&7• +&a5.0 &7Speed"
+  slots:
+    - RELICS
+  tier: EPIC
+  glow:
+    enable: true
+    color: "#E91E63"
+  custom_model_data: 7001
+  attributes:
+    luck: 8.0
+    speed: 5.0
+  commands:
+    command-feedback: false
+
+    onEquip:
+      - "playsound minecraft:ui.toast.challenge_complete player %player_name% %player_x% %player_y% %player_z% 1 1"
+      - "title %player_name% subtitle {\"text\":\"Mystic Orchestra Activated\",\"color\":\"white\"}"
+      - "particle minecraft:note %player_x% %player_y% %player_z% 2 2 2 1 50"
+    onEquip-chance: 1.0
+
+    onUnequip:
+      - "playsound minecraft:entity.villager.no player %player_name% %player_x% %player_y% %player_z% 1 0.8"
+      - "particle minecraft:smoke %player_x% %player_y% %player_z% 0.5 0.5 0.5 0.05 20"
+    onUnequip-chance: 1.0
+
+    onDamage:
+      - "playsound minecraft:block.note_block.bass player %player_name% %player_x% %player_y% %player_z% 1 0.5"
+    onDamage-chance: 0.30
+
+    onInterval:
+      - "playsound minecraft:block.note_block.flute player %player_name% %player_x% %player_y% %player_z% 0.3 1.5"
+      - "particle minecraft:enchant %player_x% %player_y% %player_z% 0.5 1 0.5 0 5"
+    onInterval-chance: 0.1
+    interval-ticks: 60</code></pre>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Page Navigation
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const wikiContent = document.getElementById('wikiContent');
+    
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const pageId = item.dataset.page;
+        showPage(pageId);
+        
+        // Update active state
+        sidebarItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+    
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.tab-content');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      const targetPage = document.getElementById(`page-${pageId}`);
+      if (targetPage) {
+        targetPage.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+    
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      
+      sidebarItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+    
+    // Link navigation within content
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' && e.target.dataset.page) {
+        e.preventDefault();
+        const pageId = e.target.dataset.page;
+        showPage(pageId);
+        
+        // Update sidebar
+        sidebarItems.forEach(item => {
+          if (item.dataset.page === pageId) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NotEnoughRelics - Generator</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="../../css/loader.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../js/loader.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="/img/KOstudio.png" alt="KoStudios Logo" class="logo-img">
+        KoStudios
+      </a>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/wiki.html">Wiki</a>
+        <a href="https://github.com/victorcmrg" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wiki-container">
+    
+    <main class="wiki-content">
+      <a href="/pages/notenoughrelicsstart/index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Go back
+      </a>
+
+      <h1>Relic Generator</h1>
+      <h2 class="subtitle">Create custom YAML configurations for your server artifacts.</h2>
+      
+      <h3>Basic Information</h3>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Relic ID</label>
+          <input type="text" id="relicID" placeholder="ex: ancient_sword" required>
+        </div>
+        <div class="form-row">
+          <label>Equipment Slot</label>
+          <select id="relicSlot">
+            <option value="RING">RING</option>
+            <option value="HELMET">HELMET</option>
+            <option value="CLOAK">CLOAK</option>
+            <option value="GLOVES">GLOVES</option>
+            <option value="BELT">BELT</option>
+            <option value="NECKLACE">NECKLACE</option>
+            <option value="RELICS">RELICS (Generic)</option>
+          </select>
+        </div>
+        <div class="form-row full">
+          <label>Display Name</label>
+          <input type="text" id="relicName" placeholder="ex: &6Ancient Sword of Power" required>
+        </div>
+        <div class="form-row full">
+          <label>Lore (one line per row)</label>
+          <textarea id="relicLore" placeholder="&7An ancient weapon forged in...&#10;&7the fires of the Nether itself."></textarea>
+        </div>
+        <div class="form-row full">
+          <label>Rarity Tier</label>
+          <div class="rarity-select">
+            <div class="rarity-option common selected" data-rarity="COMMON">Common</div>
+            <div class="rarity-option uncommon" data-rarity="UNCOMMON">Uncommon</div>
+            <div class="rarity-option rare" data-rarity="RARE">Rare</div>
+            <div class="rarity-option epic" data-rarity="EPIC">Epic</div>
+            <div class="rarity-option legendary" data-rarity="LEGENDARY">Legendary</div>
+            <div class="rarity-option mythic" data-rarity="MYTHIC">Mythic</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Appearance & Texture</h3>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Material</label>
+          <select id="relicMaterial">
+            <option value="ENCHANTED_BOOK">ENCHANTED_BOOK</option>
+            <option value="LEATHER_HELMET">LEATHER_HELMET</option>
+            <option value="IRON_HELMET">IRON_HELMET</option>
+            <option value="GREEN_BANNER">GREEN_BANNER</option>
+            <option value="LEATHER">LEATHER</option>
+            <option value="STRING">STRING</option>
+            <option value="CHAIN">CHAIN</option>
+            <option value="GOLD_NUGGET">GOLD_NUGGET</option>
+            <option value="AMETHYST_SHARD">AMETHYST_SHARD</option>
+            <option value="NOTE_BLOCK">NOTE_BLOCK</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Custom Model Data</label>
+          <input type="number" id="customModelData" placeholder="ex: 4310001" step="1">
+        </div>
+        <div class="form-row inline">
+          <label>Vanilla Glint Effect</label>
+          <div class="toggle-wrapper">
+            <input type="checkbox" id="relicGlint">
+          </div>
+        </div>
+        <div class="form-row inline">
+          <label>Custom Glow</label>
+          <div class="toggle-wrapper">
+            <input type="checkbox" id="relicGlow" checked>
+            <input type="color" id="relicGlowColor" value="#E2B640">
+          </div>
+        </div>
+      </div>
+
+      <h3>Passive Attributes</h3>
+      <p class="info-text">Standard modifiers applied while the relic is equipped.</p>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Max Health (+)</label>
+          <input type="number" id="attrMaxHealth" placeholder="ex: 4.0" step="0.5">
+        </div>
+        <div class="form-row">
+          <label>Strength (+)</label>
+          <input type="number" id="attrStrength" placeholder="ex: 2.0" step="0.5">
+        </div>
+        <div class="form-row">
+          <label>Luck (+)</label>
+          <input type="number" id="attrLuck" placeholder="ex: 5.0" step="0.5">
+        </div>
+        <div class="form-row">
+          <label>Speed (+)</label>
+          <input type="number" id="attrSpeed" placeholder="ex: 1.0" step="0.1">
+        </div>
+        <div class="form-row full">
+          <label>Knockback Resistance (+)</label>
+          <input type="number" id="attrKnockback" placeholder="ex: 5.0" step="0.5">
+        </div>
+      </div>
+
+      <h3>Special Effects</h3>
+      <p class="info-text">Unique utility and reach modifiers.</p>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Invulnerability Time (s)</label>
+          <input type="number" id="effInvuln" placeholder="ex: 0.5" step="0.1">
+        </div>
+        <div class="form-row">
+          <label>Fall Damage Reduction (%)</label>
+          <input type="number" id="effFall" placeholder="ex: 0.3 (30%)" step="0.1">
+        </div>
+        <div class="form-row">
+          <label>Entity Reach Range (+)</label>
+          <input type="number" id="effEntityRange" placeholder="ex: 1.5" step="0.1">
+        </div>
+        <div class="form-row">
+          <label>Block Reach Range (+)</label>
+          <input type="number" id="effBlockRange" placeholder="ex: 1.0" step="0.1">
+        </div>
+        <div class="form-row full">
+          <label>Extra Mid-Air Jumps</label>
+          <input type="number" id="effJumps" placeholder="ex: 1" step="1">
+        </div>
+      </div>
+
+      <h3>Commands & Triggers</h3>
+      <p class="info-text">Execute commands, sounds or particles on specific events.</p>
+      <div id="commandsContainer"></div>
+      <button class="add-btn" id="addCommandBtn">+ Add Event Trigger</button>
+
+      <button class="generate-btn" id="generateBtn">Generate YAML</button>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-section creator-box">
+        <img src="../../img/profile.jpg" alt="Victor CMRG" class="creator-avatar" onerror="this.style.display='none'">
+        <div class="creator-info">
+          <p class="creator-title">Developer</p>
+          <p class="creator-name">@victorcmrg</p>
+          <a href="https://github.com/victorcmrg" target="_blank" class="github-link">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Item Preview</h3>
+        <div class="preview-container">
+          <canvas id="glowCanvas" width="120" height="120"></canvas>
+          <img id="previewImage" src="" alt="Relic Icon">
+        </div>
+        <label for="customImageUpload" class="upload-btn">Upload Custom Photo</label>
+        <input type="file" id="customImageUpload" accept="image/png, image/jpeg" style="display:none;">
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    /* -----------------------------------------------------
+       GLSL SHADER "EFEITO CIRCLE" TRANSCRIBED TO CANVAS JS
+       ----------------------------------------------------- */
+    const canvas = document.getElementById('glowCanvas');
+    const ctx = canvas.getContext('2d');
+    const glowCheck = document.getElementById('relicGlow');
+    const glowColorInput = document.getElementById('relicGlowColor');
+    
+    let animationId = null;
+    let startTime = Date.now();
+
+    function renderShaderGlow() {
+      if (!glowCheck.checked) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        animationId = requestAnimationFrame(renderShaderGlow);
+        return;
+      }
+
+      const t = (Date.now() - startTime) / 1000.0;
+      const width = canvas.width;
+      const height = canvas.height;
+      const imgData = ctx.createImageData(width, height);
+      const data = imgData.data;
+
+      // Converter HEX de Input para RGB
+      const hex = glowColorInput.value;
+      const r = parseInt(hex.slice(1,3), 16);
+      const g = parseInt(hex.slice(3,5), 16);
+      const b = parseInt(hex.slice(5,7), 16);
+
+      // Variáveis originais do Shader GLSL
+      const circleTime = t / 1.5; 
+      const numPacks = 7.0;
+
+      for(let y = 0; y < height; y++) {
+        for(let x = 0; x < width; x++) {
+          let lx = x / width;
+          let ly = y / height;
+
+          let cx = (lx - 0.5) * 2.5; 
+          let cy = (ly - 0.5) * 2.5;
+
+          let dist = Math.sqrt(cx*cx + cy*cy);
+          let angle = Math.atan2(cy, cx) + circleTime; 
+          
+          let rawSector = (angle / 6.2831853) * numPacks + 0.5;
+          let sectorAngle = (rawSector - Math.floor(rawSector)) - 0.5;
+
+          let lateralDist = Math.abs(Math.tan(sectorAngle * (6.2831853 / numPacks))) * dist;
+          let triangleWidth = 0.25 * dist;
+
+          let mask = lateralDist <= triangleWidth ? 1.0 : 0.0;
+          let gradient = 1.0 - Math.min(Math.max(dist, 0.0), 1.0);
+          
+          let finalOpacity = mask * gradient;
+
+          let idx = (y * width + x) * 4;
+          if (finalOpacity >= 0.1) {
+            data[idx] = r;
+            data[idx+1] = g;
+            data[idx+2] = b;
+            data[idx+3] = finalOpacity * 255;
+          } else {
+            data[idx+3] = 0;
+          }
+        }
+      }
+      ctx.putImageData(imgData, 0, 0);
+      animationId = requestAnimationFrame(renderShaderGlow);
+    }
+    // Iniciar Loop
+    renderShaderGlow();
+
+
+    /* -----------------------------------------------------
+       PREVIEW IMAGE LOGIC
+       ----------------------------------------------------- */
+    const materialSelect = document.getElementById('relicMaterial');
+    const previewImage = document.getElementById('previewImage');
+    const customUpload = document.getElementById('customImageUpload');
+    let customImageUrl = null;
+
+    function updatePreview() {
+      if (customImageUrl) {
+        previewImage.src = customImageUrl;
+      } else {
+        const matName = materialSelect.value.toLowerCase();
+        previewImage.src = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/item/${matName}.png`;
+        previewImage.onerror = function() {
+          if (this.src.includes('textures/item/')) {
+            this.src = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/block/${matName}.png`;
+          }
+        };
+      }
+    }
+
+    materialSelect.addEventListener('change', () => { customImageUrl = null; updatePreview(); });
+    customUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) { customImageUrl = URL.createObjectURL(file); updatePreview(); }
+    });
+    updatePreview();
+
+
+    /* -----------------------------------------------------
+       YAML GENERATOR LOGIC
+       ----------------------------------------------------- */
+    let selectedRarity = 'COMMON';
+    let commandBlocks = [];
+
+    document.querySelectorAll('.rarity-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.rarity-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedRarity = option.dataset.rarity;
+      });
+    });
+
+    document.getElementById('addCommandBtn').addEventListener('click', () => {
+      const blockId = Date.now();
+      commandBlocks.push(blockId);
+      const container = document.getElementById('commandsContainer');
+      const div = document.createElement('div');
+      div.className = 'dynamic-item';
+      div.dataset.id = blockId;
+      div.innerHTML = `
+        <button class="remove-btn" onclick="removeCommandBlock(${blockId})">Remove</button>
+        <div class="form-row" style="margin-bottom: 12px;">
+          <label>Event Trigger</label>
+          <select class="cmd-trigger">
+            <option value="onEquip">onEquip</option><option value="onUnequip">onUnequip</option>
+            <option value="onKill">onKill</option><option value="onDeath">onDeath</option>
+            <option value="onDamage">onDamage</option><option value="onDamageDealt">onDamageDealt</option>
+            <option value="onInterval">onInterval (Constant)</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin-bottom: 12px;">
+          <label>Commands (one per line, without '/')</label>
+          <textarea class="cmd-lines" placeholder="playsound minecraft:entity..."></textarea>
+        </div>
+        <div class="form-grid">
+          <div class="form-row"><label>Chance</label><input type="number" class="cmd-chance" value="1.0" step="0.05"></div>
+          <div class="form-row"><label>Interval Ticks</label><input type="number" class="cmd-ticks" placeholder="60"></div>
+        </div>`;
+      container.appendChild(div);
+    });
+
+    window.removeCommandBlock = (id) => {
+      commandBlocks = commandBlocks.filter(b => b !== id);
+      document.querySelector(`[data-id="${id}"]`).remove();
+    };
+
+    document.getElementById('generateBtn').addEventListener('click', () => {
+      const id = document.getElementById('relicID').value.trim();
+      const name = document.getElementById('relicName').value.trim();
+      if (!id || !name) return alert('Relic ID and Display Name are required.');
+
+      let yaml = `relics:\n  ${id}:\n    name: "${name}"\n    material: ${document.getElementById('relicMaterial').value}\n    glint: ${document.getElementById('relicGlint').checked}\n`;
+      
+      const lore = document.getElementById('relicLore').value.trim();
+      if (lore) {
+        yaml += `    lore:\n`;
+        lore.split('\n').forEach(l => yaml += `      - "${l.trim()}"\n`);
+      }
+
+      yaml += `    slots:\n      - ${document.getElementById('relicSlot').value}\n    tier: ${selectedRarity}\n`;
+      yaml += `    glow:\n      enable: ${glowCheck.checked}\n`;
+      if(glowCheck.checked) yaml += `      color: "${glowColorInput.value.toUpperCase()}"\n`;
+
+      const cmdData = document.getElementById('customModelData').value;
+      if (cmdData) yaml += `    custom_model_data: ${cmdData}\n`;
+
+      const attrs = ['MaxHealth', 'Strength', 'Luck', 'Speed', 'Knockback'];
+      const attrKeys = ['max_health', 'strength', 'luck', 'speed', 'knockback_resistance'];
+      let hasAttr = false;
+      attrs.forEach((a, i) => {
+        const val = document.getElementById(`attr${a}`).value;
+        if(val) {
+          if(!hasAttr) { yaml += `    attributes:\n`; hasAttr = true; }
+          yaml += `      ${attrKeys[i]}: ${val}\n`;
+        }
+      });
+
+      const effs = ['Invuln', 'Fall', 'EntityRange', 'BlockRange', 'Jumps'];
+      const effKeys = ['invulnerability_time', 'fall_damage_reduction', 'entity_range', 'block_range', 'double_jump'];
+      let hasEff = false;
+      effs.forEach((e, i) => {
+        const val = document.getElementById(`eff${e}`).value;
+        if(val) {
+          if(!hasEff) { yaml += `    special_effects:\n`; hasEff = true; }
+          yaml += `      ${effKeys[i]}: ${val}\n`;
+        }
+      });
+
+      if (commandBlocks.length > 0) {
+        yaml += `    commands:\n      command-feedback: false\n`;
+        commandBlocks.forEach(bId => {
+          const div = document.querySelector(`[data-id="${bId}"]`);
+          const lines = div.querySelector('.cmd-lines').value.trim();
+          if(lines) {
+            const t = div.querySelector('.cmd-trigger').value;
+            yaml += `\n      ${t}:\n`;
+            lines.split('\n').forEach(l => { if(l.trim()) yaml += `        - "${l.trim().replace(/"/g, '\\"')}"\n`; });
+            yaml += `      ${t}-chance: ${div.querySelector('.cmd-chance').value || '1.0'}\n`;
+            if(t === 'onInterval') yaml += `      interval-ticks: ${div.querySelector('.cmd-ticks').value}\n`;
+          }
+        });
+      }
+
+      const blob = new Blob([yaml], { type: 'text/yaml' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = `${id}.yml`; a.click();
+    });
+  </script>
+</body>
+</html>
