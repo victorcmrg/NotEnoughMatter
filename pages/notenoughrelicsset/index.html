@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NotEnoughRelics - Set Generator</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  
+  <style>
+    @font-face{font-family:'CustomFont';src:url('fonts/font.otf') format('opentype');font-weight:normal;font-style:normal}
+    @font-face{font-family:'CustomFont';src:url('fonts/bold.otf') format('opentype');font-weight:700;font-style:normal}
+    
+    :root{
+      --bg: #0a0a0a;
+      --card: #0f0f0f;
+      --card-hover: #141414;
+      --muted: #9ca3af;
+      --text: #e5e7eb;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #1f1f1f;
+      --code-bg: #1a1a1a;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'CustomFont',Inter,-apple-system,sans-serif;}
+    
+    body{
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    /* Header */
+    header{
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      padding:16px 0;
+      position:relative;
+      z-index:100;
+    }
+    
+    .header-content{
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 32px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    
+    .logo {
+        font-family: 'Axiforma', sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--text);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        letter-spacing: -0.02em;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+    
+    nav a{color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s;font-size:14px;margin-left:24px;}
+    nav a:hover{color:var(--text);}
+
+    /* Main Toolbar */
+    .toolbar {
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15,15,15,0.8);
+      z-index: 90;
+    }
+    .back-link{display: inline-flex;align-items: center;gap: 8px;color: var(--muted);text-decoration: none;font-size: 14px;font-weight: 500;transition: color 0.2s;}
+    .back-link:hover{color: var(--text);}
+    
+    .toolbar-actions { display: flex; gap: 12px; }
+    .btn {
+      padding: 8px 16px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .btn:hover { border-color: var(--accent); background: rgba(59,130,246,0.1); color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent-hover); color: #fff; }
+    .btn-primary:disabled { background: #333; border-color: #333; color: #777; cursor: not-allowed; }
+
+    /* Workspace / Grid Background */
+    .workspace {
+      flex: 1;
+      position: relative;
+      background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:50px 50px;
+      background-position:center center;
+      overflow: auto;
+    }
+
+    #connections-layer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 5000px;
+      height: 5000px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .canvas-container {
+      width: 5000px;
+      height: 5000px;
+      position: relative;
+    }
+
+    /* Connection Lines - SVG Interactions */
+    .connection-group { pointer-events: auto; cursor: pointer; }
+    .connection-hitbox { stroke: transparent; stroke-width: 24px; fill: none; }
+    .connection-line { stroke: #6366f1; stroke-width: 3px; fill: none; opacity: 0.6; transition: all 0.2s; }
+    .delete-btn { opacity: 0; transition: opacity 0.2s, transform 0.2s; }
+    
+    .connection-group:hover .connection-line { stroke: var(--danger); stroke-width: 4px; opacity: 1; }
+    .connection-group:hover .delete-btn { opacity: 1; transform: scale(1.1); }
+
+    /* Relic Nodes */
+    .relic-node {
+      position: absolute;
+      width: 320px;
+      background: var(--card);
+      border: 1px solid #333;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    
+    .workspace.linking-mode .relic-node {
+      cursor: crosshair;
+      animation: pulseNodes 1.5s infinite;
+    }
+    @keyframes pulseNodes {
+      0%, 100% { box-shadow: 0 0 0px rgba(255,255,255,0); border-color: #333; }
+      50% { box-shadow: 0 0 15px rgba(255,255,255,0.4); border-color: #fff; }
+    }
+    .relic-node.link-source {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 20px rgba(59,130,246,0.5) !important;
+      animation: none !important;
+    }
+    .relic-node.connected {
+      border-color: #6366f1;
+    }
+
+    /* Connectors (+) */
+    .connector {
+      position: absolute;
+      width: 24px; height: 24px;
+      background: var(--accent);
+      border-radius: 50%;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 16px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      z-index: 25;
+      border: 2px solid var(--bg);
+    }
+    .relic-node:hover .connector { opacity: 1; }
+    .connector:hover { transform: scale(1.2); }
+    .connector.active-connector { opacity: 1; background: var(--danger); }
+    .connector-left { top: 50%; left: -12px; transform: translateY(-50%); }
+    .connector-right { top: 50%; right: -12px; transform: translateY(-50%); }
+
+    /* Node Content */
+    .node-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      cursor: grab;
+    }
+    .node-header:active { cursor: grabbing; }
+    
+    .node-icon {
+      width: 48px; height: 48px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+    .node-info { flex: 1; overflow: hidden; }
+    .node-name { font-size: 14px; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+    .node-lore { font-size: 12px; color: var(--muted); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 4px;}
+    
+    .node-toggle { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; }
+    .node-toggle svg { transition: transform 0.2s; }
+    .node-toggle.expanded svg { transform: rotate(180deg); }
+
+    .node-body {
+      padding: 0 16px 16px;
+      display: none;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      padding-top: 12px;
+    }
+    .node-body.open { display: block; }
+    .node-body ul { padding-left: 16px; margin-top: 8px; }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center; z-index: 200;
+    }
+    .modal-overlay.active { display: flex; }
+    
+    .modal {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      width: 100%; max-width: 500px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;}
+    .modal-header h2 { font-size: 20px; font-weight: 700; }
+    .close-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 24px; transition: color 0.2s;}
+    .close-btn:hover { color: var(--danger); }
+    
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    .form-group textarea, .form-group input {
+      width: 100%; padding: 10px 14px; background: var(--code-bg); border: 1px solid var(--border);
+      color: var(--text); border-radius: 8px; font-size: 13px; font-family: inherit; transition: border-color 0.2s;
+    }
+    
+    /* Remove Spinners */
+    .form-group input[type="number"]::-webkit-outer-spin-button,
+    .form-group input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .form-group input[type="number"] { -moz-appearance: textfield; }
+    
+    .form-group textarea { height: 100px; resize: vertical; font-family: ui-monospace, monospace;}
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+
+    .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+    .attr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sound-link { font-size: 11px; color: var(--accent); margin-top: 6px; display: inline-block; text-decoration: none; font-weight: 500;}
+    .sound-link:hover { text-decoration: underline; }
+
+    /* Toast System */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--danger); color: #fff;
+      padding: 16px 24px; border-radius: 8px;
+      font-weight: 600; font-size: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 9999; transform: translateY(100px);
+      opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { background: var(--success); }
+  </style>
+
+  <link rel="stylesheet" href="../../css/loader.css">
+
+  <script src="../../js/loader.js" defer></script>
+  <link rel="preload" as="image" href="img/reload_1.png">
+  <link rel="preload" as="image" href="img/reload_2.png">
+  <link rel="preload" as="image" href="img/reload_3.png">
+  <link rel="preload" as="image" href="img/reload_4.png">
+  <link rel="preload" as="image" href="img/reload_5.png">
+  <link rel="preload" as="image" href="img/reload_6.png">
+  <link rel="preload" as="image" href="img/reload_7.png">
+  <link rel="preload" as="image" href="img/reload_8.png">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="/img/KOstudio.png" alt="KoStudios" class="logo-img" onerror="this.src='https://via.placeholder.com/32';">
+        KoStudios
+      </a>
+      <nav>
+        <a href="/pages/notenoughrelicsstart/index.html">Tools</a>
+        <a href="/pages/wiki_relics/index.html">Wiki</a>
+        <a href="https://github.com/victorcmrg" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <a href="/pages/notenoughrelicsstart/index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Go back
+    </a>
+    <div class="toolbar-actions">
+      <button class="btn" onclick="openImportModal('base')">Import Relics Config</button>
+      <button class="btn" id="importSetsBtn" onclick="openImportModal('sets')" disabled>Import Sets Config</button>
+      <button class="btn btn-primary" id="finalizeBtn" disabled onclick="exportSets()">Finalize & Download Sets</button>
+    </div>
+  </div>
+
+  <main class="workspace" id="workspace">
+    <div class="canvas-container" id="canvasContainer">
+      <svg id="connections-layer"></svg>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="importModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="importModalTitle">Import Config</h2>
+        <button class="close-btn" onclick="closeModals()">&times;</button>
+      </div>
+      <p id="importModalDesc" style="font-size:13px; color:var(--muted); margin-bottom:16px;">Paste your raw YAML or upload a .yml file.</p>
+      
+      <div class="form-group">
+        <label>Upload File</label>
+        <input type="file" id="fileUpload" accept=".yml,.yaml" onchange="handleFileUpload(event)" style="padding: 8px;">
+      </div>
+      <div style="text-align:center; margin:16px 0; color:var(--border); font-size:12px; font-weight: 700;">OR PASTE TEXT</div>
+      <div class="form-group">
+        <textarea id="yamlInput" placeholder="Paste your yaml here..."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeModals()">Cancel</button>
+        <button class="btn btn-primary" id="importConfirmBtn" onclick="processImport()">Import</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="configModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Configure Relic Set</h2>
+        <button class="close-btn" onclick="closeModals()">&times;</button>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:20px;">Set the bonus attributes and effects granted when these specific relics are equipped together.</p>
+      
+      <input type="hidden" id="configSetId">
+      
+      <div class="form-group">
+        <label>Set ID (e.g. merchant_fortune_set)</label>
+        <input type="text" id="setIdInput" placeholder="my_custom_set">
+      </div>
+
+      <h3 style="font-size:14px; margin-bottom:16px; padding-top:16px; border-top:1px solid var(--border); color:var(--text);">Set Bonus Attributes</h3>
+      <div class="attr-grid">
+        <div class="form-group"><label>Max Health (+)</label><input type="number" id="setHealth" placeholder="0"></div>
+        <div class="form-group"><label>Strength (+)</label><input type="number" id="setStrength" placeholder="0"></div>
+        <div class="form-group"><label>Luck (+)</label><input type="number" id="setLuck" placeholder="0"></div>
+        <div class="form-group"><label>Speed (+)</label><input type="number" id="setSpeed" placeholder="0"></div>
+        <div class="form-group" style="grid-column: 1 / -1;"><label>Knockback Resistance (+)</label><input type="number" id="setKnockback" placeholder="0"></div>
+      </div>
+
+      <h3 style="font-size:14px; margin-bottom:16px; padding-top:16px; border-top:1px solid var(--border); color:var(--text);">Visuals & Sounds</h3>
+      <div class="form-group">
+        <label>Particles (one per line)</label>
+        <textarea id="setParticles" style="height:70px;" placeholder="VILLAGER_HAPPY&#10;END_ROD"></textarea>
+      </div>
+      <div class="attr-grid">
+        <div class="form-group">
+          <label>Enable Sound</label>
+          <input type="text" id="setSoundEnable" placeholder="UI_TOAST_CHALLENGE_COMPLETE">
+          <a href="https://www.digminecraft.com/lists/sound_list_pc.php" target="_blank" class="sound-link">View Sound List ↗</a>
+        </div>
+        <div class="form-group">
+          <label>Disable Sound</label>
+          <input type="text" id="setSoundDisable" placeholder="BLOCK_BEACON_DEACTIVATE">
+          <a href="https://www.digminecraft.com/lists/sound_list_pc.php" target="_blank" class="sound-link">View Sound List ↗</a>
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top: 32px;">
+        <button class="btn" onclick="closeModals()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveSetConfig()">Save Set Config</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    /* Global State */
+    let parsedRelics = {};
+    let nodesData = {}; 
+    let connections = []; 
+    let setConfigs = {}; 
+    let groups = {}; 
+    
+    let isLinking = false;
+    let linkSource = null;
+    let activeConnectorObj = null;
+
+    let importMode = 'base'; // 'base' ou 'sets'
+
+    const canvasContainer = document.getElementById('canvasContainer');
+    const svgLayer = document.getElementById('connections-layer');
+    const workspace = document.getElementById('workspace');
+
+    /* =========================================
+       TOAST & MODAL LOGIC
+       ========================================= */
+    function showToast(message, isSuccess = false) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast';
+      if(isSuccess) toast.classList.add('success');
+      
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    function openImportModal(mode) {
+      importMode = mode;
+      document.getElementById('yamlInput').value = '';
+      document.getElementById('fileUpload').value = '';
+      
+      if (mode === 'base') {
+        document.getElementById('importModalTitle').innerText = 'Import Relics Config';
+        document.getElementById('importModalDesc').innerText = 'Paste your raw YAML containing the relics: key to load nodes.';
+      } else {
+        document.getElementById('importModalTitle').innerText = 'Import Sets Config';
+        document.getElementById('importModalDesc').innerText = 'Paste your relic_sets.yml. Nodes must already be loaded!';
+      }
+      document.getElementById('importModal').classList.add('active');
+    }
+
+    function closeModals() { document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active')); }
+    
+    function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => { document.getElementById('yamlInput').value = ev.target.result; };
+      reader.readAsText(file);
+    }
+
+    function processImport() {
+      const rawText = document.getElementById('yamlInput').value.trim();
+      if (!rawText) return;
+
+      if (importMode === 'base') {
+        try {
+          const doc = jsyaml.load(rawText);
+          if (!doc || !doc.relics) throw new Error("YAML must contain a 'relics:' key.");
+          
+          parsedRelics = doc.relics;
+          closeModals();
+          renderNodes();
+          
+          document.getElementById('importSetsBtn').disabled = false;
+          showToast("Base Relics imported successfully!", true);
+        } catch (err) {
+          showToast("Invalid YAML format: " + err.message);
+        }
+      } else if (importMode === 'sets') {
+        processSetsImport(rawText);
+      }
+    }
+
+    /* PROCESS SETS IMPORT */
+    function processSetsImport(rawText) {
+      try {
+        const doc = jsyaml.load(rawText);
+        if (!doc || !doc.relic_sets) throw new Error("YAML must contain a 'relic_sets:' key.");
+        
+        // Validation: Verify all relics exist in base
+        for (const [setName, setData] of Object.entries(doc.relic_sets)) {
+            const rList = setData.relics || [];
+            for (const r of rList) {
+                if (!parsedRelics[r]) {
+                    showToast(`Import Failed: Relic '${r}' in set '${setName}' is missing from the base config!`);
+                    closeModals();
+                    return;
+                }
+            }
+        }
+
+        // Apply new connections
+        connections = [];
+        for (const [setName, setData] of Object.entries(doc.relic_sets)) {
+            const rList = setData.relics || [];
+            for(let i=0; i < rList.length - 1; i++) {
+                connections.push({source: rList[i], target: rList[i+1]});
+            }
+        }
+        recalculateGroups();
+        
+        // Extract global configs
+        let globalEnable = ''; let globalDisable = ''; let globalParticles = '';
+        if (doc.set_config) {
+            if (doc.set_config['on-enable-sound'] && doc.set_config['on-enable-sound'].length > 0) 
+                globalEnable = doc.set_config['on-enable-sound'][0];
+            if (doc.set_config['on-disable-sound'] && doc.set_config['on-disable-sound'].length > 0) 
+                globalDisable = doc.set_config['on-disable-sound'][0];
+            if (doc.set_config['particle']) 
+                globalParticles = doc.set_config['particle'].join('\n');
+        }
+
+        // Apply specific set attributes to generated groups
+        for (const [setName, setData] of Object.entries(doc.relic_sets)) {
+            const rList = setData.relics || [];
+            if (rList.length === 0) continue;
+            
+            const groupId = groups[rList[0]];
+            if (groupId && setConfigs[groupId]) {
+                setConfigs[groupId].id = setName;
+                if (setData['extra-stats'] && setData['extra-stats'].attributes) {
+                    setConfigs[groupId].attrs = setData['extra-stats'].attributes;
+                }
+                setConfigs[groupId].onEnable = globalEnable;
+                setConfigs[groupId].onDisable = globalDisable;
+                setConfigs[groupId].particles = globalParticles;
+            }
+        }
+        
+        updateConnections();
+        closeModals();
+        showToast("Relic sets imported successfully!", true);
+
+      } catch (err) {
+        showToast("Error parsing Sets YAML: " + err.message);
+        closeModals();
+      }
+    }
+
+    /* =========================================
+       NODE RENDERING
+       ========================================= */
+    function renderNodes() {
+      canvasContainer.querySelectorAll('.relic-node').forEach(n => n.remove());
+      nodesData = {};
+      connections = [];
+      updateConnections();
+
+      let startX = 100;
+      let startY = 100;
+
+      for (const [id, data] of Object.entries(parsedRelics)) {
+        createNodeElement(id, data, startX, startY);
+        startX += 360;
+        if (startX > 1500) { startX = 100; startY += 160; }
+      }
+      workspace.scrollTo(0,0);
+    }
+
+    function createNodeElement(id, data, x, y) {
+      const node = document.createElement('div');
+      node.className = 'relic-node';
+      node.id = `node-${id}`;
+      node.style.left = `${x}px`;
+      node.style.top = `${y}px`;
+
+      let dispName = data.name ? data.name.replace(/&[0-9a-fk-or]/g, '') : id;
+      let firstLore = data.lore && data.lore.length > 0 ? data.lore[0].replace(/&[0-9a-fk-or]/g, '') : "No description provided.";
+      let matName = data.material ? data.material.toLowerCase() : "enchanted_book";
+      let iconSrc = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/item/${matName}.png`;
+
+      node.innerHTML = `
+        <div class="connector connector-left" onclick="startLink('${id}', event, this)">+</div>
+        <div class="connector connector-right" onclick="startLink('${id}', event, this)">+</div>
+        <div class="node-header" onmousedown="startDrag('${id}', event)">
+          <img src="${iconSrc}" class="node-icon" onerror="this.src='https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/block/${matName}.png'">
+          <div class="node-info">
+            <div class="node-name">${dispName}</div>
+            <div class="node-lore">${firstLore}...</div>
+          </div>
+          <button class="node-toggle" onclick="toggleNodeBody('${id}', event)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+        <div class="node-body" id="body-${id}">
+          <strong>Tier:</strong> ${data.tier || 'COMMON'}<br>
+          <strong>Slots:</strong> ${data.slots ? data.slots.join(', ') : 'N/A'}<br>
+          <strong>Attributes:</strong>
+          <ul>
+            ${data.attributes ? Object.entries(data.attributes).map(([k,v])=>`<li>${k}: +${v}</li>`).join('') : '<li>None</li>'}
+          </ul>
+        </div>
+      `;
+
+      // Evento de Clique Consertado
+      node.addEventListener('click', (e) => {
+        // PRIORIDADE 1: Se estiver linkando e clicar neste node, termina o link.
+        if (isLinking && linkSource !== id) {
+          finishLink(id);
+          return;
+        }
+
+        // PRIORIDADE 2: Se foi um movimento de arrastar em vez de um clique, ignora a abertura do popup
+        if (hasDragged) return;
+
+        // PRIORIDADE 3: Se não tá arrastando, não tá linkando e clicou no node que já pertence a um grupo, abre o popup.
+        if (!isLinking && groups[id] && !e.target.closest('.node-toggle') && !e.target.closest('.connector')) {
+           openSetConfig(id);
+        }
+      });
+
+      canvasContainer.appendChild(node);
+      nodesData[id] = { id, elem: node, x, y };
+    }
+
+    function toggleNodeBody(id, event) {
+      event.stopPropagation();
+      const body = document.getElementById(`body-${id}`);
+      const btn = event.currentTarget;
+      body.classList.toggle('open');
+      btn.classList.toggle('expanded');
+      updateConnections(); 
+    }
+
+    /* =========================================
+       DRAG & INERTIA LOGIC
+       ========================================= */
+    let draggedNode = null;
+    let offsetX = 0, offsetY = 0;
+    let hasDragged = false;
+    
+    let lastDragTime = 0;
+    let lastDragX = 0, lastDragY = 0;
+    let velocityX = 0, velocityY = 0;
+    let animationFrameId = null;
+
+    function startDrag(id, e) {
+      if(isLinking) return;
+      if(animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+      
+      draggedNode = nodesData[id];
+      hasDragged = false;
+
+      const rect = draggedNode.elem.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      
+      lastDragTime = performance.now();
+      lastDragX = draggedNode.x;
+      lastDragY = draggedNode.y;
+      velocityX = 0;
+      velocityY = 0;
+
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', stopDrag);
+    }
+
+    function drag(e) {
+      if (!draggedNode) return;
+      const containerRect = canvasContainer.getBoundingClientRect();
+      
+      let newX = e.clientX - containerRect.left - offsetX;
+      let newY = e.clientY - containerRect.top - offsetY;
+
+      if (Math.abs(newX - lastDragX) > 2 || Math.abs(newY - lastDragY) > 2) {
+        hasDragged = true;
+      }
+
+      const now = performance.now();
+      const dt = Math.max(1, now - lastDragTime); 
+      velocityX = (newX - lastDragX) / dt;
+      velocityY = (newY - lastDragY) / dt;
+
+      lastDragTime = now;
+      lastDragX = newX;
+      lastDragY = newY;
+
+      draggedNode.x = newX;
+      draggedNode.y = newY;
+      draggedNode.elem.style.left = `${newX}px`;
+      draggedNode.elem.style.top = `${newY}px`;
+      
+      updateConnections();
+    }
+
+    function stopDrag() {
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('mouseup', stopDrag);
+      
+      if (draggedNode && hasDragged) {
+        animationFrameId = requestAnimationFrame(applyInertia);
+      } else {
+        draggedNode = null;
+      }
+    }
+
+    function applyInertia() {
+      if (!draggedNode) return;
+      
+      velocityX *= 0.85; 
+      velocityY *= 0.85;
+
+      if (Math.abs(velocityX) < 0.05 && Math.abs(velocityY) < 0.05) {
+        draggedNode = null;
+        return;
+      }
+
+      draggedNode.x += velocityX * 16; 
+      draggedNode.y += velocityY * 16;
+
+      draggedNode.x = Math.max(0, Math.min(draggedNode.x, 5000 - 320));
+      draggedNode.y = Math.max(0, Math.min(draggedNode.y, 5000 - 150));
+
+      draggedNode.elem.style.left = `${draggedNode.x}px`;
+      draggedNode.elem.style.top = `${draggedNode.y}px`;
+      
+      updateConnections();
+      animationFrameId = requestAnimationFrame(applyInertia);
+    }
+
+    /* =========================================
+       CONNECTION LOGIC
+       ========================================= */
+    function startLink(id, event, connectorElem) {
+      event.stopPropagation();
+      
+      if(isLinking) {
+        if(linkSource === id) {
+          cancelLink();
+        } else {
+          finishLink(id);
+        }
+        return;
+      }
+      
+      isLinking = true;
+      linkSource = id;
+      activeConnectorObj = connectorElem;
+      
+      activeConnectorObj.textContent = '-';
+      activeConnectorObj.classList.add('active-connector');
+      workspace.classList.add('linking-mode');
+      nodesData[id].elem.classList.add('link-source');
+    }
+
+    function cancelLink() {
+      if (!isLinking) return;
+      
+      workspace.classList.remove('linking-mode');
+      if (linkSource && nodesData[linkSource]) {
+        nodesData[linkSource].elem.classList.remove('link-source');
+      }
+      
+      if (activeConnectorObj) {
+        activeConnectorObj.textContent = '+';
+        activeConnectorObj.classList.remove('active-connector');
+        activeConnectorObj = null;
+      }
+      
+      isLinking = false;
+      linkSource = null;
+    }
+
+    function finishLink(targetId) {
+      if (!isLinking || linkSource === targetId) return;
+      
+      const exists = connections.some(c => 
+        (c.source === linkSource && c.target === targetId) || 
+        (c.source === targetId && c.target === linkSource)
+      );
+
+      if(!exists) {
+        connections.push({ source: linkSource, target: targetId });
+      }
+
+      cancelLink();
+      recalculateGroups();
+      updateConnections();
+    }
+
+    workspace.addEventListener('click', (e) => {
+      if (isLinking && (e.target === workspace || e.target === canvasContainer || e.target === svgLayer)) {
+        cancelLink();
+      }
+    });
+
+    window.deleteConnection = (index, event) => {
+      event.stopPropagation();
+      connections.splice(index, 1);
+      recalculateGroups();
+      updateConnections();
+    }
+
+    function recalculateGroups() {
+      groups = {};
+      let adjList = {};
+      for (const id in nodesData) { adjList[id] = []; }
+      
+      connections.forEach(c => {
+        adjList[c.source].push(c.target);
+        adjList[c.target].push(c.source);
+      });
+
+      let visited = new Set();
+      let groupCounter = 1;
+
+      for (const id in adjList) {
+        if (!visited.has(id)) {
+          let component = [];
+          let q = [id];
+          visited.add(id);
+
+          while(q.length > 0) {
+            let curr = q.shift();
+            component.push(curr);
+            adjList[curr].forEach(neighbor => {
+              if(!visited.has(neighbor)) {
+                visited.add(neighbor);
+                q.push(neighbor);
+              }
+            });
+          }
+
+          if (component.length > 1) {
+            const groupId = `group_${groupCounter}`;
+            component.forEach(nodeId => {
+              groups[nodeId] = groupId;
+              nodesData[nodeId].elem.classList.add('connected');
+            });
+            
+            if (!setConfigs[groupId]) {
+              setConfigs[groupId] = {
+                id: `custom_set_${groupCounter}`,
+                attrs: {}, particles: '', onEnable: '', onDisable: ''
+              };
+            }
+            groupCounter++;
+          } else {
+            nodesData[id].elem.classList.remove('connected');
+          }
+        }
+      }
+
+      document.getElementById('finalizeBtn').disabled = Object.keys(groups).length === 0;
+    }
+
+    function updateConnections() {
+      let svgContent = '';
+      connections.forEach((c, index) => {
+        const sNode = nodesData[c.source].elem;
+        const tNode = nodesData[c.target].elem;
+
+        const sRect = { x: sNode.offsetLeft, y: sNode.offsetTop, w: sNode.offsetWidth, h: sNode.offsetHeight };
+        const tRect = { x: tNode.offsetLeft, y: tNode.offsetTop, w: tNode.offsetWidth, h: tNode.offsetHeight };
+
+        const startX = sRect.x + sRect.w / 2;
+        const startY = sRect.y + sRect.h / 2;
+        const endX = tRect.x + tRect.w / 2;
+        const endY = tRect.y + tRect.h / 2;
+
+        const midX = (startX + endX) / 2;
+        const midY = (startY + endY) / 2;
+
+        const curve = 100;
+        
+        svgContent += `
+        <g class="connection-group" onclick="deleteConnection(${index}, event)">
+          <path class="connection-hitbox" d="M ${startX} ${startY} C ${startX + curve} ${startY}, ${endX - curve} ${endY}, ${endX} ${endY}" />
+          <path class="connection-line" d="M ${startX} ${startY} C ${startX + curve} ${startY}, ${endX - curve} ${endY}, ${endX} ${endY}" />
+          <g class="delete-btn" transform="translate(${midX}, ${midY})">
+            <circle r="12" fill="var(--danger)" />
+            <path d="M -4 -4 L 4 4 M 4 -4 L -4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+          </g>
+        </g>
+        `;
+      });
+      svgLayer.innerHTML = svgContent;
+    }
+
+    /* =========================================
+       SET CONFIGURATION MODAL
+       ========================================= */
+    let currentEditingGroup = null;
+
+    function openSetConfig(nodeId) {
+      const groupId = groups[nodeId];
+      if(!groupId) return;
+      currentEditingGroup = groupId;
+      const conf = setConfigs[groupId];
+
+      document.getElementById('configSetId').value = groupId;
+      document.getElementById('setIdInput').value = conf.id;
+      
+      document.getElementById('setHealth').value = conf.attrs.max_health || '';
+      document.getElementById('setStrength').value = conf.attrs.strength || '';
+      document.getElementById('setLuck').value = conf.attrs.luck || '';
+      document.getElementById('setSpeed').value = conf.attrs.speed || '';
+      document.getElementById('setKnockback').value = conf.attrs.knockback_resistance || '';
+
+      document.getElementById('setParticles').value = conf.particles;
+      document.getElementById('setSoundEnable').value = conf.onEnable;
+      document.getElementById('setSoundDisable').value = conf.onDisable;
+
+      document.getElementById('configModal').classList.add('active');
+    }
+
+    function saveSetConfig() {
+      if(!currentEditingGroup) return;
+
+      const conf = setConfigs[currentEditingGroup];
+      conf.id = document.getElementById('setIdInput').value.trim() || conf.id;
+      
+      conf.attrs = {};
+      const h = document.getElementById('setHealth').value; if(h) conf.attrs.max_health = parseFloat(h);
+      const st = document.getElementById('setStrength').value; if(st) conf.attrs.strength = parseFloat(st);
+      const l = document.getElementById('setLuck').value; if(l) conf.attrs.luck = parseFloat(l);
+      const sp = document.getElementById('setSpeed').value; if(sp) conf.attrs.speed = parseFloat(sp);
+      const kb = document.getElementById('setKnockback').value; if(kb) conf.attrs.knockback_resistance = parseFloat(kb);
+
+      conf.particles = document.getElementById('setParticles').value.trim();
+      conf.onEnable = document.getElementById('setSoundEnable').value.trim();
+      conf.onDisable = document.getElementById('setSoundDisable').value.trim();
+
+      closeModals();
+    }
+
+    /* =========================================
+       FINAL EXPORT TO YAML
+       ========================================= */
+    function exportSets() {
+      if(Object.keys(groups).length === 0) return;
+
+      let reverseGroups = {};
+      for(const [nodeId, groupId] of Object.entries(groups)) {
+        if(!reverseGroups[groupId]) reverseGroups[groupId] = [];
+        reverseGroups[groupId].push(nodeId);
+      }
+
+      let yamlStr = `relic_sets:\n`;
+      let globalConfigStr = `set_config:\n`;
+      let hasGlobalConfig = false;
+
+      for(const [groupId, relicsList] of Object.entries(reverseGroups)) {
+        const conf = setConfigs[groupId];
+        
+        yamlStr += `  ${conf.id}:\n`;
+        yamlStr += `    relics:\n`;
+        relicsList.forEach(r => { yamlStr += `      - ${r}\n`; });
+
+        yamlStr += `    extra-stats:\n`;
+        yamlStr += `      attributes:\n`;
+        
+        if (Object.keys(conf.attrs).length > 0) {
+          for(const [k, v] of Object.entries(conf.attrs)) {
+            yamlStr += `        ${k}: ${v}\n`;
+          }
+        } else {
+          yamlStr += `        max_health: 0.0 # Placeholder\n`;
+        }
+        yamlStr += `\n`; 
+
+        if (!hasGlobalConfig && (conf.onEnable || conf.onDisable || conf.particles)) {
+          hasGlobalConfig = true;
+          if(conf.onEnable) {
+            globalConfigStr += `  on-enable-sound:\n    - "${conf.onEnable}"\n`;
+          }
+          if(conf.onDisable) {
+            globalConfigStr += `  on-disable-sound:\n    - "${conf.onDisable}"\n`;
+          }
+          if(conf.particles) {
+            globalConfigStr += `  particle:\n`;
+            conf.particles.split('\n').forEach(p => {
+              if(p.trim()) globalConfigStr += `    - "${p.trim()}"\n`;
+            });
+          }
+        }
+      }
+
+      const finalOutput = yamlStr + (hasGlobalConfig ? globalConfigStr : '');
+
+      const blob = new Blob([finalOutput], { type: 'text/yaml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `relic_sets.yml`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
