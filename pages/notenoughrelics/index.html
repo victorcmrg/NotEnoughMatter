@@ -3,12 +3,467 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KOstudios Web</title>
+  <title>KOstudios Web - Relic Generator</title>
   <link rel="icon" type="image/png" href="/img/KOstudio.png" />
   <link rel="stylesheet" href="../../css/loader.css">
   <link rel="stylesheet" href="style.css">
   <script src="../../js/loader.js" defer></script>
 
+<style>
+  @font-face {
+      font-family: 'CustomFont';
+      src: url('../../fonts/font.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'CustomFont';
+      src: url('../../fonts/bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+  }
+
+  :root {
+      --bg: #0d0d0d;
+      --card: #141414;
+      --card-hover: #1c1c1c;
+      --muted: #bfc9df;
+      --text: #e9eef8;
+      --accent: #5561ff;
+      --accent-hover: #6d79ff;
+      --border: #222;
+      --code-bg: #0f0f10;
+      --success: #7fffa1;
+      --warning: #ffea73;
+      --danger: #ff6b6b;
+      --danger-hover: #ff5252;
+      --glow: rgba(115, 135, 255, 0.12);
+      --pastel-blue: #a8d5ff;
+  }
+
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  body {
+      font-family: 'CustomFont', Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      background-position: center center;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+  }
+
+  /* Header Wiki Style */
+  header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+  }
+
+  .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .logo {
+      font-family: 'CustomFont', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: -0.02em;
+  }
+
+  .logo-img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 6px;
+  }
+
+  nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s;
+      font-size: 14px;
+      margin-left: 24px;
+  }
+
+  nav a:hover {
+      color: var(--text);
+  }
+
+  /* Layout Setup */
+  .wiki-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      padding: 32px;
+      min-height: calc(100vh - 64px);
+  }
+
+  /* Main Content Area */
+  .wiki-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+  }
+
+  /* Back Link / Menu */
+  .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+      width: fit-content;
+      margin-bottom: 24px;
+  }
+
+  .back-link:hover {
+      color: var(--text);
+  }
+
+  .wiki-content h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+  }
+
+  .wiki-content h2.subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-weight: 500;
+  }
+
+  .wiki-content h3 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+  }
+
+  .info-text {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+  }
+
+  /* Tooltip Styles */
+  .tooltip-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 8px;
+      cursor: help;
+  }
+
+  .tooltip-icon {
+      background: rgba(85, 97, 255, 0.15);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(85, 97, 255, 0.3);
+      transition: all 0.2s;
+  }
+
+  .tooltip-icon:hover {
+      background: rgba(85, 97, 255, 0.25);
+  }
+
+  .tooltip-content {
+      visibility: hidden;
+      width: 250px;
+      background-color: var(--card-hover);
+      color: var(--text);
+      text-align: left;
+      border-radius: 6px;
+      padding: 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      line-height: 1.6;
+  }
+
+  .tooltip-content::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: var(--border) transparent transparent transparent;
+  }
+
+  .tooltip-wrapper:hover .tooltip-content {
+      visibility: visible;
+      opacity: 1;
+  }
+
+  /* Form Grid */
+  .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+  }
+
+  .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+  }
+
+  .form-row.full {
+      grid-column: 1 / -1;
+  }
+
+  .form-row.inline {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--code-bg);
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+  }
+
+  .form-row label {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 13px;
+  }
+
+  .form-row input[type="text"],
+  .form-row input[type="number"],
+  .form-row select,
+  .form-row textarea {
+      width: 100%;
+      padding: 10px 16px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      transition: all .2s;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  input[type="number"] { -moz-appearance: textfield; }
+
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+  }
+
+  .form-row textarea {
+      min-height: 80px;
+      resize: vertical;
+      font-family: ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+  }
+
+  .form-row input[type="color"] {
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      background: none;
+  }
+
+  .toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+  }
+
+  .toggle-wrapper input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--accent);
+  }
+
+  /* Rarity Select */
+  .rarity-select { display: flex; gap: 8px; flex-wrap: wrap; }
+  .rarity-option {
+      flex: 1; min-width: 80px; padding: 10px; display: flex; align-items: center;
+      justify-content: center; text-align: center; border: 1px solid var(--border);
+      background: var(--code-bg); border-radius: 8px; cursor: pointer;
+      transition: all .2s; font-weight: 600; font-size: 13px; color: var(--muted);
+  }
+  .rarity-option:hover { border-color: var(--accent); color: var(--text); }
+  .rarity-option.common.selected { border-color: #ffffff; color: #ffffff; background: rgba(255, 255, 255, 0.05); }
+  .rarity-option.uncommon.selected { border-color: var(--success); color: var(--success); background: rgba(16, 185, 129, 0.05); }
+  .rarity-option.rare.selected { border-color: var(--accent); color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+  .rarity-option.epic.selected { border-color: #8b5cf6; color: #8b5cf6; background: rgba(139, 92, 246, 0.05); }
+  .rarity-option.legendary.selected { border-color: var(--warning); color: var(--warning); background: rgba(245, 158, 11, 0.05); }
+
+  /* Dynamic Items (Commands & Potions) */
+  .dynamic-item {
+      background: var(--code-bg);
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      position: relative;
+  }
+
+  .dynamic-item .remove-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--danger);
+      color: #fff;
+      border: 1px solid var(--danger);
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all .2s;
+  }
+  .dynamic-item .remove-btn:hover { background: var(--danger-hover); border-color: var(--danger-hover); }
+
+  .add-btn {
+      width: 100%; padding: 14px; background: none; color: var(--accent);
+      border: 1px dashed var(--border); border-radius: 8px; font-weight: 600;
+      cursor: pointer; transition: all .2s; font-size: 14px; margin-bottom: 8px;
+  }
+  .add-btn:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+
+  .generate-btn {
+      width: 100%; padding: 16px; background: var(--accent); color: #fff;
+      border: 0; border-radius: 8px; font-weight: 700; cursor: pointer;
+      transition: all .2s; font-size: 16px; margin-top: 32px;
+  }
+  .generate-btn:hover { background: var(--accent-hover); }
+
+  /* Sidebar */
+  .sidebar {
+      position: sticky; top: 96px; height: fit-content;
+      display: flex; flex-direction: column; gap: 24px;
+  }
+  .sidebar-section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+  }
+  .sidebar-section h3 {
+      font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--muted); margin-bottom: 16px; font-weight: 600;
+  }
+
+  .creator-box { display: flex; align-items: center; gap: 16px; }
+  .creator-avatar {
+      width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
+      flex-shrink: 0; border: 2px solid rgba(255, 215, 0, 0.6);
+      animation: glowPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.1); }
+      50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3); }
+  }
+  .creator-info { flex: 1; }
+  .creator-title { font-size: 12px; color: var(--muted); text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+  .creator-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .github-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500;}
+  .github-link:hover { color: var(--text); }
+  .github-link svg { width: 16px; height: 16px; }
+
+  /* Preview Box Styles */
+  .preview-container {
+      background: var(--code-bg); border: 1px dashed var(--border);
+      border-radius: 8px; height: 160px; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 16px; position: relative; overflow: hidden;
+  }
+  #glowCanvas {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 140px; height: 140px; image-rendering: pixelated; z-index: 0; pointer-events: none;
+  }
+  .preview-container img {
+      width: 80px; height: 80px; object-fit: contain; image-rendering: pixelated;
+      z-index: 1; position: relative;
+  }
+  .upload-btn {
+      display: block; width: 100%; text-align: center; padding: 12px;
+      background: var(--code-bg); color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s;
+  }
+  .upload-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+
+  /* Floating CTA */
+  .floating-cta {
+      position: fixed; bottom: 32px; right: 32px; background: var(--card);
+      border: 1px solid rgba(218, 187, 13, 0.637); border-radius: 12px; padding: 16px 20px;
+      display: flex; align-items: center; gap: 16px; text-decoration: none;
+      color: var(--text); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(252, 255, 85, 0.15);
+      transition: all 0.3s; z-index: 1000; max-width: 340px;
+  }
+  .floating-cta:hover {
+      transform: translateY(-6px); background: var(--card-hover);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 30px rgba(255, 244, 85, 0.3); border-color: rgba(218, 187, 13, 0.637);
+  }
+  .cta-icon { background: rgba(255, 244, 85, 0.15); color: var(--accent); padding: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .cta-text { display: flex; flex-direction: column; gap: 4px; }
+  .cta-text strong { font-size: 14px; font-weight: 700; }
+  .cta-text span { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  @media(max-width:1024px) {
+      .wiki-container { grid-template-columns: 1fr; }
+      .sidebar { position: static; order: -1; }
+  }
+</style>
 </head>
 <body>
   <header>
@@ -73,7 +528,6 @@
             <div class="rarity-option rare" data-rarity="RARE">Rare</div>
             <div class="rarity-option epic" data-rarity="EPIC">Epic</div>
             <div class="rarity-option legendary" data-rarity="LEGENDARY">Legendary</div>
-            <div class="rarity-option mythic" data-rarity="MYTHIC">Mythic</div>
           </div>
         </div>
       </div>
@@ -81,19 +535,8 @@
       <h3>Appearance & Texture</h3>
       <div class="form-grid">
         <div class="form-row">
-          <label>Material</label>
-          <select id="relicMaterial">
-            <option value="ENCHANTED_BOOK">ENCHANTED_BOOK</option>
-            <option value="LEATHER_HELMET">LEATHER_HELMET</option>
-            <option value="IRON_HELMET">IRON_HELMET</option>
-            <option value="GREEN_BANNER">GREEN_BANNER</option>
-            <option value="LEATHER">LEATHER</option>
-            <option value="STRING">STRING</option>
-            <option value="CHAIN">CHAIN</option>
-            <option value="GOLD_NUGGET">GOLD_NUGGET</option>
-            <option value="AMETHYST_SHARD">AMETHYST_SHARD</option>
-            <option value="NOTE_BLOCK">NOTE_BLOCK</option>
-          </select>
+          <label>Material Name (Type to search icon)</label>
+          <input type="text" id="relicMaterial" value="IRON_SWORD" placeholder="ex: DIAMOND_SWORD" required>
         </div>
         <div class="form-row">
           <label>Custom Model Data</label>
@@ -139,6 +582,11 @@
         </div>
       </div>
 
+      <h3>Permanent Potion Effects</h3>
+      <p class="info-text">Apply permanent Minecraft potion effects while equipped.</p>
+      <div id="potionEffectsContainer"></div>
+      <button class="add-btn" id="addPotionEffectBtn">+ Add Potion Effect</button>
+
       <h3>Special Effects</h3>
       <p class="info-text">Unique utility and reach modifiers.</p>
       <div class="form-grid">
@@ -160,12 +608,27 @@
         </div>
         <div class="form-row full">
           <label>Extra Mid-Air Jumps</label>
-          <input type="number" id="effJumps" placeholder="ex: 1" step="1">
+          <input type="number" id="effJumps" placeholder="ex: 1 (double space bar click mid air to use it)" step="1">
         </div>
       </div>
 
       <h3>Commands & Triggers</h3>
-      <p class="info-text">Execute commands, sounds or particles on specific events.</p>
+      <p class="info-text">
+        Execute commands, sounds or particles on specific events.
+        <span class="tooltip-wrapper">
+          <span class="tooltip-icon">ⓘ Placeholders</span>
+          <span class="tooltip-content">
+            %player_name%<br>
+            %player_uuid%<br>
+            %player_world%<br>
+            %player_x%<br>
+            %player_y%<br>
+            %player_z%<br>
+            %player_health%<br>
+            %player_level%
+          </span>
+        </span>
+      </p>
       <div id="commandsContainer"></div>
       <button class="add-btn" id="addCommandBtn">+ Add Event Trigger</button>
 
@@ -233,7 +696,6 @@
         animationId = requestAnimationFrame(renderShaderGlow);
         return;
       }
-
       const t = (Date.now() - startTime) / 1000.0;
       const width = canvas.width;
       const height = canvas.height;
@@ -252,10 +714,8 @@
         for(let x = 0; x < width; x++) {
           let lx = x / width;
           let ly = y / height;
-
           let cx = (lx - 0.5) * 2.5; 
           let cy = (ly - 0.5) * 2.5;
-
           let dist = Math.sqrt(cx*cx + cy*cy);
           let angle = Math.atan2(cy, cx) + circleTime; 
           
@@ -267,15 +727,11 @@
 
           let mask = lateralDist <= triangleWidth ? 1.0 : 0.0;
           let gradient = 1.0 - Math.min(Math.max(dist, 0.0), 1.0);
-          
           let finalOpacity = mask * gradient;
 
           let idx = (y * width + x) * 4;
           if (finalOpacity >= 0.2) {
-            data[idx] = r;
-            data[idx+1] = g;
-            data[idx+2] = b;
-            data[idx+3] = finalOpacity * 255;
+            data[idx] = r; data[idx+1] = g; data[idx+2] = b; data[idx+3] = finalOpacity * 255;
           } else {
             data[idx+3] = 0;
           }
@@ -287,9 +743,9 @@
     renderShaderGlow();
 
     /* -----------------------------------------------------
-       PREVIEW IMAGE LOGIC
+       PREVIEW IMAGE LOGIC (Now using Input text)
        ----------------------------------------------------- */
-    const materialSelect = document.getElementById('relicMaterial');
+    const materialInput = document.getElementById('relicMaterial');
     const previewImage = document.getElementById('previewImage');
     const customUpload = document.getElementById('customImageUpload');
     let customImageUrl = null;
@@ -298,7 +754,7 @@
       if (customImageUrl) {
         previewImage.src = customImageUrl;
       } else {
-        const matName = materialSelect.value.toLowerCase();
+        const matName = (materialInput.value || 'stone').toLowerCase().trim();
         previewImage.src = `https://assets.mcasset.cloud/1.20.4/assets/minecraft/textures/item/${matName}.png`;
         previewImage.onerror = function() {
           if (this.src.includes('textures/item/')) {
@@ -308,7 +764,7 @@
       }
     }
 
-    materialSelect.addEventListener('change', () => { customImageUrl = null; updatePreview(); });
+    materialInput.addEventListener('input', () => { customImageUrl = null; updatePreview(); });
     customUpload.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (file) { customImageUrl = URL.createObjectURL(file); updatePreview(); }
@@ -316,7 +772,39 @@
     updatePreview();
 
     /* -----------------------------------------------------
-       YAML GENERATOR LOGIC
+       POTION EFFECTS LOGIC
+       ----------------------------------------------------- */
+    let potionBlocks = [];
+    document.getElementById('addPotionEffectBtn').addEventListener('click', () => {
+      const blockId = Date.now();
+      potionBlocks.push(blockId);
+      const container = document.getElementById('potionEffectsContainer');
+      const div = document.createElement('div');
+      div.className = 'dynamic-item potion-item';
+      div.dataset.id = blockId;
+      div.innerHTML = `
+        <button class="remove-btn" onclick="removePotionBlock(${blockId})">Remove</button>
+        <div class="form-grid">
+          <div class="form-row">
+            <label>Effect Type</label>
+            <input type="text" class="pot-type" placeholder="ex: INCREASE_DAMAGE">
+          </div>
+          <div class="form-row">
+            <label>Amplifier (0 = Level 1)</label>
+            <input type="number" class="pot-amp" value="0" min="0" step="1">
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    window.removePotionBlock = (id) => {
+      potionBlocks = potionBlocks.filter(b => b !== id);
+      document.querySelector(`.potion-item[data-id="${id}"]`).remove();
+    };
+
+    /* -----------------------------------------------------
+       COMMANDS LOGIC
        ----------------------------------------------------- */
     let selectedRarity = 'COMMON';
     let commandBlocks = [];
@@ -352,7 +840,7 @@
           <textarea class="cmd-lines" placeholder="playsound minecraft:entity..."></textarea>
         </div>
         <div class="form-grid">
-          <div class="form-row"><label>Chance</label><input type="number" class="cmd-chance" value="1.0" step="0.05"></div>
+          <div class="form-row"><label>Chance (0.0 to 1.0)</label><input type="number" class="cmd-chance" value="1.0" step="0.05"></div>
           <div class="form-row"><label>Interval Ticks</label><input type="number" class="cmd-ticks" placeholder="60"></div>
         </div>`;
       container.appendChild(div);
@@ -363,12 +851,16 @@
       document.querySelector(`[data-id="${id}"]`).remove();
     };
 
+    /* -----------------------------------------------------
+       YAML GENERATOR LOGIC
+       ----------------------------------------------------- */
     document.getElementById('generateBtn').addEventListener('click', () => {
       const id = document.getElementById('relicID').value.trim();
       const name = document.getElementById('relicName').value.trim();
       if (!id || !name) return alert('Relic ID and Display Name are required.');
 
-      let yaml = `relics:\n  ${id}:\n    name: "${name}"\n    material: ${document.getElementById('relicMaterial').value}\n    glint: ${document.getElementById('relicGlint').checked}\n`;
+      const materialName = document.getElementById('relicMaterial').value.toUpperCase().trim() || 'STONE';
+      let yaml = `relics:\n  ${id}:\n    name: "${name}"\n    material: ${materialName}\n    glint: ${document.getElementById('relicGlint').checked}\n`;
       
       const lore = document.getElementById('relicLore').value.trim();
       if (lore) {
@@ -383,6 +875,7 @@
       const cmdData = document.getElementById('customModelData').value;
       if (cmdData) yaml += `    custom_model_data: ${cmdData}\n`;
 
+      // Atributos base
       const attrs = ['MaxHealth', 'Strength', 'Luck', 'Speed', 'Knockback'];
       const attrKeys = ['max_health', 'strength', 'luck', 'speed', 'knockback_resistance'];
       let hasAttr = false;
@@ -394,6 +887,23 @@
         }
       });
 
+      // Potion Effects
+      if (potionBlocks.length > 0) {
+        let hasPotions = false;
+        let potionStr = `    potion_effects:\n`;
+        potionBlocks.forEach(bId => {
+          const div = document.querySelector(`.potion-item[data-id="${bId}"]`);
+          const type = div.querySelector('.pot-type').value.toUpperCase().trim();
+          const amp = div.querySelector('.pot-amp').value;
+          if (type && amp) {
+            hasPotions = true;
+            potionStr += `      ${type}: ${amp}\n`;
+          }
+        });
+        if (hasPotions) yaml += potionStr;
+      }
+
+      // Efeitos Especiais
       const effs = ['Invuln', 'Fall', 'EntityRange', 'BlockRange', 'Jumps'];
       const effKeys = ['invulnerability_time', 'fall_damage_reduction', 'entity_range', 'block_range', 'double_jump'];
       let hasEff = false;
@@ -405,6 +915,7 @@
         }
       });
 
+      // Comandos
       if (commandBlocks.length > 0) {
         yaml += `    commands:\n      command-feedback: false\n`;
         commandBlocks.forEach(bId => {

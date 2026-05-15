@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="../../css/loader.css">
   <link rel="stylesheet" href="style.css">
   <script src="../../js/loader.js" defer></script>
-
 </head>
 <body>
   <header>
@@ -69,6 +68,27 @@
       </div>
 
       <div class="sidebar-section">
+        <h3>Loot & Drops</h3>
+        <div class="sidebar-item" data-page="structure-loot">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="21 8 21 21 3 21 3 8"></polyline>
+            <rect x="1" y="3" width="22" height="5"></rect>
+            <line x1="10" y1="12" x2="14" y2="12"></line>
+          </svg>
+          <span>Structure Loot</span>
+        </div>
+        <div class="sidebar-item" data-page="mob-drops">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12A10 10 0 0 1 22 12"></path>
+            <path d="M12 22a10 10 0 0 1-10-10"></path>
+            <path d="M15 9h.01"></path>
+            <path d="M9 9h.01"></path>
+            <path d="M12 16c-2.5 0-4-1.5-4-3h8c0 1.5-1.5 3-4 3z"></path>
+          </svg>
+          <span>Mob Drops</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
         <h3>Advanced Systems</h3>
         <div class="sidebar-item" data-page="relic-sets">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -95,12 +115,12 @@
 
     <main class="wiki-content" id="wikiContent">
       
-      <a href="/index.html" class="back-link">
+      <a href="/pages/notenoughrelicsstart/index.html" class="back-link">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
-        Back to Home
+        Back to Tools
       </a>
 
       <div class="tab-content active" id="page-home">
@@ -123,6 +143,7 @@
           <li><strong>Stats & Attributes:</strong> Apply static modifiers like Max Health, Strength, Luck, and Movement Speed.</li>
           <li><strong>Utility Mechanics:</strong> Configure i-frames, double jumps, fall damage reduction, and reach extensions.</li>
           <li><strong>Event Triggers:</strong> Execute console commands, sounds, and particles reacting to damage, kills, equipping, or ticks.</li>
+          <li><strong>Loot & Generation:</strong> Integrate relics into vanilla structure chests and custom mob drops.</li>
           <li><strong>Relic Sets:</strong> Link multiple relics to provide massive bonuses when equipped together.</li>
         </ul>
       </div>
@@ -346,6 +367,130 @@
   interval-ticks: 60</code></pre>
       </div>
 
+      <div class="tab-content" id="page-structure-loot">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Loot & Drops</span>
+          <span>/</span>
+          <span>Structure Loot</span>
+        </div>
+        
+        <h1>Structure Loot Generation (loot.yml)</h1>
+        <p>You can configure relics to spawn naturally inside vanilla Minecraft structure chests (like Dungeons, End Cities, or Bastions) using the <code>structures</code> section in your <strong>loot configuration</strong>.</p>
+        
+        <div class="info-box">
+          <strong>🎲 How the RNG Works (Two-Step Roll)</strong>
+          <p>The system uses a robust two-step roll for fairness:<br>
+          <strong>1. Weight:</strong> The plugin picks a random item from the pool based on its weight relative to others.<br>
+          <strong>2. Individual Chance:</strong> Once an item is picked, it must pass its own specific chance (e.g., 0.5 = 50%) to actually spawn. If it fails, nothing spawns for that attempt.</p>
+        </div>
+
+        <h3>Configuration Example</h3>
+        <p>Add this to your loot configuration file:</p>
+
+        <pre><code>structures:
+  "minecraft:chests/simple_dungeon":
+    enabled: true
+    min_amount: 1
+    max_amount: 3
+    pool:
+      golden_ring_advanced:
+        weight: 10
+        chance: 0.5
+      mystic_orchestra:
+        weight: 2
+        chance: 0.1</code></pre>
+
+        <h3>Understanding the Keys</h3>
+        <table>
+          <tr>
+            <th>Key</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><code>"minecraft:..."</code></td>
+            <td>The exact vanilla loot table key (e.g., <code>minecraft:chests/end_city_treasure</code>).</td>
+          </tr>
+          <tr>
+            <td><code>min_amount / max_amount</code></td>
+            <td>The number of generation "attempts" the plugin will make when a chest is opened.</td>
+          </tr>
+          <tr>
+            <td><code>pool</code></td>
+            <td>The list of your custom <code>relic_ids</code> that can potentially spawn in this structure.</td>
+          </tr>
+          <tr>
+            <td><code>weight</code></td>
+            <td>How heavily weighted this relic is compared to others in the pool. (Higher = More likely to be chosen).</td>
+          </tr>
+          <tr>
+            <td><code>chance</code></td>
+            <td>The final probability of the item dropping once selected (0.0 to 1.0). <em>Defaults to 1.0 (100%) if not set.</em></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-content" id="page-mob-drops">
+        <div class="breadcrumb">
+          <a href="#" data-page="home">Home</a>
+          <span>/</span>
+          <span>Loot & Drops</span>
+          <span>/</span>
+          <span>Mob Drops </span>
+        </div>
+        
+        <h1>Mob Drops (loot.yml)</h1>
+        <p>Relics can be configured to drop when a player kills specific entities. This system uses the same <strong>Weight + Individual Chance</strong> system as structures, ensuring balanced drop rates.</p>
+        
+        <div class="info-box warning">
+          <strong>⚠️ Player Kills Required</strong>
+          <p>To prevent infinite farming exploits, mobs will <strong>only</strong> drop relics if the entity was directly killed by a Player. Environmental damage or other mobs will not trigger the drop.</p>
+        </div>
+
+        <h3>Configuration Example</h3>
+        <p>Define your mob drops under the <code>mobs</code> section in the loot configuration:</p>
+
+        <pre><code>mobs:
+  ZOMBIE:
+    enabled: true
+    sound: "ENTITY_PLAYER_LEVELUP"
+    pool:
+      ancient_coin_advanced:
+        weight: 5
+        chance: 0.05
+  ENDER_DRAGON:
+    enabled: true
+    sound: "UI_TOAST_CHALLENGE_COMPLETE"
+    pool:
+      dragon_heart_relic:
+        weight: 1
+        chance: 1.0</code></pre>
+
+        <h3>Understanding the Keys</h3>
+        <table>
+          <tr>
+            <th>Key</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><code>ENTITY_TYPE</code></td>
+            <td>The exact Bukkit EntityType enum (e.g., <code>ZOMBIE</code>, <code>SKELETON</code>, <code>ENDER_DRAGON</code>).</td>
+          </tr>
+          <tr>
+            <td><code>sound</code></td>
+            <td>(Optional) A Bukkit Sound enum to play directly to the player who got the kill when the relic drops.</td>
+          </tr>
+          <tr>
+            <td><code>weight</code></td>
+            <td>The probability weight of this relic being selected from the pool.</td>
+          </tr>
+          <tr>
+            <td><code>chance</code></td>
+            <td>The final chance (0.0 to 1.0) of the relic dropping. For example, <code>0.05</code> means a 5% drop rate.</td>
+          </tr>
+        </table>
+      </div>
       <div class="tab-content" id="page-relic-sets">
         <div class="breadcrumb">
           <a href="#" data-page="home">Home</a>
@@ -355,7 +500,7 @@
           <span>Relic Sets</span>
         </div>
         
-        <h1>Relic Sets Configuration</h1>
+        <h1>Relic Sets Configuration (relic_sets.yml)</h1>
         <p>Relic Sets allow you to link multiple individual relics into a unified set. When a player manages to collect and equip all the required relics within a set simultaneously, they are rewarded with bonus attributes and custom visual/audio effects.</p>
         
         <div class="info-box success">

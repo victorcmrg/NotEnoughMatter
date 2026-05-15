@@ -198,6 +198,20 @@ nav a:hover {
     color: #10b981;
 }
 
+/* INÍCIO DAS REGRAS ADICIONADAS PARA AS NOVAS SEÇÕES (LOOT, SYSTEMS E RESOURCES) */
+.sidebar-section:nth-child(4) .sidebar-item .icon {
+    color: #a855f7; /* Roxo para Loot & Drops */
+}
+
+.sidebar-section:nth-child(5) .sidebar-item .icon {
+    color: #10b981; /* Verde antigo realocado para Advanced Systems */
+}
+
+.sidebar-section:nth-child(6) .sidebar-item .icon {
+    color: #ec4899; /* Rosa para Resources */
+}
+/* FIM DAS REGRAS ADICIONADAS */
+
 /* Green */
 
 .sidebar-item.active .icon {
