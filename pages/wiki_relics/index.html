@@ -274,7 +274,7 @@
         </table>
       </div>
 
-      <div class="tab-content" id="page-effects-buffs">
+<div class="tab-content" id="page-effects-buffs">
         <div class="breadcrumb">
           <a href="#" data-page="home">Home</a>
           <span>/</span>
@@ -284,7 +284,23 @@
         </div>
         
         <h1>Special Effects & Mechanics</h1>
-        <p>Use the <code>special_effects</code> block to add utility mechanics like invulnerability frames, reach extensions, and extra jumps.</p>
+        <p>Enhance your relics with continuous potion buffs and unique utility mechanics like invulnerability frames and extra jumps.</p>
+        
+        <h3>Permanent Potion Effects</h3>
+        <p>Use the <code>potion_effects</code> block to apply vanilla Minecraft potion effects that remain active as long as the player has the relic equipped. The number represents the <strong>amplifier</strong> of the effect (where <code>0</code> = Level 1, <code>1</code> = Level 2, etc.).</p>
+        
+        <pre><code>potion_effects:
+  SPEED: 0
+  INCREASE_DAMAGE: 1
+  FIRE_RESISTANCE: 0</code></pre>
+
+        <div class="info-box">
+          <strong>Important</strong>
+          <p>You must use standard Bukkit/Spigot PotionEffectType names. For example, use <code>INCREASE_DAMAGE</code> instead of Strength, and <code>SLOW_DIGGING</code> instead of Mining Fatigue.</p>
+        </div>
+        
+        <h3>Utility Special Effects</h3>
+        <p>Use the <code>special_effects</code> block to add custom utility mechanics, such as reach extensions and extra mobility.</p>
         
         <pre><code>special_effects:
   invulnerability_time: 0.5
@@ -293,7 +309,7 @@
   block_range: 2.0
   double_jump: 1</code></pre>
   
-        <h3>Available Mechanics</h3>
+        <h4>Available Mechanics</h4>
         <table>
           <tr>
             <th>Key</th>
@@ -301,23 +317,23 @@
           </tr>
           <tr>
             <td><code>invulnerability_time</code></td>
-            <td>Grants seconds of i-frames after the player is hit (e.g., <code>0.8</code>).</td>
+            <td>Grants extra seconds of i-frames (invulnerability) after the player is hit (e.g., <code>0.8</code>).</td>
           </tr>
           <tr>
             <td><code>fall_damage_reduction</code></td>
-            <td>Reduces incoming fall damage by a percentage (e.g., <code>0.3</code> = 30%).</td>
+            <td>Reduces incoming fall damage by a percentage (e.g., <code>0.3</code> = 30% reduction).</td>
           </tr>
           <tr>
             <td><code>entity_range</code></td>
-            <td>Increases attack reach against entities in blocks.</td>
+            <td>Increases the player's attack reach against entities (in blocks).</td>
           </tr>
           <tr>
             <td><code>block_range</code></td>
-            <td>Increases block breaking and interaction reach in blocks.</td>
+            <td>Increases the player's block breaking and interaction reach (in blocks).</td>
           </tr>
           <tr>
             <td><code>double_jump</code></td>
-            <td>Grants extra mid-air jumps (Integer).</td>
+            <td>Grants extra mid-air jumps. Accepts integer values (e.g., <code>1</code> for one extra jump).</td>
           </tr>
         </table>
       </div>
